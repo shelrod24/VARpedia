@@ -7,19 +7,21 @@ import java.util.Collections;
 public class DirectoryServices {
 
 
-    private static final File _audiofiles = new File("./Audio");
-    private static final File _creationfiles = new File("./Creations");
+    private static final File _audiofiles = new File("./audio");
+    private static final File _creationfiles = new File("./creations");
 
 
-    public static boolean SearchDirectoryForName(String name){
+    public static boolean SearchDirectoryForName(String term, String name){
 
-        File[] listoffiles = _audiofiles.listFiles();
+        File[] listoffiles = new File("./audio/"+term).listFiles();
         boolean exists = false;
-
+        if (listoffiles==null) {
+        	return false;
+        }
         for (File file: listoffiles) {
 
             if(file.getName().equals(name+".wav")) {
-
+            	
                 exists = true;
 
             }

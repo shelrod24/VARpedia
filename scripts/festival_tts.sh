@@ -4,13 +4,12 @@
 
 FESTIVAL_DIR="./temps/festival"
 mkdir -p ${FESTIVAL_DIR}
-mkdir -p ${AUDIO_DIR}
 
 cd ${FESTIVAL_DIR}
 
 # will overwrite
 echo "(voice_${1})" > sample.scm
-echo "(SayText \"${3}\")" >> sample.scm
+echo "(SayText \"${2}\")" >> sample.scm
 
 # run scm file made
 festival -b sample.scm
