@@ -93,7 +93,9 @@ public class CreateAudio extends Controller {
                     PrintWikiArticleFromLinedFile();
                 });
             }
+
         });
+
         thread.start();
 
     }
@@ -193,6 +195,12 @@ public class CreateAudio extends Controller {
     public void NameFile() throws IOException, InterruptedException {
 
         String name = _filefield.getText();
+        String lyrics = _lyrics.getText();
+        lyrics = lyrics.replace("\n", " ");
+        String[] arr = lyrics.split(" ");
+        AccentType accent = (AccentType)_chooseaccent.getSelectionModel().getSelectedItem();
+
+
         if (name == null){
 
         } else {
@@ -201,12 +209,9 @@ public class CreateAudio extends Controller {
 
             if (exists) {
 
-            } else {
+            } else if (arr.length <= 40) {
 
-                //Creates the audio file
-                //Must use the accent....
-                ProcessBuilder audioBuilder = new ProcessBuilder("/bin/bash", "-c", "echo `cat ./Linedtextfile.txt` > ./text.txt;"
-                        + "espeak -f ./text.txt -w ./audio/+ "+ name +".wav;");
+                ProcessBuilder audioBuilder = new ProcessBuilder("/bin/bash","-c", "espeak "+accent.ReturnFlag()+" "+ "\""+lyrics+"\""+" -w ./Audio/"+ name +".wav");
                 Process p1 = audioBuilder.start();
                 p1.waitFor();
                 _lyrics.clear();
