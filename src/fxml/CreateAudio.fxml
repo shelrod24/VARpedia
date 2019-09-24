@@ -29,7 +29,7 @@
          <right>
             <VBox prefHeight="200.0" prefWidth="450.0" BorderPane.alignment="CENTER">
                <children>
-                  <TextArea fx:id="_lyrics" opacity="0.93" prefHeight="377.0" prefWidth="347.0" />
+                  <TextArea fx:id="_lyrics" opacity="0.93" prefHeight="377.0" prefWidth="347.0" wrapText="true" />
                   <Region prefHeight="10.0" prefWidth="200.0" />
                   <HBox prefHeight="27.0" prefWidth="300.0">
                      <children>

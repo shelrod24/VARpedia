@@ -28,7 +28,27 @@ public class DirectoryServices {
         }
         return exists;
     }
-
+    
+    public static ArrayList<String> listAudioFolders() {
+    	// getting all folders in /audio
+        File[] listoffiles = _audiofiles.listFiles();
+        ArrayList<String> _completedcollections = new ArrayList<String>();
+        for (File file: listoffiles) {
+            _completedcollections.add(file.getName());
+        }
+        Collections.sort(_completedcollections, String.CASE_INSENSITIVE_ORDER);
+        return _completedcollections;
+    }
+    
+    public static ArrayList<String> listAudio(String folder){
+        File[] listoffiles = new File("./audio/"+folder).listFiles();
+        ArrayList<String> _completedcollections = new ArrayList<String>();
+        for (File file: listoffiles) {
+            _completedcollections.add(file.getName());
+        }
+        return _completedcollections;
+    }
+    
     /**
      *This method is responsible for Listing the files in the Creations Directory in alphabetical order
      **/
