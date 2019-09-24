@@ -1,6 +1,7 @@
 package controllers;
 
 import Services.DirectoryServices;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
@@ -23,6 +24,7 @@ public class CreateAudio extends Controller {
     @FXML private ChoiceBox _chooseaccent;
     @FXML private TextField _filefield;
     private String _previousfxmlpath = "/fxml/MainMenu.fxml";
+    private String _searchterm;
 
     private ObservableList<AccentType> _accents = FXCollections.observableArrayList(AccentType.EnglishUS, AccentType.EnglishUK, AccentType.Spanish, AccentType.German);
 
@@ -30,8 +32,8 @@ public class CreateAudio extends Controller {
 
 
     public void SearchWikipedia() throws IOException {
-        String searchterm = _searchfield.getText();
-        String echowiki = "echo $(wikit "+searchterm+") > ./text.txt";
+        _searchterm = _searchfield.getText();
+        String echowiki = "echo $(wikit "+_searchterm+") > ./text.txt";
         ProcessBuilder getwikiarticle = new ProcessBuilder("/bin/bash","-c",echowiki);
         Process process = getwikiarticle.start();
 
@@ -43,8 +45,8 @@ public class CreateAudio extends Controller {
 
         }
 
-        FillWikiTextFiles(searchterm);
-        PrintWikiArticleFromLinedFile();
+        FillWikiTextFiles(_searchterm);
+
 
     }
 
@@ -82,6 +84,14 @@ public class CreateAudio extends Controller {
 
                 }
                 return null;
+
+            }
+
+            @Override
+            public void done(){
+                Platform.runLater(()->{
+                    PrintWikiArticleFromLinedFile();
+                });
             }
         });
         thread.start();
@@ -183,13 +193,11 @@ public class CreateAudio extends Controller {
     public void NameFile() throws IOException, InterruptedException {
 
         String name = _filefield.getText();
-        System.out.println(_filefield.getText());
         if (name == null){
 
         } else {
 
             boolean exists = DirectoryServices.SearchDirectoryForName(name);
-            System.out.println(exists);
 
             if (exists) {
 
@@ -198,7 +206,7 @@ public class CreateAudio extends Controller {
                 //Creates the audio file
                 //Must use the accent....
                 ProcessBuilder audioBuilder = new ProcessBuilder("/bin/bash", "-c", "echo `cat ./Linedtextfile.txt` > ./text.txt;"
-                        + "espeak -f ./text.txt -w ./Audio/"+name+".wav;");
+                        + "espeak -f ./text.txt -w ./audio/+ "+ name +".wav;");
                 Process p1 = audioBuilder.start();
                 p1.waitFor();
                 _lyrics.clear();
