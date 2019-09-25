@@ -10,7 +10,7 @@ import javafx.scene.control.ListView;
 
 public class ChooseChunk extends Controller{
 	private String _previousFXMLPath="/fxml/MainMenu.fxml";
-	private String _nextFXMLPath;
+	private String _nextFXMLPath="/fxml/ChooseImages.fxml";
 	private NewCreationService _creation;
 	@FXML private ListView<String> _folderView;
 	@FXML private ListView<String> _inputAudioView;
@@ -40,7 +40,7 @@ public class ChooseChunk extends Controller{
 			return;
 		}
 		List<String> audioList = DirectoryServices.listAudio(folder);
-		_inputAudioView.getItems().setAll();
+		_inputAudioView.getItems().setAll(audioList);
 		_outputAudioView.getItems().clear();
 		// make a new creation with the term as the folder name
 		_creation = new NewCreationService(folder);
