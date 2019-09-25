@@ -48,11 +48,11 @@
                   <HBox>
                      <children>
                         <Region HBox.hgrow="ALWAYS" />
-                        <Button mnemonicParsing="false" prefWidth="100.0" text="Back">
+                        <Button mnemonicParsing="false" onAction="#SwitchBackScene" prefWidth="100.0" text="Back">
                            <HBox.margin>
                               <Insets right="5.0" />
                            </HBox.margin></Button>
-                        <Button mnemonicParsing="false" prefWidth="100.0" text="Next" />
+                        <Button mnemonicParsing="false" onAction="#SwitchForwardScene" prefWidth="100.0" text="Next" />
                      </children>
                      <VBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" />

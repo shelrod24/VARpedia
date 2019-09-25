@@ -6,11 +6,12 @@ import java.util.List;
 import Services.DirectoryServices;
 import Services.NewCreationService;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListView;
 
 public class ChooseChunk extends Controller{
-	private String _previousFXMLPath="/fxml/MainMenu.fxml";
-	private String _nextFXMLPath="/fxml/ChooseImages.fxml";
+	private final String _backFXMLPath="/fxml/MainMenu.fxml";
+	private final String _nextFXMLPath="/fxml/ChooseImages.fxml";
 	private NewCreationService _creation;
 	@FXML private ListView<String> _folderView;
 	@FXML private ListView<String> _inputAudioView;
@@ -25,7 +26,11 @@ public class ChooseChunk extends Controller{
 
 	@Override
 	public String ReturnFXMLPath() {
-		return _previousFXMLPath;
+		return _backFXMLPath;
+	}
+	
+	public void setCreation(NewCreationService creation) {
+		_creation=creation;
 	}
 
 	@Override
@@ -67,7 +72,7 @@ public class ChooseChunk extends Controller{
 		int index = _outputAudioView.getSelectionModel().getSelectedIndex();
 		List<String> chunkList = _outputAudioView.getItems();
 		//if index is less than or equal to zero, do nothing
-		if (index>0) {
+		if (index>0 && index<chunkList.size()) {
 			String chunk = chunkList.get(index);
 			chunkList.set(index, chunkList.get(index - 1));
 			chunkList.set(index - 1, chunk);
@@ -80,12 +85,19 @@ public class ChooseChunk extends Controller{
 		int index = _outputAudioView.getSelectionModel().getSelectedIndex();
 		List<String> chunkList = _outputAudioView.getItems();
 		//if index is more than or equal to index of last element, do nothing
-		if (index<chunkList.size()-1) {
+		if (index<chunkList.size()-1 && index>=0) {
 			String chunk = chunkList.get(index);
 			chunkList.set(index, chunkList.get(index + 1));
 			chunkList.set(index + 1, chunk);
 			_outputAudioView.getSelectionModel().clearAndSelect(index + 1);
 		}
 	}
-
+	
+	@Override
+	public void AuxiliaryFunction(FXMLLoader loader) {
+		_creation.setAudioList(_outputAudioView.getItems());
+		ChooseImages controller = loader.getController();
+		controller.setCreation(_creation);
+		controller.initData();
+	}
 }

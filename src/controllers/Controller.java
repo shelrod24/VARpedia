@@ -39,14 +39,31 @@ public abstract class Controller {
 
 
     }
+    
+    public final void SwitchPreviousScene(ActionEvent event) throws IOException {
+        String fxmlpath = ReturnPreviousFXMLPath();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlpath));
+        Parent sceneparent = loader.load();
+        Scene scene = new Scene(sceneparent);
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        AuxiliaryFunctionPrevious(loader);
+    }
 
     public abstract String ReturnFXMLPath();
 
     public abstract String ReturnForwardFXMLPath();
+    
+    public String ReturnPreviousFXMLPath() {
+    	return null;
+    };
 
     public void AuxiliaryFunction(FXMLLoader loader){}
 
     public void AuxiliaryFunctionBackwards(FXMLLoader loader) {}
+    
+    public void AuxiliaryFunctionPrevious(FXMLLoader loader) {}
+
 
 
 }
