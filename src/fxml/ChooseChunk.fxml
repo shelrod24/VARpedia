@@ -4,13 +4,12 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ToolBar?>
-<?import javafx.scene.control.TreeView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="423.0" prefWidth="815.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CreateAudio">
+<AnchorPane prefHeight="500.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ChooseChunk">
    <children>
       <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -18,29 +17,29 @@
                <items>
                   <HBox prefHeight="27.0" prefWidth="550.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#SwitchToMenu" text="Home" />
+                        <Button mnemonicParsing="false" onAction="#SwitchBackScene" text="Home" />
                      </children>
                   </HBox>
                </items>
             </ToolBar>
             <VBox VBox.vgrow="ALWAYS">
                <children>
-                  <HBox VBox.vgrow="ALWAYS">
+                  <HBox spacing="5.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <ListView />
-                        <TreeView />
+                        <ListView fx:id="_folderView" onMouseClicked="#handleFolderView" />
+                        <ListView fx:id="_inputAudioView" />
                         <VBox alignment="CENTER" prefHeight="561.0" prefWidth="100.0" spacing="5.0">
                            <children>
-                              <Button mnemonicParsing="false" prefWidth="100.0" text="Move Up" />
-                              <Button mnemonicParsing="false" prefWidth="100.0" text="Add" />
-                              <Button mnemonicParsing="false" prefWidth="100.0" text="Remove" />
-                              <Button mnemonicParsing="false" prefWidth="100.0" text="Move Down" />
+                              <Button mnemonicParsing="false" onAction="#handleMoveUp" prefWidth="100.0" text="Move Up" />
+                              <Button mnemonicParsing="false" onAction="#handleAdd" prefWidth="100.0" text="Add" />
+                              <Button mnemonicParsing="false" onAction="#handleRemove" prefWidth="100.0" text="Remove" />
+                              <Button mnemonicParsing="false" onAction="#handleMoveDown" prefWidth="100.0" text="Move Down" />
                            </children>
                            <HBox.margin>
                               <Insets left="5.0" right="5.0" />
                            </HBox.margin>
                         </VBox>
-                        <ListView HBox.hgrow="ALWAYS" />
+                        <ListView fx:id="_outputAudioView" HBox.hgrow="ALWAYS" />
                      </children>
                      <VBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" />

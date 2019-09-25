@@ -63,6 +63,18 @@ public class MainMenu extends Application {
         stage.setScene(createaudioscene);
 
     }
+    
+    /**
+     * 
+     */
+    public void SwitchToCreateCreation(ActionEvent event) throws IOException {
+    	Parent createcreationparent = FXMLLoader.load(getClass().getResource("/fxml/ChooseChunk.fxml"));
+        Scene createcreationscene = new Scene(createcreationparent);
+
+        //Get stage information of the current stage
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(createcreationscene);
+    }
 
     public void CreateFileDirectory() {
 
