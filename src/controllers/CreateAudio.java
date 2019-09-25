@@ -54,7 +54,6 @@ public class CreateAudio extends Controller {
 
         FillWikiTextFiles(_searchterm);
 
-
     }
 
 
@@ -300,7 +299,6 @@ public class CreateAudio extends Controller {
         }
 
     }
-
 
     public void updateWordCount(){
 

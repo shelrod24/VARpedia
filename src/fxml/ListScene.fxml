@@ -21,7 +21,7 @@
       </ImageView>
       <BorderPane prefHeight="500.0" prefWidth="1000.0">
          <top>
-            <VBox maxWidth="-Infinity" prefHeight="49.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
+            <VBox maxWidth="-Infinity" prefHeight="55.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
                <children>
                   <ToolBar minWidth="-Infinity" opacity="0.93" prefHeight="40.0" prefWidth="1000.0">
                     <items>
