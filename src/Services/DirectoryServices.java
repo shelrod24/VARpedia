@@ -49,6 +49,15 @@ public class DirectoryServices {
         return _completedcollections;
     }
     
+    public static ArrayList<String> listImages() {
+        File[] listoffiles = new File("./temps/image").listFiles();
+        ArrayList<String> _completedcollections = new ArrayList<String>();
+        for (File file: listoffiles) {
+            _completedcollections.add(file.getName());
+        }
+        return _completedcollections;
+    }
+    
     /**
      *This method is responsible for Listing the files in the Creations Directory in alphabetical order
      **/
