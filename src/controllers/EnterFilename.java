@@ -107,6 +107,7 @@ public class EnterFilename extends Controller{
 		ChooseImages controller = loader.getController();
 		controller.setCreation(_creation);
 		controller.updateImageList();
+		controller.reflectCreation();
 	}
 	
 }

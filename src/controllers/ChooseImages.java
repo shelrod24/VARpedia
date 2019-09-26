@@ -135,6 +135,10 @@ public class ChooseImages extends Controller{
 		}
 	}
 	
+	public void reflectCreation() {
+		_outputImageView.getItems().setAll(_creation.getImageList());
+	}
+	
     public void AuxiliaryFunction(FXMLLoader loader){
     	_creation.setImageList(_outputImageView.getItems());
 		EnterFilename controller = loader.getController();
@@ -145,5 +149,6 @@ public class ChooseImages extends Controller{
 	public void AuxiliaryFunctionPrevious(FXMLLoader loader) {
 		ChooseChunk controller = loader.getController();
 		controller.setCreation(_creation);
+		controller.reflectCreation();
 	}
 }

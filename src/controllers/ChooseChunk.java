@@ -8,6 +8,7 @@ import Services.NewCreationService;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ListView;
+import javafx.scene.control.SelectionModel;
 
 public class ChooseChunk extends Controller{
 	private final String _backFXMLPath="/fxml/MainMenu.fxml";
@@ -44,11 +45,15 @@ public class ChooseChunk extends Controller{
 		if(folder==null) {
 			return;
 		}
+		updateInputViewList(folder);
+		// make a new creation with the term as the folder name
+		_creation = new NewCreationService(folder);
+	}
+	
+	public void updateInputViewList(String folder) {
 		List<String> audioList = DirectoryServices.listAudio(folder);
 		_inputAudioView.getItems().setAll(audioList);
 		_outputAudioView.getItems().clear();
-		// make a new creation with the term as the folder name
-		_creation = new NewCreationService(folder);
 	}
 	
 	@FXML
@@ -100,4 +105,15 @@ public class ChooseChunk extends Controller{
 		controller.setCreation(_creation);
 		controller.initData();
 	}
+	
+	public void reflectCreation() {
+		//select the right folder
+		int folderIndex = _folderView.getItems().indexOf(_creation.getTerm());
+		_folderView.getSelectionModel().clearAndSelect(folderIndex);
+		//update the input view with the right folder
+		updateInputViewList(_creation.getTerm());
+		//set output values to creation current
+		_outputAudioView.getItems().setAll(_creation.getAudioList());
+	}
+	
 }

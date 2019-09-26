@@ -33,7 +33,7 @@ public class MediaViewController extends Controller{
 
     public void playMedia(String medianame) {
 
-        _fileUrl = new File("./Creations/" + medianame + ".mp4");
+        _fileUrl = new File("./creations/" + medianame + ".mp4");
         _video = new Media(_fileUrl.toURI().toString());
         _player = new MediaPlayer(_video);
         _player.setAutoPlay(true);

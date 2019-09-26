@@ -21,16 +21,16 @@ public class NewCreationService {
 		_audioList = audioList;
 	}
 	
-	public void addAudio(String audio) {
-		_audioList.add(audio);
+	public List<String> getAudioList() {
+			return _audioList;
 	}
 	
 	public void setImageList(List<String> imageList) {
 		_imageList = imageList;
 	}
 	
-	public void addImage(String image) {
-		_imageList.add(image);
+	public List<String> getImageList() {
+		return _imageList;
 	}
 	
 	public void deleteFinals() throws InterruptedException, IOException {
