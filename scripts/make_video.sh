@@ -20,7 +20,7 @@ echo $IMAGE_COUNT
 
 
 # make slideshow with fps equal to that of the numebr of images ie duration should last for a second (it really doesnt)
-ffmpeg -y -r ${IMAGE_COUNT} -i image-%3d.jpg -vf "pad=ceil(iw/2)*2:ceil(ih/2)*2" -vf "drawtext=fontfile=comic.ttf : fontsize=30 : fontcolor=white : x=(w-text_w)/2:y=(h-text_h)/2 : text='${1}',pad=ceil(iw/2)*2:ceil(ih/2)*2" "TEMPSHORT.mp4"
+ffmpeg -y -r ${IMAGE_COUNT} -i image-%3d.jpg -vf "drawtext=fontfile=comic.ttf : fontsize=30 : fontcolor=white : x=(w-text_w)/2:y=(h-text_h)/2 : text='${1}',pad=ceil(iw/2)*2:ceil(ih/2)*2" "TEMPSHORT.mp4"
 
 # cd to original folder
 cd ..
