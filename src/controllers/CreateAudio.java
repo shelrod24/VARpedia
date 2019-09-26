@@ -12,6 +12,7 @@ import javafx.scene.control.Alert.AlertType;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,49 +24,69 @@ public class CreateAudio extends Controller {
     @FXML private ListView<String> _listarea;
     @FXML private TextArea _lyrics;
     @FXML private Button _moveoverbutton;
-    @FXML private ChoiceBox _chooseaccent;
+    @FXML private ChoiceBox<String> _chooseaccent;
     @FXML private TextField _filefield;
     @FXML private Button _createbutton;
     @FXML private Button _previewbutton;
     private String _previousfxmlpath = "/fxml/MainMenu.fxml";
     private String _searchterm;
-    
-
-    private ObservableList<AccentType> _accents = FXCollections.observableArrayList(AccentType.EnglishUS, AccentType.EnglishUK, AccentType.Spanish, AccentType.German);
-
 
 
 
     public void SearchWikipedia() throws IOException {
-    	_searchbutton.setDisable(true);
-    	//need to make this into a thread so that ui is responsive
+
+
         _searchterm = _searchfield.getText();
-        String echowiki = "echo $(wikit "+_searchterm+") > ./text.txt";
-        ProcessBuilder getwikiarticle = new ProcessBuilder("/bin/bash","-c",echowiki);
-        Process process = getwikiarticle.start();
 
-        try {
+        final String searchterm =  _searchterm;
 
-            process.waitFor();
+        Thread thread = new Thread(new Task<Void>(){
 
-        } catch (Exception e) {
 
-        }
+            @Override
+            protected Void call() throws Exception {
 
-        FillWikiTextFiles(_searchterm);
+                String echowiki = "echo $(wikit " + searchterm + ") > ./text.txt";
+                ProcessBuilder getwikiarticle = new ProcessBuilder("/bin/bash", "-c", echowiki);
+                Process process = getwikiarticle.start();
+
+                try {
+
+                    process.waitFor();
+
+                } catch (Exception e) {
+
+                }
+
+                FillWikiTextFiles(searchterm);
+
+                return null;
+            }
+
+            @Override
+            public void done(){
+                Platform.runLater(()->{
+                    PrintWikiArticleFromLinedFile();
+                    _searchbutton.setDisable(false);
+                });
+            }
+
+    });
+
+
+    	_searchbutton.setDisable(true);
+        thread.start();
 
     }
 
 
 
+
+
     public void FillWikiTextFiles(String searchterm) throws IOException {
 
-        final String s = searchterm;
-        Thread thread = new Thread(new Task<Void>(){
 
-            @Override
-            protected Void call() throws Exception {
-                String echowiki = "echo $(wikit "+s+") > ./text.txt";
+                String echowiki = "echo $(wikit "+searchterm+") > ./text.txt";
                 ProcessBuilder filltextfileprocess = new ProcessBuilder("/bin/bash","-c",echowiki);
                 Process process = filltextfileprocess.start();
 
@@ -89,23 +110,11 @@ public class CreateAudio extends Controller {
                     e.printStackTrace();
 
                 }
-                return null;
-
-            }
-
-            @Override
-            public void done(){
-                Platform.runLater(()->{
-                    PrintWikiArticleFromLinedFile();
-                    _searchbutton.setDisable(false);
-                });
-            }
-
-        });
-
-        thread.start();
 
     }
+
+
+
 
 
     public int PrintWikiArticleFromLinedFile() {
@@ -149,10 +158,24 @@ public class CreateAudio extends Controller {
     }
 
     @FXML
-    private void initialize() {
-        _chooseaccent.setItems(_accents);
+    private void initialize() throws IOException, InterruptedException {
+
+
+        ProcessBuilder voicesbuilder = new ProcessBuilder("sh","-c","./scripts/list_voices.sh");
+        Process voiceprocess = voicesbuilder.start();
+        BufferedReader stdout = new BufferedReader(new InputStreamReader(voiceprocess.getInputStream()));
+        voiceprocess.waitFor();
+        String line = stdout.readLine();
+        String[] arr = line.split(" ");
+
+
+        ObservableList<String> accents = FXCollections.observableArrayList(arr);
+        _chooseaccent.setItems(accents);
         _chooseaccent.getSelectionModel().selectFirst();
+
     }
+
+
 
 
     public void MoveTextOver() {
@@ -162,13 +185,14 @@ public class CreateAudio extends Controller {
 
     }
 
+
+
+
     public void PreviewAudio() throws IOException, InterruptedException {
 
 
         String lyrics = _lyrics.getText();
         String[] arr = lyrics.split(" ");
-        AccentType accent = (AccentType)_chooseaccent.getSelectionModel().getSelectedItem();
-        System.out.println(accent.ReturnFlag());
 
         if (arr.length > 40){
         	Alert alert = new Alert(AlertType.WARNING);
@@ -183,7 +207,7 @@ public class CreateAudio extends Controller {
 				@Override
 				protected Void call() throws Exception {
 					//right now only have it such that kal_diphone is in it
-					ProcessBuilder builder = new ProcessBuilder("./scripts/festival_tts.sh", "kal_diphone", _lyrics.getText());
+					ProcessBuilder builder = new ProcessBuilder("./scripts/festival_tts.sh",_chooseaccent.getSelectionModel().getSelectedItem(), _lyrics.getText());
 	            	Process process = builder.start();
 	            	process.waitFor();
 	            	return null;
@@ -231,7 +255,6 @@ public class CreateAudio extends Controller {
         String lyrics = _lyrics.getText();
         lyrics = lyrics.replace("\n", " ");
         String[] arr = lyrics.split(" ");
-        AccentType accent = (AccentType)_chooseaccent.getSelectionModel().getSelectedItem();
 
 
         if (arr.length > 40){
@@ -244,7 +267,7 @@ public class CreateAudio extends Controller {
 			return;
         }
         
-        //dont understand why string isnt being detected here
+
         if (name == null || name.trim().isEmpty()){
         	Alert alert = new Alert(AlertType.WARNING);
 			alert.setTitle("Invalid Filename");
@@ -272,7 +295,7 @@ public class CreateAudio extends Controller {
 					@Override
 					protected Void call() throws Exception {
 						//right now only have it such that kal_diphone is in it
-						ProcessBuilder builder = new ProcessBuilder("./scripts/festival_make_chunk.sh", name, _searchterm, "kal_diphone", _lyrics.getText());
+						ProcessBuilder builder = new ProcessBuilder("./scripts/festival_make_chunk.sh", name, _searchterm, _chooseaccent.getSelectionModel().getSelectedItem(), _lyrics.getText());
 		            	Process process = builder.start();
 		            	process.waitFor();
 		            	return null;

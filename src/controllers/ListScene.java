@@ -21,8 +21,6 @@ public class ListScene extends Controller{
 
         ArrayList<String> creationfiles = DirectoryServices.listCreations();
 
-
-
         for(String s: creationfiles) {
 
             s = s.substring(0, s.length()-4);
