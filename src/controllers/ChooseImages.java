@@ -1,11 +1,13 @@
 package controllers;
 
+import java.io.IOException;
 import java.util.List;
 
 import Services.DirectoryServices;
 import Services.NewCreationService;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
@@ -137,6 +139,20 @@ public class ChooseImages extends Controller{
 	
 	public void reflectCreation() {
 		_outputImageView.getItems().setAll(_creation.getImageList());
+	}
+	
+	@FXML
+	public void handleNextButton(ActionEvent event) throws IOException {
+		if(_outputImageView.getItems().isEmpty()) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("No Images Chosen");
+			alert.setHeaderText(null);
+			alert.setContentText("No images were chosen");
+			alert.getButtonTypes().setAll(ButtonType.OK);
+			alert.showAndWait();
+		}else {
+			SwitchForwardScene(event);
+		}
 	}
 	
     public void AuxiliaryFunction(FXMLLoader loader){
