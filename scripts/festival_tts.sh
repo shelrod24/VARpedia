@@ -3,7 +3,10 @@
 # Second input is the text to be parsed (eg "excuse me what the fu")
 
 
-echo "(voice_${1}) (SayText \"${2}\")" | festival
+output=`echo "(voice_${1}) (SayText \"${2}\")" | festival 2>&1`
 
-
+if [ ! -z "$output" ] ; then
+	exit 1
+fi 
+exit 0
 
