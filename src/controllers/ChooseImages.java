@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.List;
 
 import Services.DirectoryServices;
+import Services.FlickrAPIService;
 import Services.NewCreationService;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
@@ -106,14 +107,15 @@ public class ChooseImages extends Controller{
 				Process deleteProcess = deleteBuilder.start();
 				deleteProcess.waitFor();
 				//download images
-				ProcessBuilder downloadBuilder = new ProcessBuilder("./scripts/flickr_downloader.sh", _creation.getTerm());
-				Process downloadProcess = downloadBuilder.start();
-				int exit = downloadProcess.waitFor();
+//				ProcessBuilder downloadBuilder = new ProcessBuilder("./scripts/flickr_downloader.sh", _creation.getTerm());
+//				Process downloadProcess = downloadBuilder.start();
+//				int exit = downloadProcess.waitFor();
+				FlickrAPIService.getImages(_creation.getTerm());
 				//populate list once done
 				Platform.runLater(new Runnable() {
 					@Override
 					public void run() {
-						if(exit!=0) {
+						if(DirectoryServices.listImages().isEmpty()) {
 			    			CreateAlert(Alert.AlertType.WARNING, "No Images Found", "No images were found on Flickr");
 						} else {
 							updateImageList();
@@ -185,8 +187,10 @@ public class ChooseImages extends Controller{
     				Image image = new Image(file.toURI().toString());
     				// setting image
     				imageView.setImage(image);
-    				setText(null);
+    				setText(imageName);
     				setGraphic(imageView);
+    				imageView.setPreserveRatio(true);
+    				imageView.setFitHeight(100);
     			}
     		}
     	});
