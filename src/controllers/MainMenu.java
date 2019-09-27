@@ -1,5 +1,6 @@
 package controllers;
 
+import Services.DirectoryServices;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -24,7 +25,7 @@ public class MainMenu extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        CreateFileDirectory();
+        DirectoryServices.CreateDirectories();
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/MainMenu.fxml"));
         primaryStage.setScene(new Scene(root, 1000, 500));
         primaryStage.show();
@@ -75,31 +76,15 @@ public class MainMenu extends Application {
         stage.setScene(createcreationscene);
     }
 
-    public void CreateFileDirectory() {
 
-        File Audio = new File("");
-        boolean audioexists = Audio.exists();
-        if (audioexists) {
+    public void SwitchToDeleteAudio(ActionEvent event) throws IOException {
 
-        } else {
-            ProcessBuilder createaudio = new ProcessBuilder("/bin/bash","-c","mkdir Audio");
-            try {
-                createaudio.start();
-            } catch (IOException e) {
-            }
-        }
+        Parent deleteaudioparent = FXMLLoader.load(getClass().getResource("/fxml/DeleteAudio.fxml"));
+        Scene deleteaudioscene = new Scene(deleteaudioparent);
 
-        File Creations = new File("");
-        boolean creationsexists = Creations.exists();
-        if (creationsexists) {
-
-        } else {
-            ProcessBuilder createcreations = new ProcessBuilder("/bin/bash","-c","mkdir Creations");
-            try {
-                createcreations.start();
-            } catch (IOException e) {
-            }
-        }
+        //Get stage information of the current stage
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(deleteaudioscene);
 
     }
 

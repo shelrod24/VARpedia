@@ -1,6 +1,7 @@
 package Services;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -39,6 +40,9 @@ public class DirectoryServices {
         Collections.sort(_completedcollections, String.CASE_INSENSITIVE_ORDER);
         return _completedcollections;
     }
+
+
+
     
     public static ArrayList<String> listAudio(String folder){
         File[] listoffiles = new File("./audio/"+folder).listFiles();
@@ -74,6 +78,15 @@ public class DirectoryServices {
         Collections.sort(_completedcollections, String.CASE_INSENSITIVE_ORDER);
 
         return _completedcollections;
+
+    }
+
+
+
+    public final static void CreateDirectories() throws IOException {
+
+        ProcessBuilder makedirectoriesprocessbuilder = new ProcessBuilder("sh", "-c", "./scripts/make_directories.sh");
+        Process makedirectoriesprocess = makedirectoriesprocessbuilder.start();
 
     }
 
