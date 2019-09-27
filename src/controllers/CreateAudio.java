@@ -195,12 +195,9 @@ public class CreateAudio extends Controller {
         String[] arr = lyrics.split(" ");
 
         if (arr.length > 40){
-        	Alert alert = new Alert(AlertType.WARNING);
-			alert.setTitle("Too Many Words");
-			alert.setHeaderText(null);
-			alert.setContentText("There are more that 40 words to be parsed.");
-			alert.getButtonTypes().setAll(ButtonType.OK);
-			alert.showAndWait();
+
+            CreateAlert(AlertType.WARNING, "Too Many Words", "There are more that 40 words of text");
+
         } else {
         	_previewbutton.setDisable(true);
         	Thread thread = new Thread(new Task<Void>() {
@@ -223,14 +220,6 @@ public class CreateAudio extends Controller {
 				}
         	});
         	thread.start();
-        	
-            //String previewtext = "echo "+ "\""+lyrics+"\""+" > ./Preview.txt";
-            //ProcessBuilder previewtxtfill = new ProcessBuilder("/bin/bash","-c", previewtext);
-            //Process p = previewtxtfill.start();
-
-            //String espeak = "cat ./Preview.txt | espeak " +accent.ReturnFlag();
-            //ProcessBuilder sing = new ProcessBuilder("/bin/bash","-c", espeak);
-            //Process process = sing.start();
 
         }
 
@@ -258,36 +247,25 @@ public class CreateAudio extends Controller {
 
 
         if (arr.length > 40){
-        	Alert alert = new Alert(AlertType.WARNING);
-			alert.setTitle("Too Many Words");
-			alert.setHeaderText(null);
-			alert.setContentText("There are more that 40 words to be parsed.");
-			alert.getButtonTypes().setAll(ButtonType.OK);
-			alert.showAndWait();
+            CreateAlert(AlertType.WARNING, "Too Many Words", "There are more that 40 words of text");
 			return;
         }
         
 
         if (name == null || name.trim().isEmpty()){
-        	Alert alert = new Alert(AlertType.WARNING);
-			alert.setTitle("Invalid Filename");
-			alert.setHeaderText(null);
-			alert.setContentText("The filename is empty.");
-			alert.getButtonTypes().setAll(ButtonType.OK);
-			alert.showAndWait();
+
+            CreateAlert(AlertType.WARNING, "Invalid Filename", "The filename is empty.");
 			return;
+
         } else {
 
             boolean exists = DirectoryServices.SearchDirectoryForName(_searchterm, name);
 
             if (exists) {
-            	Alert alert = new Alert(AlertType.WARNING);
-    			alert.setTitle("File Already Exists");
-    			alert.setHeaderText(null);
-    			alert.setContentText("The file "+name+" already exists");
-    			alert.getButtonTypes().setAll(ButtonType.OK);
-    			alert.showAndWait();
+
+                CreateAlert(AlertType.WARNING, "File Already Exists", "File Already Exists");
     			return;
+
             } else if (arr.length <= 40) {
             	
             	_createbutton.setDisable(true);
@@ -312,11 +290,6 @@ public class CreateAudio extends Controller {
 					}
             	});
             	thread.start();
-            	
-                //ProcessBuilder audioBuilder = new ProcessBuilder("/bin/bash","-c", "espeak "+accent.ReturnFlag()+" "+ "\""+lyrics+"\""+" -w ./Audio/"+ name +".wav");
-                //Process p1 = audioBuilder.start();
-                //p1.waitFor();
-                //_lyrics.clear();
 
             }
         }

@@ -5,6 +5,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import java.io.IOException;
 
@@ -48,6 +50,17 @@ public abstract class Controller {
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);
         AuxiliaryFunctionPrevious(loader);
+    }
+
+    public void CreateAlert(Alert.AlertType alerttype, String title, String message){
+
+        Alert alert = new Alert(alerttype);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.getButtonTypes().setAll(ButtonType.OK);
+        alert.showAndWait();
+
     }
 
     public abstract String ReturnFXMLPath();
