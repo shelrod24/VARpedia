@@ -124,12 +124,7 @@ public class ChooseChunk extends Controller{
 	@FXML
 	public void handleNextButton(ActionEvent event) throws IOException {
 		if(_outputAudioView.getItems().isEmpty()) {
-			Alert alert = new Alert(AlertType.WARNING);
-			alert.setTitle("No Audio Chosen");
-			alert.setHeaderText(null);
-			alert.setContentText("No audio was chosen");
-			alert.getButtonTypes().setAll(ButtonType.OK);
-			alert.showAndWait();
+			CreateAlert(Alert.AlertType.WARNING, "No Audio Chosen", "No audio was chosen");
 		}else {
 			SwitchForwardScene(event);
 		}

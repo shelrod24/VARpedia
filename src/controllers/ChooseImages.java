@@ -114,12 +114,7 @@ public class ChooseImages extends Controller{
 					@Override
 					public void run() {
 						if(exit!=0) {
-							Alert alert = new Alert(AlertType.WARNING);
-			    			alert.setTitle("No Images Found");
-			    			alert.setHeaderText(null);
-			    			alert.setContentText("No images were found on Flickr");
-			    			alert.getButtonTypes().setAll(ButtonType.OK);
-			    			alert.showAndWait();
+			    			CreateAlert(Alert.AlertType.WARNING, "No Images Found", "No images were found on Flickr");
 						} else {
 							updateImageList();
 						}
@@ -134,12 +129,7 @@ public class ChooseImages extends Controller{
 	public void updateImageList() {
 		List<String> imageList=DirectoryServices.listImages();
 		if (imageList.isEmpty()) {
-			Alert alert = new Alert(AlertType.WARNING);
-			alert.setTitle("No Images Found");
-			alert.setHeaderText(null);
-			alert.setContentText("No images were found on Flickr");
-			alert.getButtonTypes().setAll(ButtonType.OK);
-			alert.showAndWait();
+			CreateAlert(Alert.AlertType.WARNING, "No Images Found", "No images were found on Flickr");
 		}else {
 			// render image once updated
 			_inputImageView.getItems().setAll(imageList);
@@ -161,6 +151,7 @@ public class ChooseImages extends Controller{
 			alert.setContentText("No images were chosen");
 			alert.getButtonTypes().setAll(ButtonType.OK);
 			alert.showAndWait();
+			CreateAlert(Alert.AlertType.WARNING, "No Images Chosen", "No images were chosen");
 		}else {
 			SwitchForwardScene(event);
 		}

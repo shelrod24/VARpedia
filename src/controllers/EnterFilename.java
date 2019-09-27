@@ -106,7 +106,7 @@ public class EnterFilename extends Controller{
 				Platform.runLater(new Runnable() {
 					@Override
 					public void run() {
-						//maybe alert here
+						CreateAlert(Alert.AlertType.INFORMATION, "Creation Made", "The creation " + filename + " was made");
 						_mainButton.setDisable(false);
 						_mainButton.setText("Finish");
 					}
