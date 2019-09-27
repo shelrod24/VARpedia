@@ -29,6 +29,22 @@ public class DirectoryServices {
         return exists;
     }
     
+    public static boolean creationExists(String name){
+        File[] listoffiles = new File("./creations").listFiles();
+        // no files in folder file doesnt exist
+        if (listoffiles==null) {
+        	return false;
+        }
+        for (File file: listoffiles) {
+            if(file.getName().equals(name+".mp4")) {
+            	// file found;
+                return true;
+            }
+        }
+        // file not found
+        return false;
+    }
+    
     public static ArrayList<String> listAudioFolders() {
     	// getting all folders in /audio
         File[] listoffiles = _audiofiles.listFiles();
