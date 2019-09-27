@@ -1,5 +1,6 @@
 package controllers;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -12,7 +13,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.control.Alert.AlertType;
 
 public class ChooseImages extends Controller{
@@ -52,6 +56,7 @@ public class ChooseImages extends Controller{
 		if (_inputImageView.getSelectionModel().getSelectedItem()!=null) {
 			String chunk = _inputImageView.getSelectionModel().getSelectedItem();
 			_outputImageView.getItems().add(chunk);
+			renderImageView(_outputImageView);
 		}
 	}
 	
@@ -60,6 +65,7 @@ public class ChooseImages extends Controller{
 		if (_outputImageView.getSelectionModel().getSelectedItem()!=null) {
 			int index = _outputImageView.getSelectionModel().getSelectedIndex();
 			_outputImageView.getItems().remove(index);
+			renderImageView(_outputImageView);
 		}
 	}
 	
@@ -73,6 +79,7 @@ public class ChooseImages extends Controller{
 			chunkList.set(index, chunkList.get(index - 1));
 			chunkList.set(index - 1, chunk);
 			_outputImageView.getSelectionModel().clearAndSelect(index - 1);
+			renderImageView(_outputImageView);
 		}
 	}
 	
@@ -86,6 +93,7 @@ public class ChooseImages extends Controller{
 			chunkList.set(index, chunkList.get(index + 1));
 			chunkList.set(index + 1, chunk);
 			_outputImageView.getSelectionModel().clearAndSelect(index + 1);
+			renderImageView(_outputImageView);
 		}
 	}
 	
@@ -133,12 +141,15 @@ public class ChooseImages extends Controller{
 			alert.getButtonTypes().setAll(ButtonType.OK);
 			alert.showAndWait();
 		}else {
+			// render image once updated
 			_inputImageView.getItems().setAll(imageList);
+			renderImageView(_inputImageView);
 		}
 	}
 	
 	public void reflectCreation() {
 		_outputImageView.getItems().setAll(_creation.getImageList());
+		renderImageView(_outputImageView);
 	}
 	
 	@FXML
@@ -167,4 +178,26 @@ public class ChooseImages extends Controller{
 		controller.setCreation(_creation);
 		controller.reflectCreation();
 	}
+    
+    public void renderImageView(ListView<String> imageView) {
+    	imageView.setCellFactory(param -> new ListCell<String>() {
+    		private ImageView imageView = new ImageView();
+    		@Override
+    		public void updateItem(String imageName, boolean empty) {
+    			super.updateItem(imageName, empty);
+    			if(empty) {
+    				setText(null);
+    				setGraphic(null);
+    			} else {
+    				// getting images
+    				File file = new File("temps/image/"+imageName);
+    				Image image = new Image(file.toURI().toString());
+    				// setting image
+    				imageView.setImage(image);
+    				setText(null);
+    				setGraphic(imageView);
+    			}
+    		}
+    	});
+    }
 }
