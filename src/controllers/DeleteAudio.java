@@ -50,6 +50,18 @@ public class DeleteAudio extends Controller {
              _audiofiles.getItems().add(s);
          }
 
+         ProcessBuilder deletedir = new ProcessBuilder("sh", "-c", "./scripts/checkdir_isempty.sh"+" "+_subdirectory);
+         Process deletedirprocess = deletedir.start();
+
+         _audiosubdirs.getItems().clear();
+
+
+         //NOT UPDATING PROPERLY;
+         System.out.println("SDGHALGH");
+         ArrayList<String> _audiosubfolders = DirectoryServices.listAudioFolders();
+         for(String s: _audiosubfolders) {
+             _audiosubdirs.getItems().add(s);
+         }
 
      }
 
