@@ -2,6 +2,7 @@ package controllers;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.css.StyleableObjectProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -29,6 +30,8 @@ public class MediaViewController extends Controller{
     private double _rate = 1.0;
     private String _previousfxmlpath = "/fxml/ListScene.fxml";
 
+    private boolean isrestart;
+
 
 
     public void playMedia(String medianame) {
@@ -48,7 +51,7 @@ public class MediaViewController extends Controller{
             public void run() {
                 Initialize();
                 _slider.setMin(0);
-                _slider.setMax(_player.getTotalDuration().toSeconds());
+                _slider.setMax(_player.getTotalDuration().toMillis());
 
             }
         });
@@ -57,12 +60,22 @@ public class MediaViewController extends Controller{
 
 
     public void PausePlay(){
-        if(_player.getStatus() == MediaPlayer.Status.PLAYING ){
-            _player.pause();
-            _play.setText("Play");
-        } else {
+
+        if (isrestart) {
+            _player.seek(Duration.ZERO);
+            isrestart = false;
             _player.play();
             _play.setText("Pause");
+
+        } else {
+
+            if (_player.getStatus() == MediaPlayer.Status.PLAYING) {
+                _player.pause();
+                _play.setText("Play");
+            } else {
+                _player.play();
+                _play.setText("Pause");
+            }
         }
     }
 
@@ -75,13 +88,6 @@ public class MediaViewController extends Controller{
     }
 
     public void SlowDown(){
-        if ((_rate - 0.25) > 0) {
-            _rate = _rate - 0.25;
-            _player.setRate(_rate);
-        }
-    }
-
-    public void OnDragOver(){
         if ((_rate - 0.25) > 0) {
             _rate = _rate - 0.25;
             _player.setRate(_rate);
@@ -103,13 +109,25 @@ public class MediaViewController extends Controller{
             }
         });
 
+
+        //THIS IS GOING TO CHANGE THE START BUTTON TO RESET.
+
+                    _player.setOnEndOfMedia(()-> {
+                        _play.setText("Restart");
+                        isrestart = true;
+                    });
+
+
+
         _player.currentTimeProperty().addListener(new ChangeListener<Duration>() {
             @Override
             public void changed(ObservableValue<? extends Duration> observable, Duration oldValue, Duration newValue) {
-                int time = (int)newValue.toSeconds();
+                double time = newValue.toMillis();
                 _slider.adjustValue(time);
             }
         });
+
+        isrestart = false;
 
     }
 

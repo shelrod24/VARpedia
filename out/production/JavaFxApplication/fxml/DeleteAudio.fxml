@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-
 <AnchorPane prefHeight="500.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.DeleteAudio">
    <children>
       <BorderPane prefHeight="500.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -41,7 +40,7 @@
             <VBox alignment="TOP_CENTER" prefHeight="460.0" prefWidth="242.0" BorderPane.alignment="CENTER">
                <children>
                   <Region prefHeight="50.0" prefWidth="242.0" />
-                  <Button alignment="CENTER" mnemonicParsing="false" onAction="#DeleteAudiofile" text="Delete" />
+                  <Button fx:id="_deletebutton" alignment="CENTER" mnemonicParsing="false" onAction="#DeleteAudiofile" text="Delete" />
                </children>
             </VBox>
          </right>

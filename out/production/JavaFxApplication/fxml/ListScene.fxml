@@ -78,7 +78,7 @@
                         <Region prefHeight="100.0" prefWidth="20.0" />
                         <Button mnemonicParsing="false" onAction="#PlayCreation" opacity="0.9" prefHeight="27.0" prefWidth="54.0" text="Play" />
                         <Region prefHeight="100.0" prefWidth="12.0" />
-                        <Button mnemonicParsing="false" opacity="0.9" text="Delete" />
+                        <Button mnemonicParsing="false" onAction="#DeleteCreation" opacity="0.9" text="Delete" />
                      </children>
                   </HBox>
                </children>
