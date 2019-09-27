@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="500.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ChooseImages">
+<AnchorPane prefHeight="500.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ChooseImages">
    <children>
       <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -48,7 +48,7 @@
                      <children>
                         <Region HBox.hgrow="ALWAYS" />
                         <Button mnemonicParsing="false" onAction="#SwitchPreviousScene" prefWidth="100.0" text="Back" />
-                        <Button mnemonicParsing="false" onAction="#SwitchForwardScene" prefWidth="100.0" text="Next">
+                        <Button mnemonicParsing="false" onAction="#handleNextButton" prefWidth="100.0" text="Next">
                            <HBox.margin>
                               <Insets left="5.0" />
                            </HBox.margin>

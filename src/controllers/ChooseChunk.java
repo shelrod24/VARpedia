@@ -1,14 +1,19 @@
 package controllers;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import Services.DirectoryServices;
 import Services.NewCreationService;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionModel;
+import javafx.scene.control.Alert.AlertType;
 
 public class ChooseChunk extends Controller{
 	private final String _backFXMLPath="/fxml/MainMenu.fxml";
@@ -114,6 +119,20 @@ public class ChooseChunk extends Controller{
 		updateInputViewList(_creation.getTerm());
 		//set output values to creation current
 		_outputAudioView.getItems().setAll(_creation.getAudioList());
+	}
+	
+	@FXML
+	public void handleNextButton(ActionEvent event) throws IOException {
+		if(_outputAudioView.getItems().isEmpty()) {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("No Audio Chosen");
+			alert.setHeaderText(null);
+			alert.setContentText("No audio was chosen");
+			alert.getButtonTypes().setAll(ButtonType.OK);
+			alert.showAndWait();
+		}else {
+			SwitchForwardScene(event);
+		}
 	}
 	
 }

@@ -2,6 +2,7 @@ package controllers;
 
 import java.io.IOException;
 
+import Services.DirectoryServices;
 import Services.NewCreationService;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
@@ -10,10 +11,13 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Alert.AlertType;
 
 public class EnterFilename extends Controller{
 	private final String _backFXMLPath="/fxml/MainMenu.fxml";
@@ -47,8 +51,21 @@ public class EnterFilename extends Controller{
 	@FXML
 	public void handleMainButton(ActionEvent event) throws IOException {
 		String option = _mainButton.getText();
+		String filename = _filenameField.getText();
 		if(option.equals("Create")) {
-			System.out.println("create");
+			//check if file exists
+			if (DirectoryServices.creationExists(filename)) {
+				Alert alert = new Alert(AlertType.CONFIRMATION);
+				alert.setTitle("Overwrite creation");
+				alert.setHeaderText(null);
+				alert.setContentText("The creation already exists.\nDo you want to ovewrite " + filename + "?");
+				alert.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
+				alert.showAndWait();
+				if(alert.getResult()==ButtonType.NO) {
+					//exit method if dont want to overwrite
+					return;
+				}
+			}
 			buildCreation();
 		} else {
 			SwitchForwardScene(event);
