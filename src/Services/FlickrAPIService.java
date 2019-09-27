@@ -4,6 +4,8 @@ import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 
@@ -35,7 +37,8 @@ public class FlickrAPIService {
 		throw new RuntimeException("Couldn't find " + key +" in config file "+file.getName());
 	}
 	
-	public static void getImages(String keyword) {
+	public static List<String> getImages(String keyword, int resultsPerPage, int page) {
+		List<String> imageFilenames = new ArrayList<String>();
 		try {
 			String apiKey = getAPIKey("apiKey");
 			String sharedSecret = getAPIKey("sharedSecret");
@@ -43,8 +46,6 @@ public class FlickrAPIService {
 			Flickr flickr = new Flickr(apiKey, sharedSecret, new REST());
 			
 			String query = keyword;
-			int resultsPerPage = 15;
-			int page = 0;
 			
 	        PhotosInterface photos = flickr.getPhotosInterface();
 	        SearchParameters params = new SearchParameters();
@@ -55,12 +56,14 @@ public class FlickrAPIService {
 	        PhotoList<Photo> results = photos.search(params, resultsPerPage, page);
 	        System.out.println("Retrieving " + results.size()+ " results");
 	        
+	        	        
 	        for (Photo photo: results) {
 	        	try {
-	        		BufferedImage image = photos.getImage(photo,Size.MEDIUM_640);
+	        		BufferedImage image = photos.getImage(photo,Size.MEDIUM);
 		        	String filename = query.trim().replace(' ', '-')+"-"+System.currentTimeMillis()+"-"+photo.getId()+".jpg";
 		        	File outputfile = new File("temps/image",filename);
 		        	ImageIO.write(image, "jpg", outputfile);
+		        	imageFilenames.add(filename);
 		        	System.out.println("Downloaded "+filename);
 	        	} catch (FlickrException fe) {
 	        		System.err.println("Ignoring image " +photo.getId() +": "+ fe.getMessage());
@@ -69,5 +72,6 @@ public class FlickrAPIService {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		return imageFilenames;
 	}	
 }

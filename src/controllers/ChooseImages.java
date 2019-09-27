@@ -99,32 +99,35 @@ public class ChooseImages extends Controller{
 	}
 	
 	public void initData() {
-		Thread thread = new Thread(new Task<Void>() {
+		Task<Void>  task = new Task<Void>() {
 			@Override
 			protected Void call() throws Exception {
 				//delete previous images
 				ProcessBuilder deleteBuilder = new ProcessBuilder("./scripts/delete_images.sh");
 				Process deleteProcess = deleteBuilder.start();
 				deleteProcess.waitFor();
-				//download images
-//				ProcessBuilder downloadBuilder = new ProcessBuilder("./scripts/flickr_downloader.sh", _creation.getTerm());
-//				Process downloadProcess = downloadBuilder.start();
-//				int exit = downloadProcess.waitFor();
-				FlickrAPIService.getImages(_creation.getTerm());
-				//populate list once done
-				Platform.runLater(new Runnable() {
-					@Override
-					public void run() {
-						if(DirectoryServices.listImages().isEmpty()) {
-			    			CreateAlert(Alert.AlertType.WARNING, "No Images Found", "No images were found on Flickr");
-						} else {
-							updateImageList();
+				for (int i = 1; i <= 5; i++) {
+					//download images
+					//ProcessBuilder downloadBuilder = new ProcessBuilder("./scripts/flickr_downloader.sh", _creation.getTerm());
+					//Process downloadProcess = downloadBuilder.start();
+					//int exit = downloadProcess.waitFor();
+					List<String> imageList = FlickrAPIService.getImages(_creation.getTerm(), 3, i);
+					//populate list once done
+					Platform.runLater(new Runnable() {
+						@Override
+						public void run() {
+							if(DirectoryServices.listImages().isEmpty()) {
+				    			CreateAlert(Alert.AlertType.WARNING, "No Images Found", "No images were found on Flickr");
+							} else {
+								addImageList(imageList);
+							}
 						}
-					}
-				});
+					});					
+				}
 				return null;
 			}
-		});
+		};
+		Thread thread = new Thread(task);
 		thread.start();
 	}
 	
@@ -139,6 +142,16 @@ public class ChooseImages extends Controller{
 		}
 	}
 	
+	public void addImageList(List<String> imageList) {
+		if (imageList.isEmpty()) {
+			CreateAlert(Alert.AlertType.WARNING, "No Images Found", "No images were found on Flickr");
+		}else {
+			// render image once updated
+			_inputImageView.getItems().addAll(imageList);
+			renderImageView(_inputImageView);
+		}
+	}
+	
 	public void reflectCreation() {
 		_outputImageView.getItems().setAll(_creation.getImageList());
 		renderImageView(_outputImageView);
@@ -147,14 +160,10 @@ public class ChooseImages extends Controller{
 	@FXML
 	public void handleNextButton(ActionEvent event) throws IOException {
 		if(_outputImageView.getItems().isEmpty()) {
-			Alert alert = new Alert(AlertType.WARNING);
-			alert.setTitle("No Images Chosen");
-			alert.setHeaderText(null);
-			alert.setContentText("No images were chosen");
-			alert.getButtonTypes().setAll(ButtonType.OK);
-			alert.showAndWait();
 			CreateAlert(Alert.AlertType.WARNING, "No Images Chosen", "No images were chosen");
-		}else {
+		} else if(_outputImageView.getItems().size()>10) {
+			CreateAlert(Alert.AlertType.WARNING, "Too Many Images Chosen", "More than 10 images were chosen");
+		} else {
 			SwitchForwardScene(event);
 		}
 	}
