@@ -11,7 +11,7 @@ mkdir -p "${AUDIO_DIR}"
 
 cd "${AUDIO_DIR}"
 
-output=`echo "(voice_${3}) (set! chunk (Utterance Text \"${4}\")) (utt.save.wave (utt.synth chunk) \"${1}.wav\" \`riff)" | festival 2>&1`
+output=`echo "(voice_${3}) (set! chunk (Utterance Text \"${4}\")) (utt.save.wave (utt.synth chunk) \"${1}.wav\" 'riff)" | festival 2>&1`
 
 if [ ! -z "$output" ] ; then
 	exit 1
