@@ -71,10 +71,8 @@ public class DeleteAudio extends Controller {
 
          } else {
 
-             String cmd = "rm -f " + "\"./audio/" + _subdirectory + "/" + _audio + "\"";
-             ProcessBuilder deleteaudio = new ProcessBuilder("/bin/bash", "-c", cmd);
-             Process deleteprocess = deleteaudio.start();
-             deleteprocess.waitFor();
+
+             this.ProcessRunner("/bin/bash", "rm -f " + "\"./audio/" + _subdirectory + "/" + _audio + "\"");
 
              List<String> audiofiles = DirectoryServices.ListFilesInDir("./audio/"+_subdirectory);
              _audiofiles.getItems().clear();
@@ -85,9 +83,8 @@ public class DeleteAudio extends Controller {
 
              }
 
-             ProcessBuilder deletedir = new ProcessBuilder("sh", "-c", "./scripts/checkdir_isempty.sh" + " \"" + _subdirectory + "\"");
-             Process deletedirprocess = deletedir.start();
-             deletedirprocess.waitFor();
+             this.ProcessRunner("sh", "./scripts/checkdir_isempty.sh" + " \"" + _subdirectory + "\"");
+
 
              _audiosubdirs.getItems().clear();
              List<String> _audiosubfolders = DirectoryServices.ListFilesInDir("./audio");
@@ -155,7 +152,6 @@ public class DeleteAudio extends Controller {
         worker.start();
 
      }
-
 
 
     @Override

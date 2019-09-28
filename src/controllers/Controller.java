@@ -97,5 +97,14 @@ public abstract class Controller {
     public void AuxiliaryFunctionPrevious(FXMLLoader loader) {}
 
 
+    public void ProcessRunner(String typeofprocess, String pathtoscriptwithargs) throws IOException, InterruptedException {
+
+        ProcessBuilder processBuilder = new ProcessBuilder(typeofprocess, "-c", pathtoscriptwithargs);
+        Process process = processBuilder.start();
+        process.waitFor();
+
+    }
+
+
 
 }
