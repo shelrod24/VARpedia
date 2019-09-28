@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -26,8 +27,22 @@
                <children>
                   <HBox spacing="5.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <ListView fx:id="_folderView" onMouseClicked="#handleFolderView" />
-                        <ListView fx:id="_inputAudioView" onMouseClicked="#handleInputAudioView" />
+                        <HBox prefWidth="435.0">
+                           <children>
+                              <VBox>
+                                 <children>
+                                    <Label text="Audio Folders" />
+                                    <ListView fx:id="_folderView" onMouseClicked="#handleFolderView" VBox.vgrow="ALWAYS" />
+                                 </children>
+                              </VBox>
+                              <VBox>
+                                 <children>
+                                    <Label text="Audio" />
+                                    <ListView fx:id="_inputAudioView" onMouseClicked="#handleInputAudioView" VBox.vgrow="ALWAYS" />
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
                         <VBox alignment="CENTER" prefHeight="561.0" prefWidth="100.0" spacing="5.0">
                            <children>
                               <Button mnemonicParsing="false" onAction="#handleMoveUp" prefWidth="100.0" text="Move Up" />
@@ -36,10 +51,15 @@
                               <Button mnemonicParsing="false" onAction="#handleMoveDown" prefWidth="100.0" text="Move Down" />
                            </children>
                            <HBox.margin>
-                              <Insets left="5.0" right="5.0" />
+                              <Insets />
                            </HBox.margin>
                         </VBox>
-                        <ListView fx:id="_outputAudioView" onMouseClicked="#handleOutputAudioView" HBox.hgrow="ALWAYS" />
+                        <VBox HBox.hgrow="ALWAYS">
+                           <children>
+                              <Label text="Selected Audio" />
+                              <ListView fx:id="_outputAudioView" onMouseClicked="#handleOutputAudioView" prefWidth="435.0" VBox.vgrow="ALWAYS" />
+                           </children>
+                        </VBox>
                      </children>
                      <VBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" />

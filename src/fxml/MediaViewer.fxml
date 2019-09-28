@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MediaViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MediaViewController">
    <children>
       <BorderPane prefHeight="500.0" prefWidth="700.0">
          <top>
@@ -64,7 +64,10 @@
             </VBox>
          </bottom>
          <center>
-            <AnchorPane fx:id="_anchor" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+            <AnchorPane fx:id="_anchor" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox fx:id="_hBox" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+               </children></AnchorPane>
          </center>
       </BorderPane>
    </children>

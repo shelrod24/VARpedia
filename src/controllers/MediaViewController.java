@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -19,6 +20,7 @@ import java.io.File;
 public class MediaViewController extends Controller{
 
     @FXML private Pane _anchor;
+    @FXML private HBox _hBox;
     @FXML private Slider _slider;
     @FXML private Button _play;
     @FXML private Label _timelabel;
@@ -39,7 +41,7 @@ public class MediaViewController extends Controller{
         _view.setMediaPlayer(_player);
         _view.setFitWidth(1000);
         _view.setFitHeight(416);
-        _anchor.getChildren().addAll(_view);
+        _hBox.getChildren().addAll(_view);
 
 
         _player.setOnReady(new Runnable() {

@@ -24,17 +24,17 @@
                <children>
                   <VBox alignment="CENTER">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#SwitchToCreateCreation" opacity="0.8" prefWidth="160.0" style="-fx-background-color: #EAEAEA;" text="Create Creation" />
-                        <Region prefHeight="5.0" prefWidth="8.0" VBox.vgrow="NEVER" />
-                        <Button mnemonicParsing="false" onAction="#SwitchToCreateAudio" opacity="0.8" prefWidth="160.0" style="-fx-background-color: #EAEAEA;" text="Create Audio" />
-                     </children>
-                  </VBox>
-                  <Region prefHeight="379.0" prefWidth="8.0" />
-                  <VBox alignment="CENTER">
-                     <children>
                         <Button mnemonicParsing="false" onAction="#SwitchToList" opacity="0.8" prefWidth="160.0" style="-fx-background-color: #EAEAEA;" text="Play/Delete Creations" />
                         <Region prefHeight="5.0" prefWidth="8.0" />
                         <Button mnemonicParsing="false" onAction="#SwitchToDeleteAudio" opacity="0.8" prefWidth="160.0" text="Play/Delete Audio" />
+                     </children>
+                  </VBox>
+                  <Region prefHeight="379.0" prefWidth="5.0" />
+                  <VBox alignment="CENTER">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#SwitchToCreateCreation" opacity="0.8" prefWidth="160.0" style="-fx-background-color: #EAEAEA;" text="Create Creation" />
+                        <Region prefHeight="5.0" prefWidth="8.0" VBox.vgrow="NEVER" />
+                        <Button mnemonicParsing="false" onAction="#SwitchToCreateAudio" opacity="0.8" prefWidth="160.0" style="-fx-background-color: #EAEAEA;" text="Create Audio" />
                      </children>
                   </VBox>
                </children>
@@ -44,7 +44,7 @@
             <VBox alignment="CENTER" BorderPane.alignment="CENTER">
                <children>
                   <Region prefHeight="30.0" prefWidth="200.0" />
-                  <Label text="VARpedia" textAlignment="CENTER" textFill="#bcbcbc">
+                  <Label opacity="0.8" text="VARpedia" textAlignment="CENTER" textFill="#dddddd">
                      <font>
                         <Font name="Tlwg Typewriter" size="96.0" />
                      </font>
