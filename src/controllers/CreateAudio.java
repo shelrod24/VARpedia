@@ -8,7 +8,6 @@ import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -36,7 +35,6 @@ public class CreateAudio extends Controller {
 
         _searchterm = _searchfield.getText();
 
-
         final String searchterm =  _searchterm;
         Thread thread = new Thread(new Task<Void>(){
 
@@ -61,14 +59,18 @@ public class CreateAudio extends Controller {
             }
 
             @Override
-            public void done(){
+            public void done() {
+
                 Platform.runLater(()->{
+
                     PrintWikiArticleFromLinedFile();
                     _searchbutton.setDisable(false);
+
                 });
+
             }
 
-    });
+        });
 
 
     	_searchbutton.setDisable(true);
@@ -78,48 +80,41 @@ public class CreateAudio extends Controller {
 
 
 
-
-
     public void FillWikiTextFiles(String searchterm) throws IOException {
 
+        String echowiki = "echo $(wikit "+searchterm+") > ./text.txt";
+        ProcessBuilder filltextfileprocess = new ProcessBuilder("/bin/bash","-c",echowiki);
+        Process process = filltextfileprocess.start();
+        try {
 
-                String echowiki = "echo $(wikit "+searchterm+") > ./text.txt";
-                ProcessBuilder filltextfileprocess = new ProcessBuilder("/bin/bash","-c",echowiki);
-                Process process = filltextfileprocess.start();
+            process.waitFor();
 
-                try {
+        } catch (Exception e) {
 
-                    process.waitFor();
+        }
 
-                } catch (Exception e) {
+        ProcessBuilder filllinedtextfileprocess = new ProcessBuilder("sh", "-c", "./AddWikiToLinedTextFile.sh");
+        Process process2 = filllinedtextfileprocess.start();
+        try {
 
-                }
+            process2.waitFor();
 
-                ProcessBuilder filllinedtextfileprocess = new ProcessBuilder("sh", "-c", "./AddWikiToLinedTextFile.sh");
-                Process process2 = filllinedtextfileprocess.start();
+        } catch (InterruptedException e) {
 
-                try {
+            e.printStackTrace();
 
-                    process2.waitFor();
-
-                } catch (InterruptedException e) {
-
-                    e.printStackTrace();
-
-                }
+        }
 
     }
 
 
 
-
-
     public int PrintWikiArticleFromLinedFile() {
 
-        _listarea.getItems().clear();
-        int n = 0;
         BufferedReader reader = null;
         List<String> wikicontent = new ArrayList<String>();
+        _listarea.getItems().clear();
+        int n = 0;
 
         try {
 
@@ -154,6 +149,8 @@ public class CreateAudio extends Controller {
 
     }
 
+
+
     @FXML
     private void initialize() throws IOException, InterruptedException {
 
@@ -174,7 +171,6 @@ public class CreateAudio extends Controller {
 
 
 
-
     public void MoveTextOver() {
 
         String name = _listarea.getSelectionModel().getSelectedItem();
@@ -184,9 +180,7 @@ public class CreateAudio extends Controller {
 
 
 
-
     public void PreviewAudio() throws IOException, InterruptedException {
-
 
         String lyrics = _lyrics.getText();
         String[] arr = lyrics.split(" ");
@@ -196,65 +190,59 @@ public class CreateAudio extends Controller {
             CreateAlert(AlertType.WARNING, "Too Many Words", "There are more that 40 words of text");
 
         } else {
+
         	_previewbutton.setDisable(true);
+
         	Thread thread = new Thread(new Task<Void>() {
+
 				@Override
 				protected Void call() throws Exception {
-					//right now only have it such that kal_diphone is in it
+
 					ProcessBuilder builder = new ProcessBuilder("./scripts/festival_tts.sh",_chooseaccent.getSelectionModel().getSelectedItem(), _lyrics.getText());
 	            	Process process = builder.start();
 	            	int exit = process.waitFor();
-
-                    if (exit != 0){
+                    if (exit != 0) {
 
                         Platform.runLater(()->{
 
                             CreateAlert(AlertType.ERROR, "Festival Error", "The text could not be handled by the current festival voice.\nTry another voice");
 
                         });
+
                         return null;
+
                     }
 
 	            	return null;
 				}
+
 				@Override
 				protected void done() {
+
 					Platform.runLater(new Runnable() {
+
 						@Override
 						public void run() {
 							_previewbutton.setDisable(false);
+
 						}
 					});
 				}
         	});
-        	thread.start();
 
+        	thread.start();
         }
 
     }
 
 
 
-    @Override
-    public String ReturnFXMLPath() {
-        return _previousfxmlpath;
-    }
-
-    @Override
-    public String ReturnForwardFXMLPath() {
-        return null;
-    }
-
-
     public void NameFile() throws IOException, InterruptedException {
-
 
         String name = _filefield.getText();
         String lyrics = _lyrics.getText();
         lyrics = lyrics.replace("\n", " ");
         String[] arr = lyrics.split(" ");
-
-
 
         if (arr.length > 40) {
 
@@ -338,5 +326,22 @@ public class CreateAudio extends Controller {
         thread.start();
 
     }
+
+
+    @Override
+    public String ReturnFXMLPath() {
+
+        return _previousfxmlpath;
+
+    }
+
+    @Override
+    public String ReturnForwardFXMLPath() {
+
+        return null;
+
+    }
+
+
 }
 
