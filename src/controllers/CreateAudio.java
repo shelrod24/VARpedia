@@ -212,7 +212,7 @@ public class CreateAudio extends Controller {
 
                         Platform.runLater(()->{
 
-                            CreateAlert(AlertType.WARNING, "Festival Error", "The text could not be handled by the current festival voice.\nTry another voice");
+                            CreateAlert(AlertType.ERROR, "Festival Error", "The text could not be handled by the current festival voice.\nTry another voice");
 
                         });
                         return null;
@@ -250,6 +250,7 @@ public class CreateAudio extends Controller {
 
 
     public void NameFile() throws IOException, InterruptedException {
+    	
 
         String name = _filefield.getText();
         String lyrics = _lyrics.getText();
@@ -273,13 +274,19 @@ public class CreateAudio extends Controller {
             boolean exists = DirectoryServices.SearchDirectoryForName(_searchterm, name);
 
             if (exists) {
-
-                CreateAlert(AlertType.WARNING, "File Already Exists", "File Already Exists");
-
-                //ASK FOR DO YOU WANT TO OVERRIDE.
-    			return;
-
-            } else if (arr.length <= 40) {
+            	Alert alert = new Alert(AlertType.CONFIRMATION);
+				alert.setTitle("Overwrite Audio");
+				alert.setHeaderText(null);
+				alert.setContentText("The audio already exists.\nDo you want to ovewrite " + name + ".wav?");
+				alert.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
+				alert.showAndWait();
+				if(alert.getResult()==ButtonType.NO) {
+					//exit method if dont want to overwrite
+					return;
+				}
+            } 
+            
+            if (arr.length <= 40) {
             	
             	_createbutton.setDisable(true);
             	Thread thread = new Thread(new Task<Void>() {
@@ -294,7 +301,7 @@ public class CreateAudio extends Controller {
 
 		            	    Platform.runLater(()->{
 
-                                CreateAlert(AlertType.WARNING, "Festival Error", "The text could not be handled by the current festival voice.\nTry another voice");
+                                CreateAlert(AlertType.ERROR, "Festival Error", "The text could not be handled by the current festival voice.\nTry another voice");
 
                             });
                             return null;

@@ -56,7 +56,7 @@ public class EnterFilename extends Controller{
 			//check if file exists
 			if (DirectoryServices.creationExists(filename)) {
 				Alert alert = new Alert(AlertType.CONFIRMATION);
-				alert.setTitle("Overwrite creation");
+				alert.setTitle("Overwrite Creation");
 				alert.setHeaderText(null);
 				alert.setContentText("The creation already exists.\nDo you want to ovewrite " + filename + "?");
 				alert.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
