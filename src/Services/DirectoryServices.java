@@ -4,12 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class DirectoryServices {
-
-
-    private static final File _audiofiles = new File("./audio");
-    private static final File _creationfiles = new File("./creations");
 
 
     public static boolean SearchDirectoryForName(String term, String name){
@@ -45,55 +42,19 @@ public class DirectoryServices {
         // file not found
         return false;
     }
-    
-    public static ArrayList<String> listAudioFolders() {
-    	// getting all folders in /audio
-        File[] listoffiles = _audiofiles.listFiles();
-        ArrayList<String> _completedcollections = new ArrayList<String>();
-        for (File file: listoffiles) {
-            _completedcollections.add(file.getName());
-        }
-        Collections.sort(_completedcollections, String.CASE_INSENSITIVE_ORDER);
-        return _completedcollections;
-    }
 
 
+    public static List<String> ListFilesInDir(String fullpath){
 
-    
-    public static ArrayList<String> listAudio(String folder){
-        File[] listoffiles = new File("./audio/"+folder).listFiles();
-        ArrayList<String> _completedcollections = new ArrayList<String>();
-        for (File file: listoffiles) {
-            _completedcollections.add(file.getName());
-        }
-        return _completedcollections;
-    }
-    
-    public static ArrayList<String> listImages() {
-        File[] listoffiles = new File("./temps/image").listFiles();
-        ArrayList<String> _completedcollections = new ArrayList<String>();
-        for (File file: listoffiles) {
-            _completedcollections.add(file.getName());
-        }
-        return _completedcollections;
-    }
-    
-    /**
-     *This method is responsible for Listing the files in the Creations Directory in alphabetical order
-     **/
-    public static ArrayList<String> listCreations() {
-
-        File[] listoffiles = _creationfiles.listFiles();
-        ArrayList<String> _completedcollections = new ArrayList<String>();
+        File[] listoffiles = new File(fullpath).listFiles();
+        ArrayList<String> _arrayoffiles = new ArrayList<String>();
 
         for (File file: listoffiles) {
-
-            _completedcollections.add(file.getName());
+            _arrayoffiles.add(file.getName());
         }
 
-        Collections.sort(_completedcollections, String.CASE_INSENSITIVE_ORDER);
-
-        return _completedcollections;
+        Collections.sort(_arrayoffiles, String.CASE_INSENSITIVE_ORDER);
+        return _arrayoffiles;
 
     }
 
@@ -105,8 +66,6 @@ public class DirectoryServices {
         Process makedirectoriesprocess = makedirectoriesprocessbuilder.start();
 
     }
-
-
 
 
 }

@@ -116,7 +116,7 @@ public class ChooseImages extends Controller{
 					Platform.runLater(new Runnable() {
 						@Override
 						public void run() {
-							if(DirectoryServices.listImages().isEmpty()) {
+							if(DirectoryServices.ListFilesInDir("./temps/image").isEmpty()) {
 				    			CreateAlert(Alert.AlertType.WARNING, "No Images Found", "No images were found on Flickr");
 							} else {
 								addImageList(imageList);
@@ -132,7 +132,7 @@ public class ChooseImages extends Controller{
 	}
 	
 	public void updateImageList() {
-		List<String> imageList=DirectoryServices.listImages();
+		List<String> imageList=DirectoryServices.ListFilesInDir("./temps/image");
 		if (imageList.isEmpty()) {
 			CreateAlert(Alert.AlertType.WARNING, "No Images Found", "No images were found on Flickr");
 		}else {

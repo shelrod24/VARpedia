@@ -29,7 +29,7 @@ public class ChooseChunk extends Controller{
 	
 	@FXML
     private void initialize() {
-		_folderView.getItems().setAll(DirectoryServices.listAudioFolders());
+		_folderView.getItems().setAll(DirectoryServices.ListFilesInDir("./audio"));
     }
 
 	@Override
@@ -94,7 +94,7 @@ public class ChooseChunk extends Controller{
 	}
 	
 	public void updateInputViewList(String folder) {
-		List<String> audioList = DirectoryServices.listAudio(folder);
+		List<String> audioList = DirectoryServices.ListFilesInDir("./audio/"+folder);
 		_inputAudioView.getItems().setAll(audioList);
 		_outputAudioView.getItems().clear();
 	}

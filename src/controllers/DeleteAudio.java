@@ -10,6 +10,7 @@ import javafx.scene.control.ListView;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class DeleteAudio extends Controller {
 
@@ -36,7 +37,7 @@ public class DeleteAudio extends Controller {
 
         } else {
 
-            ArrayList<String> audiofiles = DirectoryServices.listAudio(_subdirectory);
+            List<String> audiofiles = DirectoryServices.ListFilesInDir("./audio/"+_subdirectory);
             for (String s : audiofiles) {
                 _audiofiles.getItems().add(s);
             }
@@ -64,7 +65,7 @@ public class DeleteAudio extends Controller {
              Process deleteprocess = deleteaudio.start();
              deleteprocess.waitFor();
 
-             ArrayList<String> audiofiles = DirectoryServices.listAudio(_subdirectory);
+             List<String> audiofiles = DirectoryServices.ListFilesInDir("./audio/"+_subdirectory);
              _audiofiles.getItems().clear();
 
              for (String s : audiofiles) {
@@ -78,7 +79,7 @@ public class DeleteAudio extends Controller {
              _audiosubdirs.getItems().clear();
 
 
-             ArrayList<String> _audiosubfolders = DirectoryServices.listAudioFolders();
+             List<String> _audiosubfolders = DirectoryServices.ListFilesInDir("./audio");
              for (String s : _audiosubfolders) {
                  _audiosubdirs.getItems().add(s);
              }
@@ -99,7 +100,7 @@ public class DeleteAudio extends Controller {
 
 
         // Populate ListView
-         ArrayList<String> _audiosubfolders = DirectoryServices.listAudioFolders();
+         List<String> _audiosubfolders = DirectoryServices.ListFilesInDir("./audio");
 
          for(String s: _audiosubfolders) {
              _audiosubdirs.getItems().add(s);

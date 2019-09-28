@@ -27,7 +27,7 @@
                   <HBox spacing="5.0" VBox.vgrow="ALWAYS">
                      <children>
                         <ListView fx:id="_folderView" onMouseClicked="#handleFolderView" />
-                        <ListView fx:id="_inputAudioView" />
+                        <ListView fx:id="_inputAudioView" onMouseClicked="#handleInputAudioView" />
                         <VBox alignment="CENTER" prefHeight="561.0" prefWidth="100.0" spacing="5.0">
                            <children>
                               <Button mnemonicParsing="false" onAction="#handleMoveUp" prefWidth="100.0" text="Move Up" />
@@ -39,7 +39,7 @@
                               <Insets left="5.0" right="5.0" />
                            </HBox.margin>
                         </VBox>
-                        <ListView fx:id="_outputAudioView" HBox.hgrow="ALWAYS" />
+                        <ListView fx:id="_outputAudioView" onMouseClicked="#handleOutputAudioView" HBox.hgrow="ALWAYS" />
                      </children>
                      <VBox.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" />

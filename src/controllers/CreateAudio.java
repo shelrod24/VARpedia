@@ -23,7 +23,6 @@ public class CreateAudio extends Controller {
     @FXML private Button _searchbutton;
     @FXML private ListView<String> _listarea;
     @FXML private TextArea _lyrics;
-    @FXML private Button _moveoverbutton;
     @FXML private ChoiceBox<String> _chooseaccent;
     @FXML private TextField _filefield;
     @FXML private Button _createbutton;
@@ -35,13 +34,11 @@ public class CreateAudio extends Controller {
 
     public void SearchWikipedia() throws IOException {
 
-
         _searchterm = _searchfield.getText();
 
+
         final String searchterm =  _searchterm;
-
         Thread thread = new Thread(new Task<Void>(){
-
 
             @Override
             protected Void call() throws Exception {
@@ -250,7 +247,7 @@ public class CreateAudio extends Controller {
 
 
     public void NameFile() throws IOException, InterruptedException {
-    	
+
 
         String name = _filefield.getText();
         String lyrics = _lyrics.getText();
@@ -258,79 +255,88 @@ public class CreateAudio extends Controller {
         String[] arr = lyrics.split(" ");
 
 
-        if (arr.length > 40){
-            CreateAlert(AlertType.WARNING, "Too Many Words", "There are more that 40 words of text");
-			return;
-        }
-        
 
-        if (name == null || name.trim().isEmpty()){
+        if (arr.length > 40) {
+
+            CreateAlert(AlertType.WARNING, "Too Many Words", "There are more that 40 words of text");
+            return;
+
+        } else if (name == null || name.trim().isEmpty()) {
 
             CreateAlert(AlertType.WARNING, "Invalid Filename", "The filename is empty.");
-			return;
+            return;
 
-        } else {
+        } else if (DirectoryServices.SearchDirectoryForName(_searchterm, name)) {
 
-            boolean exists = DirectoryServices.SearchDirectoryForName(_searchterm, name);
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setTitle("Overwrite Audio");
+            alert.setHeaderText(null);
+            alert.setContentText("The audio already exists.\nDo you want to ovewrite " + name + ".wav?");
+            alert.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
+            alert.showAndWait();
 
-            if (exists) {
-            	Alert alert = new Alert(AlertType.CONFIRMATION);
-				alert.setTitle("Overwrite Audio");
-				alert.setHeaderText(null);
-				alert.setContentText("The audio already exists.\nDo you want to ovewrite " + name + ".wav?");
-				alert.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
-				alert.showAndWait();
-				if(alert.getResult()==ButtonType.NO) {
-					//exit method if dont want to overwrite
-					return;
-				}
-            } 
-            
-            if (arr.length <= 40) {
-            	
-            	_createbutton.setDisable(true);
-            	Thread thread = new Thread(new Task<Void>() {
-					@Override
-					protected Void call() throws Exception {
-						//right now only have it such that kal_diphone is in it
-						ProcessBuilder builder = new ProcessBuilder("./scripts/festival_make_chunk.sh", name, _searchterm, _chooseaccent.getSelectionModel().getSelectedItem(), _lyrics.getText());
-		            	Process process = builder.start();
-		            	int exit = process.waitFor();
+            //exit method if dont want to overwrite
+            if (alert.getResult() == ButtonType.NO) {
 
-		            	if (exit != 0){
-
-		            	    Platform.runLater(()->{
-
-                                CreateAlert(AlertType.ERROR, "Festival Error", "The text could not be handled by the current festival voice.\nTry another voice");
-
-                            });
-                            return null;
-                        }
-
-		            	return null;
-					}
-					@Override
-					protected void done() {
-						Platform.runLater(new Runnable() {
-							@Override
-							public void run() {
-								CreateAlert(Alert.AlertType.INFORMATION, "Audio Made", "The audio file " + name + ".wav was made");
-								_lyrics.clear();
-								_createbutton.setDisable(false);
-							}
-						});
-					}
-            	});
-            	thread.start();
+                return;
 
             }
+
+        } else if(_searchterm == null ) {
+
+            CreateAlert(AlertType.WARNING, "No Search Term", "You have not make a search");
+            return;
+
         }
 
+        _createbutton.setDisable(true);
+
+        Thread thread = new Thread(new Task<Void>() {
+
+            @Override
+            protected Void call() throws Exception {
+
+                //right now only have it such that kal_diphone is in it
+                ProcessBuilder builder = new ProcessBuilder("./scripts/festival_make_chunk.sh", name, _searchterm, _chooseaccent.getSelectionModel().getSelectedItem(), _lyrics.getText());
+                Process process = builder.start();
+                int exit = process.waitFor();
+
+                if (exit != 0) {
+
+                    Platform.runLater(() -> {
+
+                        CreateAlert(AlertType.ERROR, "Festival Error", "The text could not be handled by the current festival voice.\nTry another voice");
+
+                    });
+
+                    return null;
+                }
+
+                return null;
+            }
+
+            @Override
+            protected void done() {
+
+                Platform.runLater(new Runnable() {
+
+                    @Override
+                    public void run() {
+
+                        CreateAlert(Alert.AlertType.INFORMATION, "Audio Made", "The audio file " + name + ".wav was made");
+                        _lyrics.clear();
+                        _createbutton.setDisable(false);
+
+                    }
+
+                });
+
+            }
+
+        });
+
+        thread.start();
+
     }
-
-    public void updateWordCount(){
-
-    }
-
-
 }
+

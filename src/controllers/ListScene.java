@@ -8,6 +8,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ListScene extends Controller{
 
@@ -20,7 +21,7 @@ public class ListScene extends Controller{
 
     public void innitialiseList(){
 
-        ArrayList<String> creationfiles = DirectoryServices.listCreations();
+        List<String> creationfiles = DirectoryServices.ListFilesInDir("./creations");
 
         for(String s: creationfiles) {
 
@@ -63,7 +64,7 @@ public class ListScene extends Controller{
             Process removecreationprocess = removecreation.start();
             removecreationprocess.waitFor();
 
-            ArrayList<String> creationfiles = DirectoryServices.listCreations();
+            List<String> creationfiles = DirectoryServices.ListFilesInDir("./creations");
             _list.getItems().clear();
             for(String s: creationfiles) {
 
