@@ -1,6 +1,8 @@
 package controllers;
 
 import Services.DirectoryServices;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -14,7 +16,9 @@ public class DeleteAudio extends Controller {
 
     private String _previousscene = "/fxml/MainMenu.fxml";
     private String _subdirectory;
+    private String _audio;
     @FXML private Button _deletebutton;
+    @FXML private Button _previewbutton;
     @FXML private ListView<String> _audiosubdirs;
     @FXML private ListView<String> _audiofiles;
 
@@ -46,16 +50,16 @@ public class DeleteAudio extends Controller {
          //Have a pup up for confirmation;
 
 
-         String audio = _audiofiles.getSelectionModel().getSelectedItem();
+         _audio = _audiofiles.getSelectionModel().getSelectedItem();
 
-         if (audio == null) {
+         if (_audio == null) {
 
              CreateAlert(Alert.AlertType.WARNING, "No item selected", "ERROR You have not selected an item");
 
 
          } else {
 
-             String cmd = "rm -f " + "./audio/" + _subdirectory + "/" + audio;
+             String cmd = "rm -f " + "\"./audio/" + _subdirectory + "/" + _audio + "\"";
              ProcessBuilder deleteaudio = new ProcessBuilder("/bin/bash", "-c", cmd);
              Process deleteprocess = deleteaudio.start();
              deleteprocess.waitFor();
@@ -100,6 +104,34 @@ public class DeleteAudio extends Controller {
          for(String s: _audiosubfolders) {
              _audiosubdirs.getItems().add(s);
          }
+
+     }
+
+     public void PreviewExistingAudio () throws IOException, InterruptedException {
+
+        _previewbutton.setDisable(true);
+
+        Thread worker = new Thread(new Task<Void>(){
+            @Override
+            protected Void call() throws Exception {
+                _audio = _audiofiles.getSelectionModel().getSelectedItem();
+                ProcessBuilder preview = new ProcessBuilder("sh", "-c", "./scripts/play_audio.sh \"" + _audio +"\" \""+ _subdirectory + "\"");
+                Process process = preview.start();
+                process.waitFor();
+                return null;
+            }
+
+            @Override
+            protected void done() {
+
+                Platform.runLater(()->{
+                    _previewbutton.setDisable(false);
+                });
+
+            }
+        });
+
+        worker.start();
 
      }
 

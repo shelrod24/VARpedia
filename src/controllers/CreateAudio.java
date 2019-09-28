@@ -206,7 +206,18 @@ public class CreateAudio extends Controller {
 					//right now only have it such that kal_diphone is in it
 					ProcessBuilder builder = new ProcessBuilder("./scripts/festival_tts.sh",_chooseaccent.getSelectionModel().getSelectedItem(), _lyrics.getText());
 	            	Process process = builder.start();
-	            	process.waitFor();
+	            	int exit = process.waitFor();
+
+                    if (exit != 0){
+
+                        Platform.runLater(()->{
+
+                            CreateAlert(AlertType.WARNING, "Festival Error", "The text could not be handled by the current festival voice.\nTry another voice");
+
+                        });
+                        return null;
+                    }
+
 	            	return null;
 				}
 				@Override
@@ -277,7 +288,18 @@ public class CreateAudio extends Controller {
 						//right now only have it such that kal_diphone is in it
 						ProcessBuilder builder = new ProcessBuilder("./scripts/festival_make_chunk.sh", name, _searchterm, _chooseaccent.getSelectionModel().getSelectedItem(), _lyrics.getText());
 		            	Process process = builder.start();
-		            	process.waitFor();
+		            	int exit = process.waitFor();
+
+		            	if (exit != 0){
+
+		            	    Platform.runLater(()->{
+
+                                CreateAlert(AlertType.WARNING, "Festival Error", "The text could not be handled by the current festival voice.\nTry another voice");
+
+                            });
+                            return null;
+                        }
+
 		            	return null;
 					}
 					@Override

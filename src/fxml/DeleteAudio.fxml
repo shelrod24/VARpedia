@@ -40,7 +40,13 @@
             <VBox alignment="TOP_CENTER" prefHeight="460.0" prefWidth="242.0" BorderPane.alignment="CENTER">
                <children>
                   <Region prefHeight="50.0" prefWidth="242.0" />
-                  <Button fx:id="_deletebutton" alignment="CENTER" mnemonicParsing="false" onAction="#DeleteAudiofile" text="Delete" />
+                  <HBox alignment="CENTER">
+                     <children>
+                        <Button fx:id="_previewbutton" mnemonicParsing="false" onAction="#PreviewExistingAudio" text="Preview" />
+                        <Region prefHeight="200.0" prefWidth="15.0" />
+                        <Button fx:id="_deletebutton" alignment="CENTER" mnemonicParsing="false" onAction="#DeleteAudiofile" text="Delete" />
+                     </children>
+                  </HBox>
                </children>
             </VBox>
          </right>

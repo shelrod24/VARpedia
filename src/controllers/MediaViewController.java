@@ -113,6 +113,7 @@ public class MediaViewController extends Controller{
         //THIS IS GOING TO CHANGE THE START BUTTON TO RESET.
 
                     _player.setOnEndOfMedia(()-> {
+                        _slider.adjustValue(_player.getTotalDuration().toMillis());
                         _play.setText("Restart");
                         isrestart = true;
                     });
