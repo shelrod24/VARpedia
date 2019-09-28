@@ -28,6 +28,7 @@ public class MainMenu extends Application {
         DirectoryServices.CreateDirectories();
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/MainMenu.fxml"));
         primaryStage.setScene(new Scene(root, 1000, 500));
+        primaryStage.setResizable(false);
         primaryStage.show();
 
     }
