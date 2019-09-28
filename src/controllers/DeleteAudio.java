@@ -1,5 +1,6 @@
 package controllers;
 
+import Services.AudioService;
 import Services.DirectoryServices;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
@@ -116,9 +117,7 @@ public class DeleteAudio extends Controller {
             @Override
             protected Void call() throws Exception {
                 _audio = _audiofiles.getSelectionModel().getSelectedItem();
-                ProcessBuilder preview = new ProcessBuilder("sh", "-c", "./scripts/play_audio.sh \"" + _audio +"\" \""+ _subdirectory + "\"");
-                Process process = preview.start();
-                process.waitFor();
+                AudioService.playAudio(_subdirectory, _audio);
                 return null;
             }
 
