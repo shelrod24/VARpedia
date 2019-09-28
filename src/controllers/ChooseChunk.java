@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import Services.AudioService;
 import Services.DirectoryServices;
 import Services.NewCreationService;
 import javafx.application.Platform;
@@ -65,9 +66,7 @@ public class ChooseChunk extends Controller{
 	            protected Void call() throws Exception {
 	                String audio = _inputAudioView.getSelectionModel().getSelectedItem();
 	                String folder = _folderView.getSelectionModel().getSelectedItem();
-	                ProcessBuilder preview = new ProcessBuilder("sh", "-c", "./scripts/play_audio.sh \"" + audio +"\" \""+ folder + "\"");
-	                Process process = preview.start();
-	                process.waitFor();
+	                AudioService.playAudio(folder, audio);
 	                return null;
 	            }
 	        });
@@ -83,9 +82,7 @@ public class ChooseChunk extends Controller{
 	            protected Void call() throws Exception {
 	                String audio = _outputAudioView.getSelectionModel().getSelectedItem();
 	                String folder = _folderView.getSelectionModel().getSelectedItem();
-	                ProcessBuilder preview = new ProcessBuilder("sh", "-c", "./scripts/play_audio.sh \"" + audio +"\" \""+ folder + "\"");
-	                Process process = preview.start();
-	                process.waitFor();
+	                AudioService.playAudio(folder, audio);
 	                return null;
 	            }
 	        });
