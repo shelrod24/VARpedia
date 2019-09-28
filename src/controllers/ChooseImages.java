@@ -176,6 +176,7 @@ public class ChooseImages extends Controller{
     
     @Override
 	public void AuxiliaryFunctionPrevious(FXMLLoader loader) {
+    	//called when switching scenes
 		ChooseChunk controller = loader.getController();
 		controller.setCreation(_creation);
 		controller.reflectCreation();

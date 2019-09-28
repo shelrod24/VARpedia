@@ -6,6 +6,8 @@ import java.util.List;
 
 import Services.DirectoryServices;
 import Services.NewCreationService;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +15,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionModel;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.control.Alert.AlertType;
 
 public class ChooseChunk extends Controller{
@@ -22,8 +26,6 @@ public class ChooseChunk extends Controller{
 	@FXML private ListView<String> _folderView;
 	@FXML private ListView<String> _inputAudioView;
 	@FXML private ListView<String> _outputAudioView;
-	
-	
 	
 	@FXML
     private void initialize() {
@@ -53,6 +55,42 @@ public class ChooseChunk extends Controller{
 		updateInputViewList(folder);
 		// make a new creation with the term as the folder name
 		_creation = new NewCreationService(folder);
+	}
+	
+	@FXML
+	private void handleInputAudioView(MouseEvent event) {
+		if(event.getButton() == MouseButton.PRIMARY && event.getClickCount()==2 && _inputAudioView.getSelectionModel().getSelectedItem() != null) {
+	        Thread worker = new Thread(new Task<Void>(){
+	            @Override
+	            protected Void call() throws Exception {
+	                String audio = _inputAudioView.getSelectionModel().getSelectedItem();
+	                String folder = _folderView.getSelectionModel().getSelectedItem();
+	                ProcessBuilder preview = new ProcessBuilder("sh", "-c", "./scripts/play_audio.sh \"" + audio +"\" \""+ folder + "\"");
+	                Process process = preview.start();
+	                process.waitFor();
+	                return null;
+	            }
+	        });
+	        worker.start();
+		}
+	}
+	
+	@FXML
+	private void handleOutputAudioView(MouseEvent event) {
+		if(event.getButton() == MouseButton.PRIMARY && event.getClickCount()==2 && _outputAudioView.getSelectionModel().getSelectedItem() != null) {
+	        Thread worker = new Thread(new Task<Void>(){
+	            @Override
+	            protected Void call() throws Exception {
+	                String audio = _outputAudioView.getSelectionModel().getSelectedItem();
+	                String folder = _folderView.getSelectionModel().getSelectedItem();
+	                ProcessBuilder preview = new ProcessBuilder("sh", "-c", "./scripts/play_audio.sh \"" + audio +"\" \""+ folder + "\"");
+	                Process process = preview.start();
+	                process.waitFor();
+	                return null;
+	            }
+	        });
+	        worker.start();
+		}
 	}
 	
 	public void updateInputViewList(String folder) {
