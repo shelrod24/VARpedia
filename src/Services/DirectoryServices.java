@@ -9,13 +9,17 @@ import java.util.List;
 public class DirectoryServices {
 
 
+
     public static boolean SearchDirectoryForName(String term, String name){
 
         File[] listoffiles = new File("./audio/"+term).listFiles();
         boolean exists = false;
+
         if (listoffiles==null) {
+
         	return false;
         }
+
         for (File file: listoffiles) {
 
             if(file.getName().equals(name+".wav")) {
@@ -24,24 +28,36 @@ public class DirectoryServices {
 
             }
         }
+
         return exists;
     }
-    
-    public static boolean creationExists(String name){
+
+
+
+
+    public static boolean creationExists(String name) {
+
         File[] listoffiles = new File("./creations").listFiles();
-        // no files in folder file doesnt exist
+
         if (listoffiles==null) {
+
         	return false;
+
         }
+
         for (File file: listoffiles) {
+
             if(file.getName().equals(name+".mp4")) {
             	// file found;
                 return true;
+
             }
         }
+
         // file not found
         return false;
     }
+
 
 
     public static List<String> ListFilesInDir(String fullpath){
@@ -50,7 +66,9 @@ public class DirectoryServices {
         ArrayList<String> _arrayoffiles = new ArrayList<String>();
 
         for (File file: listoffiles) {
+
             _arrayoffiles.add(file.getName());
+
         }
 
         Collections.sort(_arrayoffiles, String.CASE_INSENSITIVE_ORDER);
@@ -63,9 +81,10 @@ public class DirectoryServices {
     public final static void CreateDirectories() throws IOException {
 
         ProcessBuilder makedirectoriesprocessbuilder = new ProcessBuilder("sh", "-c", "./scripts/make_directories.sh");
-        Process makedirectoriesprocess = makedirectoriesprocessbuilder.start();
+        makedirectoriesprocessbuilder.start();
 
     }
+
 
 
 }

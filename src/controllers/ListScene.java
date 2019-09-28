@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -55,10 +56,22 @@ public class ListScene extends Controller{
         if (_creationname == null){
 
             CreateAlert(Alert.AlertType.WARNING, "No item selected", "ERROR You have not selected an item");
+            return;
+
+        }
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("File Deletion Confirmation");
+        alert.setHeaderText(null);
+        alert.setContentText("Are you sure you want to delete " + _creationname + ".wav?");
+        alert.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
+        alert.showAndWait();
+
+        if (alert.getResult() == ButtonType.NO) {
+
+            return;
 
         } else {
-
-            //Popup, are you sure you want to delete this creation.
 
             ProcessBuilder removecreation = new ProcessBuilder("/bin/bash","-c","rm -f ./creations/\"" + _creationname + ".mp4\"");
             Process removecreationprocess = removecreation.start();
@@ -66,16 +79,15 @@ public class ListScene extends Controller{
 
             List<String> creationfiles = DirectoryServices.ListFilesInDir("./creations");
             _list.getItems().clear();
+
             for(String s: creationfiles) {
 
                 s = s.substring(0, s.length()-4);
                 _list.getItems().add(s);
+
             }
 
-
         }
-
-
 
     }
 

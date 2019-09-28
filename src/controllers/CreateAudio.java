@@ -263,7 +263,6 @@ public class CreateAudio extends Controller {
             alert.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
             alert.showAndWait();
 
-            //exit method if dont want to overwrite
             if (alert.getResult() == ButtonType.NO) {
 
                 return;
@@ -272,7 +271,7 @@ public class CreateAudio extends Controller {
 
         } else if(_searchterm == null ) {
 
-            CreateAlert(AlertType.WARNING, "No Search Term", "You have not make a search");
+            CreateAlert(AlertType.WARNING, "No Search Term", "You have not made a search");
             return;
 
         }

@@ -6,10 +6,9 @@ import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
-
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class DeleteAudio extends Controller {
@@ -18,7 +17,6 @@ public class DeleteAudio extends Controller {
     private String _previousscene = "/fxml/MainMenu.fxml";
     private String _subdirectory;
     private String _audio;
-    @FXML private Button _deletebutton;
     @FXML private Button _previewbutton;
     @FXML private ListView<String> _audiosubdirs;
     @FXML private ListView<String> _audiofiles;
@@ -28,35 +26,47 @@ public class DeleteAudio extends Controller {
     public void SelectAudioSubDirectory() {
 
         _audiofiles.getItems().clear();
-
         _subdirectory = _audiosubdirs.getSelectionModel().getSelectedItem();
 
-
         if (_subdirectory == null) {
-
 
         } else {
 
             List<String> audiofiles = DirectoryServices.ListFilesInDir("./audio/"+_subdirectory);
+
             for (String s : audiofiles) {
+
                 _audiofiles.getItems().add(s);
+
             }
 
         }
+
     }
 
 
+
      public void DeleteAudiofile() throws IOException, InterruptedException {
-
-         //Have a pup up for confirmation;
-
 
          _audio = _audiofiles.getSelectionModel().getSelectedItem();
 
          if (_audio == null) {
 
              CreateAlert(Alert.AlertType.WARNING, "No item selected", "ERROR You have not selected an item");
+             return;
 
+         }
+
+         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+         alert.setTitle("File Deletion Confirmation");
+         alert.setHeaderText(null);
+         alert.setContentText("Are you sure you want to delete " + _audio + ".wav?");
+         alert.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
+         alert.showAndWait();
+
+         if (alert.getResult() == ButtonType.NO) {
+
+             return;
 
          } else {
 
@@ -69,7 +79,9 @@ public class DeleteAudio extends Controller {
              _audiofiles.getItems().clear();
 
              for (String s : audiofiles) {
+
                  _audiofiles.getItems().add(s);
+
              }
 
              ProcessBuilder deletedir = new ProcessBuilder("sh", "-c", "./scripts/checkdir_isempty.sh" + " \"" + _subdirectory + "\"");
@@ -77,14 +89,16 @@ public class DeleteAudio extends Controller {
              deletedirprocess.waitFor();
 
              _audiosubdirs.getItems().clear();
-
-
              List<String> _audiosubfolders = DirectoryServices.ListFilesInDir("./audio");
+
              for (String s : _audiosubfolders) {
+
                  _audiosubdirs.getItems().add(s);
+
              }
 
          }
+
      }
 
 
@@ -98,12 +112,13 @@ public class DeleteAudio extends Controller {
          Process deletedirprocess = deletedirs.start();
          deletedirprocess.waitFor();
 
-
         // Populate ListView
          List<String> _audiosubfolders = DirectoryServices.ListFilesInDir("./audio");
 
          for(String s: _audiosubfolders) {
+
              _audiosubdirs.getItems().add(s);
+
          }
 
      }
@@ -112,30 +127,35 @@ public class DeleteAudio extends Controller {
 
         _previewbutton.setDisable(true);
 
-        Thread worker = new Thread(new Task<Void>(){
+        Thread worker = new Thread(new Task<Void>() {
+
             @Override
             protected Void call() throws Exception {
+
                 _audio = _audiofiles.getSelectionModel().getSelectedItem();
                 ProcessBuilder preview = new ProcessBuilder("sh", "-c", "./scripts/play_audio.sh \"" + _audio +"\" \""+ _subdirectory + "\"");
                 Process process = preview.start();
                 process.waitFor();
                 return null;
+
             }
 
             @Override
             protected void done() {
 
                 Platform.runLater(()->{
+
                     _previewbutton.setDisable(false);
+
                 });
 
             }
+
         });
 
         worker.start();
 
      }
-
 
 
 
@@ -148,4 +168,5 @@ public class DeleteAudio extends Controller {
     public String ReturnForwardFXMLPath() {
         return null;
     }
+
 }
