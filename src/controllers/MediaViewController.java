@@ -106,6 +106,16 @@ public class MediaViewController extends Controller{
 
     }
 
+    public void SkipForwardTenSeconds() {
+
+        _player.seek(_player.getCurrentTime().add(Duration.seconds(10)));
+    }
+
+    public void SkipBackTenSeconds() {
+
+        _player.seek(_player.getCurrentTime().add(Duration.seconds(-10)));
+    }
+
 
     @FXML
     public void Initialize(){

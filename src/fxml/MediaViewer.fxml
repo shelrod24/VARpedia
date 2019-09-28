@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MediaViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MediaViewController">
    <children>
       <BorderPane prefHeight="500.0" prefWidth="700.0">
          <top>
@@ -31,9 +31,7 @@
                   <HBox prefHeight="64.0" prefWidth="1000.0" style="-fx-background-color: white;">
                      <children>
                         <Region prefHeight="200.0" prefWidth="200.0" />
-                        <Button mnemonicParsing="false" onAction="#SlowDown" prefWidth="103.0" style="-fx-background-color: white;" text="Slower  " textAlignment="CENTER" textFill="#000000cc" />
-                        <Button fx:id="_play" mnemonicParsing="false" onAction="#PausePlay" prefHeight="27.0" prefWidth="103.0" style="-fx-background-color: white;" text="Pause" textAlignment="CENTER" textFill="#000000cc" />
-                        <Button contentDisplay="CENTER" ellipsisString="" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#FastForward" prefHeight="27.0" prefWidth="103.0" style="-fx-background-color: white;" text="Faster" textAlignment="RIGHT" textFill="#000000cc">
+                        <Button contentDisplay="CENTER" ellipsisString="" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#SkipBackTenSeconds" prefHeight="27.0" prefWidth="103.0" style="-fx-background-color: white;" text="Skip back" textAlignment="RIGHT" textFill="#000000cc">
                            <effect>
                               <Glow level="0.0" />
                            </effect>
@@ -41,6 +39,25 @@
                               <Cursor fx:constant="DEFAULT" />
                            </cursor>
                         </Button>
+                        <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#SlowDown" prefWidth="103.0" style="-fx-background-color: white;" text="Slower  " textAlignment="CENTER" textFill="#000000cc" />
+                        <Button fx:id="_play" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#PausePlay" prefHeight="27.0" prefWidth="103.0" style="-fx-background-color: white;" text="Pause" textAlignment="CENTER" textFill="#000000cc" />
+                        <Button contentDisplay="CENTER" ellipsisString="" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#FastForward" prefHeight="27.0" prefWidth="103.0" style="-fx-background-color: white;" text="Faster" textAlignment="RIGHT" textFill="#000000cc">
+                           <effect>
+                              <Glow level="0.0" />
+                           </effect>
+                           <cursor>
+                              <Cursor fx:constant="DEFAULT" />
+                           </cursor>
+                        </Button>
+                        <Button contentDisplay="CENTER" ellipsisString="" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#SkipForwardTenSeconds" prefHeight="27.0" prefWidth="103.0" style="-fx-background-color: white;" text="Skip forward" textAlignment="RIGHT" textFill="#000000cc">
+                           <effect>
+                              <Glow level="0.0" />
+                           </effect>
+                           <cursor>
+                              <Cursor fx:constant="DEFAULT" />
+                           </cursor>
+                        </Button>
+                        <Region prefHeight="200.0" prefWidth="200.0" />
                      </children>
                   </HBox>
                </children>
