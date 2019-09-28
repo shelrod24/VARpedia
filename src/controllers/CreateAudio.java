@@ -307,6 +307,7 @@ public class CreateAudio extends Controller {
 						Platform.runLater(new Runnable() {
 							@Override
 							public void run() {
+								CreateAlert(Alert.AlertType.INFORMATION, "Audio Made", "The audio file " + name + ".wav was made");
 								_lyrics.clear();
 								_createbutton.setDisable(false);
 							}
