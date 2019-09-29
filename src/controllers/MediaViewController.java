@@ -24,14 +24,15 @@ public class MediaViewController extends Controller{
     @FXML private Slider _slider;
     @FXML private Button _play;
     @FXML private Button _skipforward;
+    @FXML private Button _faster;
+    @FXML private Button _slower;
     @FXML private Label _timelabel;
     @FXML private Button _skipbackward;
+    private String _previousfxmlpath =  "/fxml/ListScene.fxml";
     private File _fileUrl;
     private Media _video;
     private MediaPlayer _player;
     private MediaView _view = new MediaView();
-    private String _previousfxmlpath = "/fxml/ListScene.fxml";
-    private boolean isrestart;
     private double _rate = 1.0;
 
     @FXML
@@ -53,14 +54,22 @@ public class MediaViewController extends Controller{
         });
 
 
-        //THIS IS GOING TO CHANGE THE START BUTTON TO RESET.
         _player.setOnEndOfMedia(()-> {
 
+            _play.setDisable(true);
             _slider.adjustValue(_player.getTotalDuration().toMillis());
+
+            String time = "";
+            time+=String.format("%02d", ((int)_player.getTotalDuration().toMinutes()));
+            time+=":";
+            time+=String.format("%02d", ((int)_player.getTotalDuration().toSeconds())%60);
+            _timelabel.setText(time);
+
+
+            _slower.setDisable(true);
+            _faster.setDisable(true);
             _skipbackward.setDisable(true);
             _skipforward.setDisable(true);
-            _play.setText("Restart");
-            isrestart = true;
 
         });
 
@@ -76,8 +85,6 @@ public class MediaViewController extends Controller{
             }
 
         });
-
-        isrestart = false;
 
     }
 
@@ -113,17 +120,6 @@ public class MediaViewController extends Controller{
 
     public void PausePlay(){
 
-        if (isrestart) {
-
-            isrestart = false;
-            _skipforward.setDisable(false);
-            _skipbackward.setDisable(false);
-            _player.seek(Duration.ZERO);
-            _player.play();
-            _play.setText("Pause");
-
-        } else {
-
             if (_player.getStatus() == MediaPlayer.Status.PLAYING) {
 
                 _player.pause();
@@ -135,9 +131,9 @@ public class MediaViewController extends Controller{
                 _play.setText("Pause");
 
             }
-        }
-
     }
+
+
 
 
     public void FastForward() {

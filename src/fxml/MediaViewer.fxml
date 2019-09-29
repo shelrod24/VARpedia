@@ -52,9 +52,9 @@
                               <Insets />
                            </opaqueInsets>
                         </Button>
-                        <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#SlowDown" prefWidth="100.0" style="-fx-background-color: #555555;" text="Slower  " textAlignment="CENTER" textFill="#f8f8f8cc" />
+                        <Button fx:id="_slower" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#SlowDown" prefWidth="100.0" style="-fx-background-color: #555555;" text="Slower  " textAlignment="CENTER" textFill="#f8f8f8cc" />
                         <Button fx:id="_play" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#PausePlay" prefWidth="100.0" style="-fx-background-color: #555555;" text="Pause" textAlignment="CENTER" textFill="#ffffffcc" />
-                        <Button contentDisplay="CENTER" ellipsisString="" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#FastForward" prefWidth="100.0" style="-fx-background-color: #555555;" text="Faster" textAlignment="RIGHT" textFill="#ffffffcc">
+                        <Button fx:id="_faster" contentDisplay="CENTER" ellipsisString="" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#FastForward" prefWidth="100.0" style="-fx-background-color: #555555;" text="Faster" textAlignment="RIGHT" textFill="#ffffffcc">
                            <effect>
                               <Glow level="0.0" />
                            </effect>
