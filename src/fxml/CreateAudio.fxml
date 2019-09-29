@@ -72,7 +72,7 @@
                         </Button>
                      </children>
                   </HBox>
-                  <ListView fx:id="_listarea" opacity="0.93" prefHeight="388.0" prefWidth="435.0" style="-fx-background-color: #F5F5F5; -fx-border-color: #D3D3D3;" VBox.vgrow="ALWAYS">
+                  <ListView fx:id="_listarea" opacity="0.9" prefHeight="388.0" prefWidth="435.0" style="-fx-background-color: #F5F5F5; -fx-border-color: #D3D3D3;" VBox.vgrow="ALWAYS">
                      <padding>
                         <Insets left="2.0" />
                      </padding>
@@ -136,8 +136,6 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Region prefHeight="20.0" prefWidth="100.0" />
-                  <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="43.0" />
                </children>
             </VBox>
          </center>
