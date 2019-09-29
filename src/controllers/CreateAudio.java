@@ -36,6 +36,13 @@ public class CreateAudio extends Controller {
 
         _searchterm = _searchfield.getText();
 
+        _searchterm = _searchterm.replaceAll("(^\\s+)|(\\s+$)", "");
+        if (_searchterm.equals("")){
+
+
+            return;
+        }
+
         final String searchterm =  _searchterm;
         Thread thread = new Thread(new Task<Void>(){
 
