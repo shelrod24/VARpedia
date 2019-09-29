@@ -3,7 +3,7 @@
 # Second input is the text to be parsed (eg "excuse me what the fu")
 
 
-output=`echo "(voice_${1}) (SayText \"${2}\")" | festival 2>&1`
+output=`echo "(voice_${1}) (SayText \"${2}\")" | festival 2>&1 | grep ERROR`
 
 if [ ! -z "$output" ] ; then
 	exit 1

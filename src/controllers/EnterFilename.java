@@ -54,6 +54,10 @@ public class EnterFilename extends Controller{
 		String filename = _filenameField.getText();
 		if(option.equals("Create")) {
 			//check if file exists
+			if(filename.trim().isEmpty() ||filename==null){
+				CreateAlert(Alert.AlertType.WARNING, "Empty Filename", "The filename was empty");
+				return;
+			}
 			if (DirectoryServices.creationExists(filename)) {
 				Alert alert = new Alert(AlertType.CONFIRMATION);
 				alert.setTitle("Overwrite Creation");
@@ -66,15 +70,14 @@ public class EnterFilename extends Controller{
 					return;
 				}
 			}
-			buildCreation();
+			buildCreation(filename);
 		} else {
 			SwitchForwardScene(event);
 		}
 	}
 	
-	private void buildCreation() {
+	private void buildCreation(String filename) {
 		//dont want them switching filename halfway through creation
-		String filename = _filenameField.getText();
 		_mainButton.setDisable(true);
 		Task<Void> task = new Task<Void>(){
 			@Override

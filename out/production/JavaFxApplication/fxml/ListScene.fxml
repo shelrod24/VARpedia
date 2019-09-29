@@ -12,20 +12,15 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ListScene">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0" style="-fx-background-color: #333333;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ListScene">
    <children>
-      <ImageView fitHeight="500.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../Desktop3.jpg" />
-         </image>
-      </ImageView>
       <BorderPane prefHeight="500.0" prefWidth="1000.0">
          <top>
             <VBox maxWidth="-Infinity" prefHeight="55.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
                <children>
-                  <ToolBar minWidth="-Infinity" opacity="0.93" prefHeight="40.0" prefWidth="1000.0">
+                  <ToolBar minWidth="-Infinity" opacity="0.93" prefWidth="1000.0" style="-fx-background-color: #444444;">
                     <items>
-                      <Button mnemonicParsing="false" onAction="#SwitchBackScene" prefHeight="33.0" prefWidth="20.0">
+                      <Button mnemonicParsing="false" onAction="#SwitchBackScene" prefHeight="33.0" prefWidth="20.0" style="-fx-background-color: #333333;">
                            <graphic>
                               <ImageView fitHeight="33.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -51,13 +46,13 @@
                      <padding>
                         <Insets bottom="10.0" top="10.0" />
                      </padding></Region>
-                  <ListView fx:id="_list" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.93" prefHeight="435.0" prefWidth="610.0">
+                  <ListView fx:id="_list" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" opacity="0.8" prefHeight="435.0" prefWidth="610.0">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin></ListView>
                </children>
                <BorderPane.margin>
-                  <Insets left="11.0" />
+                  <Insets left="10.0" />
                </BorderPane.margin>
             </HBox>
          </left>
@@ -68,17 +63,15 @@
                </opaqueInsets></VBox>
          </bottom>
          <right>
-            <VBox prefHeight="341.0" prefWidth="280.0" BorderPane.alignment="CENTER">
+            <VBox alignment="CENTER" prefHeight="435.0" prefWidth="295.0" BorderPane.alignment="CENTER">
                <padding>
                   <Insets right="10.0" />
                </padding>
                <children>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <Region prefHeight="100.0" prefWidth="20.0" />
-                        <Button mnemonicParsing="false" onAction="#PlayCreation" opacity="0.9" prefHeight="27.0" prefWidth="54.0" text="Play" />
-                        <Region prefHeight="100.0" prefWidth="12.0" />
-                        <Button mnemonicParsing="false" onAction="#DeleteCreation" opacity="0.9" text="Delete" />
+                        <Button mnemonicParsing="false" onAction="#PlayCreation" opacity="0.9" prefHeight="27.0" prefWidth="100.0" style="-fx-background-color: #555555;" text="Play" textFill="WHITE" />
+                        <Button mnemonicParsing="false" onAction="#DeleteCreation" opacity="0.9" prefWidth="100.0" style="-fx-background-color: #555555;" text="Delete" textFill="WHITE" />
                      </children>
                   </HBox>
                </children>

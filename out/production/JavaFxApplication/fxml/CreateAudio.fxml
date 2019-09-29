@@ -12,138 +12,102 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-<AnchorPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="500.0" prefWidth="1000.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CreateAudio">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="500.0" prefWidth="1000.0" style="-fx-background-color: #333333;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CreateAudio">
    <children>
-      <ImageView fitHeight="500.0" fitWidth="1005.0" layoutX="-2.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <image>
-            <Image url="@../Background2.jpg" />
-         </image>
-      </ImageView>
-      <BorderPane layoutY="-6.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="500.0" prefWidth="1000.0" AnchorPane.leftAnchor="0.0">
-         <right>
-            <VBox prefHeight="200.0" prefWidth="450.0" BorderPane.alignment="CENTER">
-               <children>
-                  <TextArea fx:id="_lyrics" opacity="0.93" prefHeight="377.0" prefWidth="347.0" wrapText="true" />
-                  <Region prefHeight="10.0" prefWidth="200.0" />
-                  <HBox prefHeight="27.0" prefWidth="300.0">
+      <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <ToolBar prefHeight="39.0" prefWidth="1000.0" style="-fx-background-color: #444444;">
+               <items>
+                  <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="851.0">
                      <children>
-                        <TextField fx:id="_filefield" alignment="CENTER" opacity="0.94" prefWidth="450.0" promptText="Name Your File" style="-fx-border-color: #D3D3D3;" />
-                        <Button fx:id="_createbutton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#NameFile" prefHeight="28.0" prefWidth="40.0" style="-fx-border-color: #D3D3D3;">
+                        <Button mnemonicParsing="false" onAction="#SwitchBackScene" style="-fx-background-color: #333333;">
                            <graphic>
-                              <ImageView fitHeight="17.0" fitWidth="47.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="33.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../Create.png" /> 
+                                    <Image url="@../home.png" />
                                  </image>
-                              </ImageView>
-                           </graphic></Button>
-                     </children>
-                  </HBox>
-               </children>
-               <padding>
-                  <Insets right="6.0" />
-               </padding>
-            </VBox>
-         </right>
-         <left>
-            <VBox prefHeight="200.0" prefWidth="450.0" BorderPane.alignment="CENTER">
-               <children>
-                  <HBox prefHeight="27.0" prefWidth="200.0">
-                     <children>
-                        <TextField fx:id="_searchfield" alignment="CENTER" opacity="0.94" prefWidth="450.0" promptText="Search Wikepedia" style="-fx-border-color: #D3D3D3;" />
-                        <Button fx:id="_searchbutton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#SearchWikipedia" prefHeight="28.0" prefWidth="40.0" style="-fx-border-color: #D3D3D3;" textFill="#00b2ff">
-                           <graphic>
-                              <ImageView fitHeight="17.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../search.png" />
-                                 </image>
-                                 <viewport>
-                                    <Rectangle2D />
-                                 </viewport>
                               </ImageView>
                            </graphic>
                         </Button>
+                        <Region prefHeight="220.0" prefWidth="520.0" />
+                        <Button fx:id="_previewbutton" mnemonicParsing="false" onAction="#PreviewAudio" prefWidth="85.0" style="-fx-background-color: #333333;" text="Preview" textFill="WHITE" />
+                        <Region prefHeight="200.0" prefWidth="30.0" />
                      </children>
                   </HBox>
-                  <Region prefHeight="20.0" prefWidth="347.0" />
-                  <ListView fx:id="_listarea" opacity="0.93" prefHeight="388.0" prefWidth="347.0" style="-fx-background-color: #F5F5F5; -fx-border-color: #D3D3D3;">
-                     <padding>
-                        <Insets left="2.0" />
-                     </padding>
-                  </ListView>
-               </children>
-               <padding>
-                  <Insets left="6.0" />
-               </padding>
-            </VBox>
-         </left>
-         <bottom>
-            <HBox prefHeight="30.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                  <ChoiceBox fx:id="_chooseaccent" prefWidth="129.0" style="-fx-background-color: #888888;" />
+               </items>
+            </ToolBar>
+            <VBox spacing="10.0" VBox.vgrow="ALWAYS">
                <children>
-                  <Region prefHeight="200.0" prefWidth="550.0" />
-                  <Label text="40 Word Limit" textFill="#95ff00">
-                     <font>
-                        <Font name="System Bold" size="16.0" />
-                     </font></Label>
-               </children>
-            </HBox>
-         </bottom>
-         <top>
-            <VBox opacity="0.9" prefHeight="60.0" prefWidth="100.0" BorderPane.alignment="CENTER">
-               <children>
-                  <ToolBar prefHeight="20.0" prefWidth="200.0" style="-fx-background-color: #F5F5F5; -fx-border-color: #D3D3D3;">
-                     <items>
-                        <HBox prefHeight="30.0" prefWidth="851.0">
+                  <HBox spacing="10.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="430.0" spacing="10.0" HBox.hgrow="ALWAYS">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#SwitchBackScene" style="-fx-background-color: white; -fx-border-color: #D3D3D3;">
-                                 <graphic>
-                                    <ImageView fitHeight="33.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                       <image>
-                                          <Image url="@../home.png" />
-                                       </image>
-                                    </ImageView>
-                                 </graphic>
-                              </Button>
-                              <Region prefHeight="200.0" prefWidth="500.0" />
-                              <Button fx:id="_previewbutton" mnemonicParsing="false" onAction="#PreviewAudio" prefHeight="27.0" prefWidth="85.0" text="Preview" />
-                              <Region prefHeight="200.0" prefWidth="30.0" />
+                              <HBox prefHeight="27.0" prefWidth="435.0" VBox.vgrow="ALWAYS">
+                                 <children>
+                                    <TextField fx:id="_searchfield" alignment="CENTER" opacity="0.8" prefWidth="450.0" promptText="Search Wikepedia" style="-fx-border-color: #D3D3D3;" HBox.hgrow="ALWAYS" />
+                                    <Button fx:id="_searchbutton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#SearchWikipedia" prefHeight="28.0" prefWidth="40.0" style="-fx-background-color: #555555;" textFill="#00b2ff">
+                                       <graphic>
+                                          <ImageView fitHeight="17.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../search.png" />
+                                             </image>
+                                             <viewport>
+                                                <Rectangle2D />
+                                             </viewport>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                 </children>
+                                 <VBox.margin>
+                                    <Insets top="5.0" />
+                                 </VBox.margin>
+                              </HBox>
+                              <ListView fx:id="_listarea" opacity="0.8" prefHeight="388.0" style="-fx-background-color: #F5F5F5; -fx-border-color: #D3D3D3;" VBox.vgrow="ALWAYS">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                              </ListView>
                            </children>
-                           <padding>
-                              <Insets top="4.0" />
-                           </padding>
-                        </HBox>
-                        <ChoiceBox fx:id="_chooseaccent" prefHeight="27.0" prefWidth="129.0" style="-fx-background-color: white; -fx-border-color: #D3D3D3;" />
-                     </items>
-                     <VBox.margin>
-                        <Insets top="2.0" />
-                     </VBox.margin>
-                  </ToolBar>
+                        </VBox>
+                        <VBox alignment="CENTER" prefHeight="390.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Button fx:id="_moveoverbutton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#MoveTextOver" prefWidth="100.0" style="-fx-background-color: #555555;" text="Add" textFill="WHITE" />
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="430.0" spacing="10.0" HBox.hgrow="ALWAYS">
+                           <children>
+                              <Label text="Selected Text" textFill="WHITE">
+                                 <VBox.margin>
+                                    <Insets bottom="-5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <TextArea fx:id="_lyrics" opacity="0.8" prefHeight="377.0" wrapText="true" VBox.vgrow="ALWAYS" />
+                              <HBox prefHeight="27.0" prefWidth="300.0">
+                                 <children>
+                                    <TextField fx:id="_filefield" alignment="CENTER" opacity="0.8" prefWidth="450.0" promptText="Name Your File" style="-fx-border-color: #D3D3D3;" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </HBox>
+                  <HBox>
+                     <children>
+                        <Region prefHeight="3.0" prefWidth="900.0" HBox.hgrow="ALWAYS" />
+                        <Button fx:id="_createbutton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#NameFile" prefHeight="28.0" prefWidth="100.0" style="-fx-background-color: #555555;" text="Create" textFill="WHITE" />
+                     </children>
+                  </HBox>
                </children>
+               <VBox.margin>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="5.0" />
+               </VBox.margin>
             </VBox>
-         </top>
-         <center>
-            <VBox alignment="TOP_CENTER" prefHeight="390.0" prefWidth="75.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Region prefHeight="150.0" prefWidth="200.0" />
-                  <Button fx:id="_moveoverbutton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#MoveTextOver">
-                     <graphic>
-                        <ImageView fitHeight="40.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../next.jpg" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Region prefHeight="20.0" prefWidth="200.0" />
-                  <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="43.0" />
-               </children>
-            </VBox>
-         </center>
-      </BorderPane>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

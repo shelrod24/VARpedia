@@ -29,7 +29,6 @@ public class FlickrAPIService {
 		while ( (line = br.readLine()) != null ) {
 			if (line.trim().startsWith(key)) {
 				br.close();
-				System.out.println(line.substring(line.indexOf("=")+1).trim());
 				return line.substring(line.indexOf("=")+1).trim();
 			}
 		}
@@ -54,7 +53,6 @@ public class FlickrAPIService {
 	        params.setText(query);
 	        
 	        PhotoList<Photo> results = photos.search(params, resultsPerPage, page);
-	        System.out.println("Retrieving " + results.size()+ " results");
 	        
 	        	        
 	        for (Photo photo: results) {
@@ -64,9 +62,7 @@ public class FlickrAPIService {
 		        	File outputfile = new File("temps/image",filename);
 		        	ImageIO.write(image, "jpg", outputfile);
 		        	imageFilenames.add(filename);
-		        	System.out.println("Downloaded "+filename);
 	        	} catch (FlickrException fe) {
-	        		System.err.println("Ignoring image " +photo.getId() +": "+ fe.getMessage());
 				}
 	        }
 		} catch (Exception e) {

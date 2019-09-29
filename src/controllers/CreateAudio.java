@@ -35,8 +35,8 @@ public class CreateAudio extends Controller {
     public void SearchWikipedia() throws IOException {
 
         _searchterm = _searchfield.getText();
-
         _searchterm = _searchterm.replaceAll("(^\\s+)|(\\s+$)", "");
+
         if (_searchterm.equals("")){
 
 
@@ -241,6 +241,11 @@ public class CreateAudio extends Controller {
             CreateAlert(AlertType.WARNING, "Invalid Filename", "The filename is empty.");
             return;
 
+        } else if (lyrics.trim().equals("") || lyrics == null ) {
+
+            CreateAlert(AlertType.WARNING, "No Text Selected", "The text selection is empty.");
+            return;
+
         } else if (DirectoryServices.SearchDirectoryForName(_searchterm, name)) {
 
             Alert alert = new Alert(AlertType.CONFIRMATION);
@@ -256,7 +261,7 @@ public class CreateAudio extends Controller {
 
             }
 
-        } else if(_searchterm == null ) {
+        } else if(_searchterm == null || _searchterm == "" ) {
 
             CreateAlert(AlertType.WARNING, "No Search Term", "You have not made a search");
             return;
@@ -285,13 +290,6 @@ public class CreateAudio extends Controller {
 
                     return null;
                 }
-
-                return null;
-            }
-
-            @Override
-            protected void done() {
-
                 Platform.runLater(new Runnable() {
 
                     @Override
@@ -310,7 +308,7 @@ public class CreateAudio extends Controller {
                     }
 
                 });
-
+                return null;
             }
 
         });
