@@ -89,7 +89,7 @@ public abstract class Controller {
 
 
 
-    public void AuxiliaryFunctionBackwards(FXMLLoader loader) {}
+    public void AuxiliaryFunctionBackwards(FXMLLoader loader) throws IOException {}
 
 
 
@@ -97,11 +97,19 @@ public abstract class Controller {
     public void AuxiliaryFunctionPrevious(FXMLLoader loader) {}
 
 
-    public void ProcessRunner(String typeofprocess, String pathtoscriptwithargs) throws IOException, InterruptedException {
+    public void ProcessRunner(String typeofprocess, String pathtoscriptwithargs) throws IOException {
 
         ProcessBuilder processBuilder = new ProcessBuilder(typeofprocess, "-c", pathtoscriptwithargs);
         Process process = processBuilder.start();
-        process.waitFor();
+        try {
+
+            process.waitFor();
+
+        } catch (InterruptedException e) {
+
+            e.printStackTrace();
+
+        }
 
     }
 

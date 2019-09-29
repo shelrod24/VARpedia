@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.control.Alert.AlertType;
 import java.io.BufferedReader;
@@ -35,23 +36,18 @@ public class CreateAudio extends Controller {
 
         _searchterm = _searchfield.getText();
 
+        _searchterm = _searchterm.replaceAll("(^\\s+)|(\\s+$)", "");
+        if (_searchterm.equals("")){
+
+
+            return;
+        }
+
         final String searchterm =  _searchterm;
         Thread thread = new Thread(new Task<Void>(){
 
             @Override
             protected Void call() throws Exception {
-
-                String echowiki = "echo $(wikit " + searchterm + ") > ./text.txt";
-                ProcessBuilder getwikiarticle = new ProcessBuilder("/bin/bash", "-c", echowiki);
-                Process process = getwikiarticle.start();
-
-                try {
-
-                    process.waitFor();
-
-                } catch (Exception e) {
-
-                }
 
                 FillWikiTextFiles(searchterm);
 
@@ -80,30 +76,11 @@ public class CreateAudio extends Controller {
 
 
 
-    public void FillWikiTextFiles(String searchterm) throws IOException {
+    public void FillWikiTextFiles(String searchterm) throws IOException, InterruptedException {
 
-        String echowiki = "echo $(wikit "+searchterm+") > ./text.txt";
-        ProcessBuilder filltextfileprocess = new ProcessBuilder("/bin/bash","-c",echowiki);
-        Process process = filltextfileprocess.start();
-        try {
-
-            process.waitFor();
-
-        } catch (Exception e) {
-
-        }
-
-        ProcessBuilder filllinedtextfileprocess = new ProcessBuilder("sh", "-c", "./AddWikiToLinedTextFile.sh");
-        Process process2 = filllinedtextfileprocess.start();
-        try {
-
-            process2.waitFor();
-
-        } catch (InterruptedException e) {
-
-            e.printStackTrace();
-
-        }
+        String echowiki = "echo $(wikit "+searchterm+") > ./temps/text.txt";
+        ProcessRunner("/bin/bash", echowiki);
+        ProcessRunner("sh", "./scripts/AddWikiToLinedTextFile.sh");
 
     }
 
@@ -118,7 +95,7 @@ public class CreateAudio extends Controller {
 
         try {
 
-            reader = new BufferedReader(new FileReader("./Linedtextfile.txt"));
+            reader = new BufferedReader(new FileReader("./temps/Linedtextfile.txt"));
             String line = reader.readLine();
 
             while (line != null) {
@@ -155,6 +132,7 @@ public class CreateAudio extends Controller {
     private void initialize() throws IOException, InterruptedException {
 
 
+        ProcessRunner("sh", "./scripts/list_voices.sh");
         ProcessBuilder voicesbuilder = new ProcessBuilder("sh","-c","./scripts/list_voices.sh");
         Process voiceprocess = voicesbuilder.start();
         BufferedReader stdout = new BufferedReader(new InputStreamReader(voiceprocess.getInputStream()));
@@ -174,7 +152,16 @@ public class CreateAudio extends Controller {
     public void MoveTextOver() {
 
         String name = _listarea.getSelectionModel().getSelectedItem();
-        _lyrics.appendText(name +"\n");
+
+        if(name == null) {
+
+            CreateAlert(AlertType.WARNING, "No Selected Text", "There are more that 40 words of text");
+
+        } else {
+
+            _lyrics.appendText(name + "\n");
+
+        }
 
     }
 
@@ -312,7 +299,13 @@ public class CreateAudio extends Controller {
 
                         CreateAlert(Alert.AlertType.INFORMATION, "Audio Made", "The audio file " + name + ".wav was made");
                         _lyrics.clear();
+                        _filefield.clear();
                         _createbutton.setDisable(false);
+                        try {
+                            ProcessRunner("/bin/bash", "rm -f ./temps/*.txt");
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
 
                     }
 
@@ -340,6 +333,14 @@ public class CreateAudio extends Controller {
         return null;
 
     }
+
+    public void AuxiliaryFunctionBackwards(FXMLLoader loader) throws IOException {
+
+        ProcessRunner("/bin/bash", "rm -f ./temps/*.txt");
+
+    }
+
+
 
 
 }

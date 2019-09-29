@@ -72,6 +72,9 @@ public class ChooseImages extends Controller{
 	
 	@FXML
 	private void handleMoveUp() {
+		if(_outputImageView.getSelectionModel().getSelectedIndex()==-1){
+			return;
+		}
 		int index = _outputImageView.getSelectionModel().getSelectedIndex();
 		List<String> chunkList = _outputImageView.getItems();
 		//if index is less than or equal to zero, do nothing
@@ -86,10 +89,14 @@ public class ChooseImages extends Controller{
 	
 	@FXML
 	private void handleMoveDown() {
+		if(_outputImageView.getSelectionModel().getSelectedIndex()==-1){
+			return;
+		}
 		int index = _outputImageView.getSelectionModel().getSelectedIndex();
 		List<String> chunkList = _outputImageView.getItems();
 		//if index is more than or equal to index of last element, do nothing
 		if (index<chunkList.size()-1) {
+			System.out.println(index);
 			String chunk = chunkList.get(index);
 			chunkList.set(index, chunkList.get(index + 1));
 			chunkList.set(index + 1, chunk);

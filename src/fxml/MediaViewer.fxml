@@ -40,7 +40,7 @@
                   <Slider fx:id="_slider" style="-fx-background-color: #555555;" />
                   <HBox alignment="CENTER" prefHeight="64.0" prefWidth="1000.0" style="-fx-background-color: #555555;">
                      <children>
-                        <Button contentDisplay="CENTER" ellipsisString="" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#SkipBackTenSeconds" prefWidth="103.0" style="-fx-background-color: #555555;" text="Skip back" textAlignment="RIGHT" textFill="#ffffffcc">
+                        <Button fx:id="_skipbackward" contentDisplay="CENTER" ellipsisString="" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#SkipBackSeconds" prefWidth="103.0" style="-fx-background-color: #555555;" text="Skip back" textAlignment="RIGHT" textFill="#ffffffcc">
                            <effect>
                               <Glow level="0.0" />
                            </effect>
@@ -61,7 +61,7 @@
                               <Cursor fx:constant="DEFAULT" />
                            </cursor>
                         </Button>
-                        <Button contentDisplay="CENTER" ellipsisString="" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#SkipForwardTenSeconds" prefWidth="100.0" style="-fx-background-color: #555555;" text="Skip forward" textAlignment="RIGHT" textFill="#ffffffcc">
+                        <Button fx:id="_skipforward" contentDisplay="CENTER" ellipsisString="" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#SkipForwardSeconds" prefWidth="100.0" style="-fx-background-color: #555555;" text="Skip forward" textAlignment="RIGHT" textFill="#ffffffcc">
                            <effect>
                               <Glow level="0.0" />
                            </effect>

@@ -1,9 +1,9 @@
 #!/bin/bash
 
-rm -f Linedtextfile.txt
-TEXTFILE='./text.txt'
-LINEDTEXTFILE='./Linedtextfile.txt'
-touch Linedtextfile.txt
+rm -f "./temps/Linedtextfile.txt"
+TEXTFILE='./temps/text.txt'
+LINEDTEXTFILE='./temps/Linedtextfile.txt'
+touch "./temps/Linedtextfile.txt"
 
 while read line; do
 	

@@ -73,11 +73,10 @@ public class ListScene extends Controller{
 
         } else {
 
-            ProcessBuilder removecreation = new ProcessBuilder("/bin/bash","-c","rm -f ./creations/\"" + _creationname + ".mp4\"");
-            Process removecreationprocess = removecreation.start();
-            removecreationprocess.waitFor();
 
+            ProcessRunner("/bin/bash","rm -f ./creations/\"" + _creationname + ".mp4\"");
             List<String> creationfiles = DirectoryServices.ListFilesInDir("./creations");
+
             _list.getItems().clear();
 
             for(String s: creationfiles) {
