@@ -23,11 +23,11 @@
                   </HBox>
                </items>
             </ToolBar>
-            <VBox VBox.vgrow="ALWAYS">
+            <VBox spacing="10.0" VBox.vgrow="ALWAYS">
                <children>
                   <HBox spacing="5.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <HBox prefWidth="435.0">
+                        <HBox prefWidth="430.0">
                            <children>
                               <VBox spacing="5.0">
                                  <children>
@@ -43,7 +43,7 @@
                               </VBox>
                            </children>
                         </HBox>
-                        <VBox alignment="CENTER" prefHeight="561.0" prefWidth="100.0" spacing="5.0">
+                        <VBox alignment="CENTER" prefHeight="561.0" prefWidth="100.0" spacing="10.0">
                            <children>
                               <Button mnemonicParsing="false" onAction="#handleMoveUp" prefWidth="100.0" style="-fx-background-color: #555555;" text="Move Up" textFill="WHITE" />
                               <Button mnemonicParsing="false" onAction="#handleAdd" prefWidth="100.0" style="-fx-background-color: #555555;" text="Add" textFill="WHITE" />
@@ -51,31 +51,31 @@
                               <Button mnemonicParsing="false" onAction="#handleMoveDown" prefWidth="100.0" style="-fx-background-color: #555555;" text="Move Down" textFill="WHITE" />
                            </children>
                            <HBox.margin>
-                              <Insets />
+                              <Insets left="5.0" right="5.0" />
                            </HBox.margin>
                         </VBox>
                         <VBox spacing="5.0" HBox.hgrow="ALWAYS">
                            <children>
                               <Label text="Selected Audio" textFill="WHITE" />
-                              <ListView fx:id="_outputAudioView" onMouseClicked="#handleOutputAudioView" prefWidth="435.0" VBox.vgrow="ALWAYS" />
+                              <ListView fx:id="_outputAudioView" onMouseClicked="#handleOutputAudioView" prefWidth="430.0" VBox.vgrow="ALWAYS" />
                            </children>
                         </VBox>
                      </children>
                      <VBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" />
+                        <Insets />
                      </VBox.margin>
                   </HBox>
-                  <HBox>
+                  <HBox spacing="10.0">
                      <children>
                         <Region HBox.hgrow="ALWAYS" />
                         <Button mnemonicParsing="false" onAction="#SwitchBackScene" prefWidth="100.0" style="-fx-background-color: #555555;" text="Back" textFill="WHITE">
                            <HBox.margin>
-                              <Insets right="5.0" />
+                              <Insets />
                            </HBox.margin></Button>
                         <Button mnemonicParsing="false" onAction="#handleNextButton" prefWidth="100.0" style="-fx-background-color: #555555;" text="Next" textFill="WHITE" />
                      </children>
                      <VBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" />
+                        <Insets />
                      </VBox.margin>
                   </HBox>
                </children>

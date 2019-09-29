@@ -42,7 +42,7 @@
                         <Insets left="120.0" right="120.0" />
                      </padding>
                   </VBox>
-                  <HBox alignment="CENTER_RIGHT" spacing="5.0">
+                  <HBox alignment="CENTER_RIGHT" spacing="10.0">
                      <children>
                         <ProgressBar fx:id="_progressBar" prefHeight="25.0" prefWidth="300.0" progress="0.0" style="-fx-background-color: #555555;" />
                         <Label fx:id="_progressLabel" textFill="WHITE" />
