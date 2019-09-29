@@ -11,15 +11,15 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.EnterFilename">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0" style="-fx-background-color: #333333;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.EnterFilename">
    <children>
       <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ToolBar prefHeight="20.0" prefWidth="200.0">
+            <ToolBar prefHeight="20.0" prefWidth="200.0" style="-fx-background-color: #444444;">
                <items>
                   <HBox prefHeight="27.0" prefWidth="550.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#SwitchBackScene" text="Home" />
+                        <Button mnemonicParsing="false" onAction="#SwitchBackScene" style="-fx-background-color: #333333;" text="Home" textFill="WHITE" />
                      </children>
                   </HBox>
                </items>
@@ -28,7 +28,7 @@
                <children>
                   <VBox alignment="CENTER_LEFT" spacing="5.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <Label text="Enter the filename of the new creation." />
+                        <Label text="Enter the filename of the new creation." textFill="WHITE" />
                         <TextField fx:id="_filenameField" VBox.vgrow="ALWAYS">
                            <VBox.margin>
                               <Insets />
@@ -39,16 +39,16 @@
                         <Insets />
                      </VBox.margin>
                      <padding>
-                        <Insets left="5.0" right="5.0" />
+                        <Insets left="120.0" right="120.0" />
                      </padding>
                   </VBox>
                   <HBox alignment="CENTER_RIGHT" spacing="5.0">
                      <children>
-                        <ProgressBar fx:id="_progressBar" prefHeight="25.0" prefWidth="300.0" progress="0.0" />
-                        <Label fx:id="_progressLabel" />
+                        <ProgressBar fx:id="_progressBar" prefHeight="25.0" prefWidth="300.0" progress="0.0" style="-fx-background-color: #555555;" />
+                        <Label fx:id="_progressLabel" textFill="WHITE" />
                         <Region HBox.hgrow="ALWAYS" />
-                        <Button mnemonicParsing="false" onAction="#SwitchPreviousScene" prefWidth="100.0" text="Back" />
-                        <Button fx:id="_mainButton" mnemonicParsing="false" onAction="#handleMainButton" prefWidth="100.0" text="Create">
+                        <Button mnemonicParsing="false" onAction="#SwitchPreviousScene" prefWidth="100.0" style="-fx-background-color: #555555;" text="Back" textFill="WHITE" />
+                        <Button fx:id="_mainButton" mnemonicParsing="false" onAction="#handleMainButton" prefWidth="100.0" style="-fx-background-color: #555555;" text="Create" textFill="WHITE">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
