@@ -6,6 +6,8 @@
 <?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
@@ -19,7 +21,14 @@
                <items>
                   <HBox prefHeight="27.0" prefWidth="550.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#SwitchBackScene" style="-fx-background-color: #333333;" text="Home" textFill="WHITE" />
+                        <Button mnemonicParsing="false" onAction="#SwitchBackScene" style="-fx-background-color: #333333;" textFill="WHITE">
+                           <graphic>
+                              <ImageView fitHeight="150.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../home.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
                      </children>
                   </HBox>
                </items>
@@ -29,7 +38,7 @@
                   <VBox alignment="CENTER_LEFT" spacing="5.0" VBox.vgrow="ALWAYS">
                      <children>
                         <Label text="Enter the filename of the new creation." textFill="WHITE" />
-                        <TextField fx:id="_filenameField" VBox.vgrow="ALWAYS">
+                        <TextField fx:id="_filenameField" opacity="0.8" VBox.vgrow="ALWAYS">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
@@ -44,7 +53,7 @@
                   </VBox>
                   <HBox alignment="CENTER_RIGHT" spacing="10.0">
                      <children>
-                        <ProgressBar fx:id="_progressBar" prefHeight="25.0" prefWidth="300.0" progress="0.0" style="-fx-background-color: #555555;" />
+                        <ProgressBar fx:id="_progressBar" opacity="0.8" prefHeight="25.0" prefWidth="300.0" progress="0.0" style="-fx-background-color: #555555;" />
                         <Label fx:id="_progressLabel" textFill="WHITE" />
                         <Region HBox.hgrow="ALWAYS" />
                         <Button mnemonicParsing="false" onAction="#SwitchPreviousScene" prefWidth="100.0" style="-fx-background-color: #555555;" text="Back" textFill="WHITE" />

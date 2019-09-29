@@ -20,7 +20,7 @@
    <children>
       <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ToolBar prefHeight="20.0" prefWidth="200.0" style="-fx-background-color: #444444;">
+            <ToolBar prefHeight="39.0" prefWidth="1000.0" style="-fx-background-color: #444444;">
                <items>
                   <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="851.0">
                      <children>
@@ -34,14 +34,11 @@
                            </graphic>
                         </Button>
                         <Region prefHeight="220.0" prefWidth="520.0" />
-                        <Button fx:id="_previewbutton" mnemonicParsing="false" onAction="#PreviewAudio" prefHeight="27.0" prefWidth="85.0" style="-fx-background-color: #333333;" text="Preview" textFill="WHITE" />
+                        <Button fx:id="_previewbutton" mnemonicParsing="false" onAction="#PreviewAudio" prefWidth="85.0" style="-fx-background-color: #333333;" text="Preview" textFill="WHITE" />
                         <Region prefHeight="200.0" prefWidth="30.0" />
                      </children>
-                     <padding>
-                        <Insets top="4.0" />
-                     </padding>
                   </HBox>
-                  <ChoiceBox fx:id="_chooseaccent" prefHeight="27.0" prefWidth="129.0" style="-fx-background-color: #333333;" />
+                  <ChoiceBox fx:id="_chooseaccent" prefWidth="129.0" style="-fx-background-color: #888888;" />
                </items>
             </ToolBar>
             <VBox spacing="10.0" VBox.vgrow="ALWAYS">
@@ -52,7 +49,7 @@
                            <children>
                               <HBox prefHeight="27.0" prefWidth="435.0" VBox.vgrow="ALWAYS">
                                  <children>
-                                    <TextField fx:id="_searchfield" alignment="CENTER" prefWidth="450.0" promptText="Search Wikepedia" style="-fx-border-color: #D3D3D3;" HBox.hgrow="ALWAYS" />
+                                    <TextField fx:id="_searchfield" alignment="CENTER" opacity="0.8" prefWidth="450.0" promptText="Search Wikepedia" style="-fx-border-color: #D3D3D3;" HBox.hgrow="ALWAYS" />
                                     <Button fx:id="_searchbutton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#SearchWikipedia" prefHeight="28.0" prefWidth="40.0" style="-fx-background-color: #555555;" textFill="#00b2ff">
                                        <graphic>
                                           <ImageView fitHeight="17.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
@@ -70,7 +67,7 @@
                                     <Insets top="5.0" />
                                  </VBox.margin>
                               </HBox>
-                              <ListView fx:id="_listarea" prefHeight="388.0" style="-fx-background-color: #F5F5F5; -fx-border-color: #D3D3D3;" VBox.vgrow="ALWAYS">
+                              <ListView fx:id="_listarea" opacity="0.8" prefHeight="388.0" style="-fx-background-color: #F5F5F5; -fx-border-color: #D3D3D3;" VBox.vgrow="ALWAYS">
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin>
@@ -84,11 +81,15 @@
                         </VBox>
                         <VBox prefHeight="200.0" prefWidth="430.0" spacing="10.0" HBox.hgrow="ALWAYS">
                            <children>
-                              <Label text="Label" />
-                              <TextArea fx:id="_lyrics" prefHeight="377.0" wrapText="true" VBox.vgrow="ALWAYS" />
+                              <Label text="Selected Text" textFill="WHITE">
+                                 <VBox.margin>
+                                    <Insets bottom="-5.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <TextArea fx:id="_lyrics" opacity="0.8" prefHeight="377.0" wrapText="true" VBox.vgrow="ALWAYS" />
                               <HBox prefHeight="27.0" prefWidth="300.0">
                                  <children>
-                                    <TextField fx:id="_filefield" alignment="CENTER" prefWidth="450.0" promptText="Name Your File" style="-fx-border-color: #D3D3D3;" />
+                                    <TextField fx:id="_filefield" alignment="CENTER" opacity="0.8" prefWidth="450.0" promptText="Name Your File" style="-fx-border-color: #D3D3D3;" />
                                  </children>
                               </HBox>
                            </children>

@@ -5,6 +5,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
@@ -18,7 +20,14 @@
                <items>
                   <HBox prefHeight="27.0" prefWidth="550.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#SwitchBackScene" style="-fx-background-color: #333333;" text="Home" textFill="WHITE" />
+                        <Button mnemonicParsing="false" onAction="#SwitchBackScene" style="-fx-background-color: #333333;" textFill="WHITE">
+                           <graphic>
+                              <ImageView fitHeight="150.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../home.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
                      </children>
                   </HBox>
                </items>
@@ -32,13 +41,13 @@
                               <VBox spacing="5.0">
                                  <children>
                                     <Label text="Audio Folders" textFill="WHITE" />
-                                    <ListView fx:id="_folderView" onMouseClicked="#handleFolderView" VBox.vgrow="ALWAYS" />
+                                    <ListView fx:id="_folderView" onMouseClicked="#handleFolderView" opacity="0.8" VBox.vgrow="ALWAYS" />
                                  </children>
                               </VBox>
                               <VBox spacing="5.0">
                                  <children>
                                     <Label text="Audio" textFill="WHITE" />
-                                    <ListView fx:id="_inputAudioView" onMouseClicked="#handleInputAudioView" VBox.vgrow="ALWAYS" />
+                                    <ListView fx:id="_inputAudioView" onMouseClicked="#handleInputAudioView" opacity="0.8" VBox.vgrow="ALWAYS" />
                                  </children>
                               </VBox>
                            </children>
@@ -57,7 +66,7 @@
                         <VBox spacing="5.0" HBox.hgrow="ALWAYS">
                            <children>
                               <Label text="Selected Audio" textFill="WHITE" />
-                              <ListView fx:id="_outputAudioView" onMouseClicked="#handleOutputAudioView" prefWidth="430.0" VBox.vgrow="ALWAYS" />
+                              <ListView fx:id="_outputAudioView" onMouseClicked="#handleOutputAudioView" opacity="0.8" prefWidth="430.0" VBox.vgrow="ALWAYS" />
                            </children>
                         </VBox>
                      </children>
