@@ -69,6 +69,7 @@ public class MainMenu extends Application {
      * 
      */
     public void SwitchToCreateCreation(ActionEvent event) throws IOException {
+
     	Parent createcreationparent = FXMLLoader.load(getClass().getResource("/fxml/ChooseChunk.fxml"));
         Scene createcreationscene = new Scene(createcreationparent);
 

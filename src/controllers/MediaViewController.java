@@ -23,7 +23,9 @@ public class MediaViewController extends Controller{
     @FXML private HBox _hBox;
     @FXML private Slider _slider;
     @FXML private Button _play;
+    @FXML private Button _skipforward;
     @FXML private Label _timelabel;
+    @FXML private Button _skipbackward;
     private File _fileUrl;
     private Media _video;
     private MediaPlayer _player;
@@ -65,8 +67,10 @@ public class MediaViewController extends Controller{
 
         if (isrestart) {
 
-            _player.seek(Duration.ZERO);
             isrestart = false;
+            _skipforward.setDisable(false);
+            _skipbackward.setDisable(false);
+            _player.seek(Duration.ZERO);
             _player.play();
             _play.setText("Pause");
 
@@ -108,14 +112,14 @@ public class MediaViewController extends Controller{
 
     }
 
-    public void SkipForwardTenSeconds() {
+    public void SkipForwardSeconds() {
 
-        _player.seek(_player.getCurrentTime().add(Duration.seconds(10)));
+        _player.seek(_player.getCurrentTime().add(Duration.seconds(5)));
     }
 
-    public void SkipBackTenSeconds() {
+    public void SkipBackSeconds() {
 
-        _player.seek(_player.getCurrentTime().add(Duration.seconds(-10)));
+        _player.seek(_player.getCurrentTime().add(Duration.seconds(-5)));
     }
 
 
@@ -142,6 +146,8 @@ public class MediaViewController extends Controller{
         _player.setOnEndOfMedia(()-> {
 
             _slider.adjustValue(_player.getTotalDuration().toMillis());
+            _skipbackward.setDisable(true);
+            _skipforward.setDisable(true);
             _play.setText("Restart");
             isrestart = true;
 
