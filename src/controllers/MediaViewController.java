@@ -33,6 +33,54 @@ public class MediaViewController extends Controller{
     private String _previousfxmlpath = "/fxml/ListScene.fxml";
     private boolean isrestart;
     private double _rate = 1.0;
+    
+    @FXML
+    public void Initialize(){
+
+        _player.currentTimeProperty().addListener(new ChangeListener<Duration>() {
+
+            @Override
+            public void changed(ObservableValue<? extends Duration> observable, Duration oldValue, Duration newValue) {
+
+                String time = "";
+                time+=String.format("%02d", ((int)newValue.toMinutes()));;
+                time+=":";
+                time+=String.format("%02d", ((int)newValue.toSeconds()) % 60);
+                _timelabel.setText(time);
+
+            }
+
+        });
+
+
+        //THIS IS GOING TO CHANGE THE START BUTTON TO RESET.
+        _player.setOnEndOfMedia(()-> {
+
+            _slider.adjustValue(_player.getTotalDuration().toMillis());
+            _skipbackward.setDisable(true);
+            _skipforward.setDisable(true);
+            _play.setText("Restart");
+            isrestart = true;
+
+        });
+
+
+        _player.currentTimeProperty().addListener(new ChangeListener<Duration>() {
+
+            @Override
+            public void changed(ObservableValue<? extends Duration> observable, Duration oldValue, Duration newValue) {
+
+                double time = newValue.toMillis();
+                _slider.adjustValue(time);
+
+            }
+
+        });
+
+        isrestart = false;
+
+    }
+ 
 
     public void playMedia(String medianame) {
 
@@ -123,52 +171,7 @@ public class MediaViewController extends Controller{
     }
 
 
-    @FXML
-    public void Initialize(){
 
-        _player.currentTimeProperty().addListener(new ChangeListener<Duration>() {
-
-            @Override
-            public void changed(ObservableValue<? extends Duration> observable, Duration oldValue, Duration newValue) {
-
-                String time = "";
-                time+=String.format("%02d", ((int)newValue.toMinutes()));;
-                time+=":";
-                time+=String.format("%02d", ((int)newValue.toSeconds()) % 60);
-                _timelabel.setText(time);
-
-            }
-
-        });
-
-
-        //THIS IS GOING TO CHANGE THE START BUTTON TO RESET.
-        _player.setOnEndOfMedia(()-> {
-
-            _slider.adjustValue(_player.getTotalDuration().toMillis());
-            _skipbackward.setDisable(true);
-            _skipforward.setDisable(true);
-            _play.setText("Restart");
-            isrestart = true;
-
-        });
-
-
-        _player.currentTimeProperty().addListener(new ChangeListener<Duration>() {
-
-            @Override
-            public void changed(ObservableValue<? extends Duration> observable, Duration oldValue, Duration newValue) {
-
-                double time = newValue.toMillis();
-                _slider.adjustValue(time);
-
-            }
-
-        });
-
-        isrestart = false;
-
-    }
 
 
     @Override
