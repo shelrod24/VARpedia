@@ -2,6 +2,9 @@
   <artifact type="jar" name="JavaFxApplication:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/JavaFxApplication_jar</output-path>
     <root id="archive" name="JavaFxApplication.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/../../META-INF/MANIFEST.MF" />
+      </element>
       <element id="module-output" name="JavaFxApplication" />
       <element id="extracted-dir" path="$PROJECT_DIR$/libs/flickr4java-3.0.1.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/libs/jackson-annotations-2.9.0.jar" path-in-jar="/" />

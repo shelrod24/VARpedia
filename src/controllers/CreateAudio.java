@@ -155,7 +155,7 @@ public class CreateAudio extends Controller {
 
         if(name == null) {
 
-            CreateAlert(AlertType.WARNING, "No Selected Text", "There are more that 40 words of text");
+            CreateAlert(AlertType.WARNING, "No Selected Text", "There is no text to move over");
 
         } else {
 
