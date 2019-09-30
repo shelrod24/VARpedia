@@ -9,7 +9,9 @@ import Services.FlickrAPIService;
 import Services.NewCreationService;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
+import javafx.concurrent.WorkerStateEvent;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
@@ -27,31 +29,31 @@ public class ChooseImages extends Controller{
 	private NewCreationService _creation;
 	@FXML private ListView<String> _inputImageView;
 	@FXML private ListView<String> _outputImageView;
-	
-	
+
+
 	@FXML
 	private void initialize() {
 	}
-		
+
 	@Override
 	public String ReturnFXMLPath() {
 		return _backFXMLPath;
 	}
-	
+
 	@Override
 	public String ReturnForwardFXMLPath() {
 		return _nextFXMLPath;
 	}
-	
+
 	@Override
 	public String ReturnPreviousFXMLPath() {
 		return _previousFXMLPath;
 	}
-	
+
 	public void setCreation(NewCreationService creation) {
 		_creation=creation;
 	}
-	
+
 	@FXML
 	private void handleAdd() {
 		if (_inputImageView.getSelectionModel().getSelectedItem()!=null) {
@@ -60,7 +62,7 @@ public class ChooseImages extends Controller{
 			renderImageView(_outputImageView);
 		}
 	}
-	
+
 	@FXML
 	private void handleRemove() {
 		if (_outputImageView.getSelectionModel().getSelectedItem()!=null) {
@@ -69,7 +71,7 @@ public class ChooseImages extends Controller{
 			renderImageView(_outputImageView);
 		}
 	}
-	
+
 	@FXML
 	private void handleMoveUp() {
 		if(_outputImageView.getSelectionModel().getSelectedIndex()==-1){
@@ -86,7 +88,7 @@ public class ChooseImages extends Controller{
 			renderImageView(_outputImageView);
 		}
 	}
-	
+
 	@FXML
 	private void handleMoveDown() {
 		if(_outputImageView.getSelectionModel().getSelectedIndex()==-1){
@@ -104,7 +106,7 @@ public class ChooseImages extends Controller{
 			renderImageView(_outputImageView);
 		}
 	}
-	
+
 	public void initData() {
 		Task<Void>  task = new Task<Void>() {
 			@Override
@@ -115,40 +117,44 @@ public class ChooseImages extends Controller{
 				deleteProcess.waitFor();
 				for (int i = 1; i <= 5; i++) {
 					//download images
-					//ProcessBuilder downloadBuilder = new ProcessBuilder("./scripts/flickr_downloader.sh", _creation.getTerm());
-					//Process downloadProcess = downloadBuilder.start();
-					//int exit = downloadProcess.waitFor();
 					List<String> imageList = FlickrAPIService.getImages(_creation.getTerm(), 3, i);
+					
+					//check if no images found
+					if(i==1 && DirectoryServices.ListFilesInDir("./temps/image").isEmpty()) {
+						cancel();
+						return null;
+					}
+
 					//populate list once done
 					Platform.runLater(new Runnable() {
 						@Override
 						public void run() {
-							if(DirectoryServices.ListFilesInDir("./temps/image").isEmpty()) {
-				    			CreateAlert(Alert.AlertType.WARNING, "No Images Found", "No images were found on Flickr");
-							} else {
-								addImageList(imageList);
-							}
+							addImageList(imageList);
 						}
-					});					
+					});
 				}
 				return null;
 			}
 		};
+		task.setOnCancelled(new EventHandler<WorkerStateEvent>() {
+			@Override
+			public void handle(WorkerStateEvent arg0) {
+				CreateAlert(Alert.AlertType.ERROR, "No Images Found", "More than 10 images were chosen");
+			}
+		});
 		Thread thread = new Thread(task);
 		thread.start();
 	}
-	
+
 	public void updateImageList() {
 		List<String> imageList=DirectoryServices.ListFilesInDir("./temps/image");
-		if (imageList.isEmpty()) {
-			CreateAlert(Alert.AlertType.WARNING, "No Images Found", "No images were found on Flickr");
-		}else {
+		if (!imageList.isEmpty()) {
 			// render image once updated
 			_inputImageView.getItems().setAll(imageList);
 			renderImageView(_inputImageView);
 		}
 	}
-	
+
 	public void addImageList(List<String> imageList) {
 		if (imageList.isEmpty()) {
 			CreateAlert(Alert.AlertType.WARNING, "No Images Found", "No images were found on Flickr");
@@ -158,12 +164,12 @@ public class ChooseImages extends Controller{
 			renderImageView(_inputImageView);
 		}
 	}
-	
+
 	public void reflectCreation() {
 		_outputImageView.getItems().setAll(_creation.getImageList());
 		renderImageView(_outputImageView);
 	}
-	
+
 	@FXML
 	public void handleNextButton(ActionEvent event) throws IOException {
 		if(_outputImageView.getItems().isEmpty()) {
@@ -174,42 +180,42 @@ public class ChooseImages extends Controller{
 			SwitchForwardScene(event);
 		}
 	}
-	
-    public void AuxiliaryFunction(FXMLLoader loader){
-    	_creation.setImageList(_outputImageView.getItems());
+
+	public void AuxiliaryFunction(FXMLLoader loader){
+		_creation.setImageList(_outputImageView.getItems());
 		EnterFilename controller = loader.getController();
 		controller.setCreation(_creation);
-    }
-    
-    @Override
+	}
+
+	@Override
 	public void AuxiliaryFunctionPrevious(FXMLLoader loader) {
-    	//called when switching scenes
+		//called when switching scenes
 		ChooseChunk controller = loader.getController();
 		controller.setCreation(_creation);
 		controller.reflectCreation();
 	}
-    
-    public void renderImageView(ListView<String> imageView) {
-    	imageView.setCellFactory(param -> new ListCell<String>() {
-    		private ImageView imageView = new ImageView();
-    		@Override
-    		public void updateItem(String imageName, boolean empty) {
-    			super.updateItem(imageName, empty);
-    			if(empty) {
-    				setText(null);
-    				setGraphic(null);
-    			} else {
-    				// getting images
-    				File file = new File("temps/image/"+imageName);
-    				Image image = new Image(file.toURI().toString());
-    				// setting image
-    				imageView.setImage(image);
-    				setText(imageName);
-    				setGraphic(imageView);
-    				imageView.setPreserveRatio(true);
-    				imageView.setFitHeight(100);
-    			}
-    		}
-    	});
-    }
+
+	public void renderImageView(ListView<String> imageView) {
+		imageView.setCellFactory(param -> new ListCell<String>() {
+			private ImageView imageView = new ImageView();
+			@Override
+			public void updateItem(String imageName, boolean empty) {
+				super.updateItem(imageName, empty);
+				if(empty) {
+					setText(null);
+					setGraphic(null);
+				} else {
+					// getting images
+					File file = new File("temps/image/"+imageName);
+					Image image = new Image(file.toURI().toString());
+					// setting image
+					imageView.setImage(image);
+					setText(imageName);
+					setGraphic(imageView);
+					imageView.setPreserveRatio(true);
+					imageView.setFitHeight(100);
+				}
+			}
+		});
+	}
 }
