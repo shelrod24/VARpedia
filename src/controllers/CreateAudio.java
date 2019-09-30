@@ -285,6 +285,7 @@ public class CreateAudio extends Controller {
                     Platform.runLater(() -> {
 
                         CreateAlert(AlertType.ERROR, "Festival Error", "The text could not be handled by the current festival voice.\nTry another voice");
+                        _createbutton.setDisable(false);
 
                     });
 
