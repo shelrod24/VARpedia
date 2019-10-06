@@ -77,10 +77,6 @@
                   <HBox spacing="10.0">
                      <children>
                         <Region HBox.hgrow="ALWAYS" />
-                        <Button mnemonicParsing="false" onAction="#SwitchBackScene" prefWidth="100.0" style="-fx-background-color: #555555;" text="Back" textFill="WHITE">
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin></Button>
                         <Button mnemonicParsing="false" onAction="#handleNextButton" prefWidth="100.0" style="-fx-background-color: #555555;" text="Next" textFill="WHITE" />
                      </children>
                      <VBox.margin>
