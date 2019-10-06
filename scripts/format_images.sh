@@ -8,6 +8,10 @@
 IMAGE_DIR="./temps/image"
 mkdir -p ${IMAGE_DIR}
 
+final_index=`echo "${1}" | wc -w`
+# minus 1 from final index as starting from 0
+let final_index--
+
 counter=0
 for image in ${1} ; do
 	# formats counter so that it has leading zeros
@@ -15,5 +19,12 @@ for image in ${1} ; do
 	counter_format=`printf "%03d" $counter`
 	# copy images over to temps with the specified format
 	cp "${IMAGE_DIR}/${image}" "${IMAGE_DIR}/image-${counter_format}.jpg"
+	# copy final image as ffmpeg skips last image
+	if [ ${final_index} -eq ${counter} ] ; then
+		let counter++
+		counter_format=`printf "%03d" $counter`
+		cp "${IMAGE_DIR}/${image}" "${IMAGE_DIR}/image-${counter_format}.jpg"
+	fi
 	let counter++
 done
+

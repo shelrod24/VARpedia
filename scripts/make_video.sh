@@ -17,13 +17,8 @@ cd ${IMAGE_DIR}
 # thus final slideshow is shorter than expected
 IMAGE_COUNT=`ls image-???.jpg | wc -l`
 
-
-if [ $IMAGE_COUNT -eq 1 ] ; then
-	ffmpeg -loop 1 -y -t 0.3 -i image-000.jpg -vf "drawtext=fontfile=comic.ttf : fontsize=30 : fontcolor=white : x=(w-text_w)/2:y=(h-text_h)/2 : text='${1}',pad=ceil(iw/2)*2:ceil(ih/2)*2" "TEMPSHORT.mp4"
-else
-	# make slideshow with fps equal to that of the numebr of images ie duration should last for a second (it really doesnt)
-	ffmpeg -y -r ${IMAGE_COUNT} -i image-%3d.jpg -vf "drawtext=fontfile=comic.ttf : fontsize=30 : fontcolor=white : x=(w-text_w)/2:y=(h-text_h)/2 : text='${1}',pad=ceil(iw/2)*2:ceil(ih/2)*2" "TEMPSHORT.mp4"
-fi
+# make slideshow with fps equal to that of the numebr of images ie duration should last for a second (it really doesnt)
+ffmpeg -y -r ${IMAGE_COUNT} -i image-%3d.jpg -vf "drawtext=fontfile=comic.ttf : fontsize=30 : fontcolor=white : x=(w-text_w)/2:y=(h-text_h)/2 : text='${1}',pad=ceil(iw/2)*2:ceil(ih/2)*2" "TEMPSHORT.mp4"
 
 # cd to original folder
 cd ..
