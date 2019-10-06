@@ -51,7 +51,7 @@ public class EnterFilename extends Controller{
 	@FXML
 	public void handleMainButton(ActionEvent event) throws IOException {
 		String option = _mainButton.getText();
-		String filename = _filenameField.getText();
+		String filename = _filenameField.getText().trim();
 		if(option.equals("Create")) {
 			//check if file exists
 			if(filename.trim().isEmpty() ||filename==null){
