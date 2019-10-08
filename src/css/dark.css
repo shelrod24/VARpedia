@@ -1,0 +1,34 @@
+#background {
+	-fx-background-color: #333333;
+}
+
+.button {
+	-fx-background-color: #555555;
+	-fx-text-fill: white;
+}
+
+.label {
+	-fx-text-fill: white;
+}
+
+
+/* Separate colors for toolbar */
+.tool-bar {
+	-fx-background-color: #444444;
+}
+
+.tool-bar .button {
+	-fx-background-color: #333333;
+}
+
+.tool-bar .choice-box {
+	-fx-background-color: #333333;
+}
+
+.tool-bar .choice-box > .label {
+	-fx-text-fill: white;
+}
+
+.tool-bar .choice-box .context-menu {
+	-fx-background-color: #333333;
+}

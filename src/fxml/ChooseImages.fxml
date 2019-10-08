@@ -12,15 +12,15 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0" style="-fx-background-color: #333333;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ChooseImages">
+<AnchorPane id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0" stylesheets="@/css/dark.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ChooseImages">
    <children>
       <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ToolBar prefHeight="45.0" prefWidth="200.0" style="-fx-background-color: #444444;">
+            <ToolBar prefHeight="45.0" prefWidth="200.0">
                <items>
                   <HBox prefHeight="27.0" prefWidth="550.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#SwitchBackScene" style="-fx-background-color: #333333;" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#SwitchBackScene" textFill="WHITE">
                            <graphic>
                               <ImageView fitHeight="33.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -38,16 +38,16 @@
                      <children>
                         <VBox spacing="5.0" HBox.hgrow="ALWAYS">
                            <children>
-                              <Label text="Images" textFill="WHITE" />
+                              <Label text="Images" />
                               <ListView fx:id="_inputImageView" opacity="0.8" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
                            </children>
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="561.0" prefWidth="100.0" spacing="10.0">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#handleMoveUp" prefWidth="100.0" style="-fx-background-color: #555555;" text="Move Up" textFill="WHITE" />
-                              <Button mnemonicParsing="false" onAction="#handleAdd" prefWidth="100.0" style="-fx-background-color: #555555;" text="Add" textFill="WHITE" />
-                              <Button mnemonicParsing="false" onAction="#handleRemove" prefWidth="100.0" style="-fx-background-color: #555555;" text="Remove" textFill="WHITE" />
-                              <Button mnemonicParsing="false" onAction="#handleMoveDown" prefWidth="100.0" style="-fx-background-color: #555555;" text="Move Down" textFill="WHITE" />
+                              <Button mnemonicParsing="false" onAction="#handleMoveUp" prefWidth="100.0" text="Move Up" />
+                              <Button mnemonicParsing="false" onAction="#handleAdd" prefWidth="100.0" text="Add" />
+                              <Button mnemonicParsing="false" onAction="#handleRemove" prefWidth="100.0" text="Remove" />
+                              <Button mnemonicParsing="false" onAction="#handleMoveDown" prefWidth="100.0" text="Move Down" />
                            </children>
                            <HBox.margin>
                               <Insets left="10.0" right="10.0" />
@@ -55,7 +55,7 @@
                         </VBox>
                         <VBox spacing="5.0" HBox.hgrow="ALWAYS">
                            <children>
-                              <Label text="Selected Images" textFill="WHITE" />
+                              <Label text="Selected Images" />
                               <ListView fx:id="_outputImageView" opacity="0.8" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
                            </children>
                         </VBox>
@@ -67,8 +67,8 @@
                   <HBox spacing="10.0">
                      <children>
                         <Region HBox.hgrow="ALWAYS" />
-                        <Button mnemonicParsing="false" onAction="#SwitchPreviousScene" prefWidth="100.0" style="-fx-background-color: #555555;" text="Back" textFill="WHITE" />
-                        <Button mnemonicParsing="false" onAction="#handleNextButton" prefWidth="100.0" style="-fx-background-color: #555555;" text="Next" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#SwitchPreviousScene" prefWidth="100.0" text="Back" />
+                        <Button mnemonicParsing="false" onAction="#handleNextButton" prefWidth="100.0" text="Next">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
