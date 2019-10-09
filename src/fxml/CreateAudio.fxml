@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="500.0" prefWidth="1000.0" stylesheets="@/css/dark.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CreateAudio">
+<AnchorPane id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="500.0" prefWidth="1000.0" stylesheets="@/css/dark.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CreateAudio">
    <children>
       <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -34,9 +34,9 @@
                            </graphic>
                         </Button>
                         <Region prefHeight="220.0" prefWidth="520.0" />
-                        <Button fx:id="_previewbutton" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#PreviewAudio" prefWidth="85.0" text="Preview">
+                        <Button fx:id="_previewbutton" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#PreviewAudio" prefWidth="100.0" text="Preview">
                            <graphic>
-                              <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../icons/sound.png" />
                                  </image>
@@ -85,7 +85,7 @@
                            <children>
                               <Button fx:id="_moveoverbutton" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#MoveTextOver" prefWidth="120.0" text="Add">
                                  <graphic>
-                                    <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../icons/add.png" />
                                        </image>
@@ -115,7 +115,7 @@
                         <Region prefHeight="3.0" prefWidth="900.0" HBox.hgrow="ALWAYS" />
                         <Button id="next-button" fx:id="_createbutton" alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#NameFile" prefWidth="100.0" text="Create">
                            <graphic>
-                              <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../icons/save.png" />
                                  </image>
