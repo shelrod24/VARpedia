@@ -208,12 +208,13 @@ public class ChooseImages extends Controller{
 					// getting images
 					File file = new File("temps/image/"+imageName);
 					Image image = new Image(file.toURI().toString());
+					
 					// setting image
 					imageView.setImage(image);
 					setText(imageName);
 					setGraphic(imageView);
 					imageView.setPreserveRatio(true);
-					imageView.setFitHeight(100);
+					imageView.setFitHeight(60);
 				}
 			}
 		});

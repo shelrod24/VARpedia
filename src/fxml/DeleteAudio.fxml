@@ -47,8 +47,8 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="460.0" prefWidth="235.0" spacing="10.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <Button fx:id="_previewbutton" mnemonicParsing="false" onAction="#PreviewExistingAudio" prefWidth="100.0" text="Preview" />
-                        <Button fx:id="_deletebutton" alignment="CENTER" mnemonicParsing="false" onAction="#DeleteAudiofile" prefWidth="100.0" text="Delete" />
+                        <Button id="next-button" fx:id="_previewbutton" mnemonicParsing="false" onAction="#PreviewExistingAudio" prefWidth="100.0" text="Preview" />
+                        <Button id="back-button" fx:id="_deletebutton" alignment="CENTER" mnemonicParsing="false" onAction="#DeleteAudiofile" prefWidth="100.0" text="Delete" />
                      </children>
                      <padding>
                         <Insets left="-50.0" />

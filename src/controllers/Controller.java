@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.DialogPane;
 import javafx.stage.Stage;
 import java.io.IOException;
 
@@ -61,6 +62,9 @@ public abstract class Controller {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.getButtonTypes().setAll(ButtonType.OK);
+        DialogPane pane = alert.getDialogPane();
+        pane.getStylesheets().add(getClass().getResource("/css/dark.css").toExternalForm());
+        pane.setId("background");
         alert.showAndWait();
 
     }

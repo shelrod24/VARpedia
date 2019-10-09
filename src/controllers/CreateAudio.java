@@ -253,6 +253,9 @@ public class CreateAudio extends Controller {
             alert.setHeaderText(null);
             alert.setContentText("The audio already exists.\nDo you want to ovewrite " + name + ".wav?");
             alert.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
+            DialogPane pane = alert.getDialogPane();
+            pane.getStylesheets().add(getClass().getResource("/css/dark.css").toExternalForm());
+            pane.setId("background");
             alert.showAndWait();
 
             if (alert.getResult() == ButtonType.NO) {

@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.ListView;
 import java.io.IOException;
 import java.util.List;
@@ -62,6 +63,9 @@ public class DeleteAudio extends Controller {
          alert.setTitle("File Deletion Confirmation");
          alert.setHeaderText(null);
          alert.setContentText("Are you sure you want to delete " + _audio + ".wav?");
+         DialogPane pane = alert.getDialogPane();
+         pane.getStylesheets().add(getClass().getResource("/css/dark.css").toExternalForm());
+         pane.setId("background");
          alert.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
          alert.showAndWait();
 

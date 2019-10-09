@@ -14,6 +14,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
@@ -64,6 +65,9 @@ public class EnterFilename extends Controller{
 				alert.setHeaderText(null);
 				alert.setContentText("The creation already exists.\nDo you want to ovewrite " + filename + "?");
 				alert.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
+				DialogPane pane = alert.getDialogPane();
+		        pane.getStylesheets().add(getClass().getResource("/css/dark.css").toExternalForm());
+		        pane.setId("background");
 				alert.showAndWait();
 				if(alert.getResult()==ButtonType.NO) {
 					//exit method if dont want to overwrite

@@ -70,8 +70,8 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#PlayCreation" opacity="0.9" prefHeight="27.0" prefWidth="100.0" text="Play" />
-                        <Button mnemonicParsing="false" onAction="#DeleteCreation" opacity="0.9" prefWidth="100.0" text="Delete" />
+                        <Button id="next-button" mnemonicParsing="false" onAction="#PlayCreation" opacity="0.9" prefHeight="27.0" prefWidth="100.0" text="Play" />
+                        <Button id="back-button" mnemonicParsing="false" onAction="#DeleteCreation" opacity="0.9" prefWidth="100.0" text="Delete" />
                      </children>
                   </HBox>
                </children>

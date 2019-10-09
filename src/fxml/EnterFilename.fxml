@@ -56,8 +56,8 @@
                         <ProgressBar fx:id="_progressBar" opacity="0.8" prefHeight="25.0" prefWidth="300.0" progress="0.0" style="-fx-background-color: #555555;" />
                         <Label fx:id="_progressLabel" />
                         <Region HBox.hgrow="ALWAYS" />
-                        <Button mnemonicParsing="false" onAction="#SwitchPreviousScene" prefWidth="100.0" text="Back" />
-                        <Button fx:id="_mainButton" mnemonicParsing="false" onAction="#handleMainButton" prefWidth="100.0" text="Create">
+                        <Button id="back-button" mnemonicParsing="false" onAction="#SwitchPreviousScene" prefWidth="100.0" text="Back" />
+                        <Button id="next-button" fx:id="_mainButton" mnemonicParsing="false" onAction="#handleMainButton" prefWidth="100.0" text="Create">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>

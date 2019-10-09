@@ -7,6 +7,18 @@
 	-fx-text-fill: white;
 }
 
+.button:hover {
+	-fx-border-color: white;
+	-fx-border-radius: 5;
+	-fx-cursor: hand;
+}
+
+.button:pressed {
+	-fx-border-color: white;
+	-fx-border-radius: 5;
+	-fx-background-color: #333333;
+}
+
 .label {
 	-fx-text-fill: white;
 }
@@ -25,10 +37,28 @@
 	-fx-background-color: #333333;
 }
 
+.tool-bar .choice-box:hover {
+	-fx-border-color: white;
+	-fx-border-radius: 5;
+	-fx-cursor: hand;
+}
+
 .tool-bar .choice-box > .label {
 	-fx-text-fill: white;
 }
 
 .tool-bar .choice-box .context-menu {
 	-fx-background-color: #333333;
+}
+
+
+/* Specialised buttons */
+#back-button:hover {
+	-fx-border-color: #ff9685;
+	-fx-border-radius: 5;
+}
+
+#next-button:hover {
+	-fx-border-color: #abb7ff;
+	-fx-border-radius: 5;
 }

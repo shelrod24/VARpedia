@@ -77,7 +77,7 @@
                   <HBox spacing="10.0">
                      <children>
                         <Region HBox.hgrow="ALWAYS" />
-                        <Button mnemonicParsing="false" onAction="#handleNextButton" prefWidth="100.0" text="Next" />
+                        <Button id="next-button" mnemonicParsing="false" onAction="#handleNextButton" prefWidth="100.0" text="Next" />
                      </children>
                      <VBox.margin>
                         <Insets />
