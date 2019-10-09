@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0" stylesheets="@/css/dark.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ChooseImages">
+<AnchorPane id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0" stylesheets="@/css/dark.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ChooseImages">
    <children>
       <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -24,7 +24,7 @@
                            <graphic>
                               <ImageView fitHeight="33.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../home.png" />
+                                    <Image url="@../icons/home.png" />
                                  </image>
                               </ImageView>
                            </graphic></Button>
@@ -42,12 +42,40 @@
                               <ListView fx:id="_inputImageView" opacity="0.8" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
                            </children>
                         </VBox>
-                        <VBox alignment="CENTER" prefHeight="561.0" prefWidth="100.0" spacing="10.0">
+                        <VBox alignment="CENTER" prefHeight="561.0" prefWidth="120.0" spacing="10.0">
                            <children>
-                              <Button mnemonicParsing="false" onAction="#handleMoveUp" prefWidth="100.0" text="Move Up" />
-                              <Button mnemonicParsing="false" onAction="#handleAdd" prefWidth="100.0" text="Add" />
-                              <Button mnemonicParsing="false" onAction="#handleRemove" prefWidth="100.0" text="Remove" />
-                              <Button mnemonicParsing="false" onAction="#handleMoveDown" prefWidth="100.0" text="Move Down" />
+                              <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleMoveUp" prefWidth="120.0" text="Move Up">
+                                 <graphic>
+                                    <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../icons/up.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></Button>
+                              <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleAdd" prefWidth="120.0" text="Add">
+                                 <graphic>
+                                    <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../icons/add.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></Button>
+                              <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleRemove" prefWidth="120.0" text="Remove">
+                                 <graphic>
+                                    <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../icons/remove.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></Button>
+                              <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleMoveDown" prefWidth="120.0" text="Move Down">
+                                 <graphic>
+                                    <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../icons/down.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></Button>
                            </children>
                            <HBox.margin>
                               <Insets left="10.0" right="10.0" />
@@ -67,11 +95,25 @@
                   <HBox spacing="10.0">
                      <children>
                         <Region HBox.hgrow="ALWAYS" />
-                        <Button id="back-button" mnemonicParsing="false" onAction="#SwitchPreviousScene" prefWidth="100.0" text="Back" />
-                        <Button id="next-button" mnemonicParsing="false" onAction="#handleNextButton" prefWidth="100.0" text="Next">
+                        <Button id="back-button" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#SwitchPreviousScene" prefWidth="100.0" text="Back">
+                           <graphic>
+                              <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icons/back.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
+                        <Button id="next-button" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleNextButton" prefWidth="100.0" text="Next">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
+                           <graphic>
+                              <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icons/next.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
                         </Button>
                      </children>
                      <VBox.margin>

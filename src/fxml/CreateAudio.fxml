@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="500.0" prefWidth="1000.0" stylesheets="@/css/dark.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CreateAudio">
+<AnchorPane id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="500.0" prefWidth="1000.0" stylesheets="@/css/dark.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CreateAudio">
    <children>
       <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -28,13 +28,20 @@
                            <graphic>
                               <ImageView fitHeight="33.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../home.png" />
+                                    <Image url="@../icons/home.png" />
                                  </image>
                               </ImageView>
                            </graphic>
                         </Button>
                         <Region prefHeight="220.0" prefWidth="520.0" />
-                        <Button fx:id="_previewbutton" mnemonicParsing="false" onAction="#PreviewAudio" prefWidth="85.0" text="Preview" />
+                        <Button fx:id="_previewbutton" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#PreviewAudio" prefWidth="85.0" text="Preview">
+                           <graphic>
+                              <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icons/sound.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
                         <Region prefHeight="200.0" prefWidth="30.0" />
                      </children>
                   </HBox>
@@ -45,16 +52,16 @@
                <children>
                   <HBox spacing="10.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <VBox prefHeight="200.0" prefWidth="430.0" spacing="10.0" HBox.hgrow="ALWAYS">
+                        <VBox prefHeight="200.0" prefWidth="420.0" spacing="10.0" HBox.hgrow="ALWAYS">
                            <children>
-                              <HBox prefHeight="27.0" prefWidth="435.0" VBox.vgrow="ALWAYS">
+                              <HBox alignment="CENTER_LEFT" prefHeight="27.0" prefWidth="435.0" VBox.vgrow="ALWAYS">
                                  <children>
                                     <TextField fx:id="_searchfield" alignment="CENTER" opacity="0.8" prefWidth="450.0" promptText="Search Wikepedia" style="-fx-border-color: #D3D3D3;" HBox.hgrow="ALWAYS" />
-                                    <Button fx:id="_searchbutton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#SearchWikipedia" prefHeight="28.0" prefWidth="40.0" textFill="#00b2ff">
+                                    <Button fx:id="_searchbutton" alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#SearchWikipedia" text="Search" textFill="#00b2ff">
                                        <graphic>
-                                          <ImageView fitHeight="17.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
-                                                <Image url="@../search.png" />
+                                                <Image url="@../icons/search.png" />
                                              </image>
                                              <viewport>
                                                 <Rectangle2D />
@@ -74,12 +81,19 @@
                               </ListView>
                            </children>
                         </VBox>
-                        <VBox alignment="CENTER" prefHeight="390.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+                        <VBox alignment="CENTER" prefHeight="390.0" prefWidth="120.0" HBox.hgrow="ALWAYS">
                            <children>
-                              <Button fx:id="_moveoverbutton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#MoveTextOver" prefWidth="100.0" text="Add" />
+                              <Button fx:id="_moveoverbutton" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#MoveTextOver" prefWidth="120.0" text="Add">
+                                 <graphic>
+                                    <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../icons/add.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></Button>
                            </children>
                         </VBox>
-                        <VBox prefHeight="200.0" prefWidth="430.0" spacing="10.0" HBox.hgrow="ALWAYS">
+                        <VBox prefHeight="200.0" prefWidth="420.0" spacing="10.0" HBox.hgrow="ALWAYS">
                            <children>
                               <Label text="Selected Text">
                                  <VBox.margin>
@@ -99,7 +113,14 @@
                   <HBox>
                      <children>
                         <Region prefHeight="3.0" prefWidth="900.0" HBox.hgrow="ALWAYS" />
-                        <Button id="next-button" fx:id="_createbutton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#NameFile" prefHeight="28.0" prefWidth="100.0" text="Create" />
+                        <Button id="next-button" fx:id="_createbutton" alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#NameFile" prefWidth="100.0" text="Create">
+                           <graphic>
+                              <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icons/save.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
                      </children>
                   </HBox>
                </children>
