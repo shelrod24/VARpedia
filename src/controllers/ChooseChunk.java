@@ -22,7 +22,7 @@ import javafx.scene.control.Alert.AlertType;
 
 public class ChooseChunk extends Controller{
 	private final String _backFXMLPath="/fxml/MainMenu.fxml";
-	private final String _nextFXMLPath="/fxml/ChooseImages.fxml";
+	private final String _nextFXMLPath="/fxml/ChooseMusic.fxml";
 	private NewCreationService _creation;
 	@FXML private ListView<String> _folderView;
 	@FXML private ListView<String> _inputAudioView;
@@ -141,9 +141,8 @@ public class ChooseChunk extends Controller{
 	@Override
 	public void AuxiliaryFunction(FXMLLoader loader) {
 		_creation.setAudioList(_outputAudioView.getItems());
-		ChooseImages controller = loader.getController();
+		ChooseMusic controller = loader.getController();
 		controller.setCreation(_creation);
-		controller.initData();
 	}
 	
 	public void reflectCreation() {

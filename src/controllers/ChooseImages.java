@@ -25,7 +25,7 @@ import javafx.scene.control.Alert.AlertType;
 public class ChooseImages extends Controller{
 	private final String _backFXMLPath="/fxml/MainMenu.fxml";
 	private final String _nextFXMLPath="/fxml/EnterFilename.fxml";
-	private final String _previousFXMLPath="/fxml/ChooseChunk.fxml";
+	private final String _previousFXMLPath="/fxml/ChooseMusic.fxml";
 	private NewCreationService _creation;
 	@FXML private ListView<String> _inputImageView;
 	@FXML private ListView<String> _outputImageView;
@@ -190,7 +190,7 @@ public class ChooseImages extends Controller{
 	@Override
 	public void AuxiliaryFunctionPrevious(FXMLLoader loader) {
 		//called when switching scenes
-		ChooseChunk controller = loader.getController();
+		ChooseMusic controller = loader.getController();
 		controller.setCreation(_creation);
 		controller.reflectCreation();
 	}
