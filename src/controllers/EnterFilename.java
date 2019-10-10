@@ -86,24 +86,33 @@ public class EnterFilename extends Controller{
 		Task<Void> task = new Task<Void>(){
 			@Override
 			protected Void call() throws Exception {
-				int methods=5;
+				int methods=6;
 				updateProgress(0, methods);
 				updateMessage("Deleting Temps");
 				_creation.deleteFinals();
+				
 				updateProgress(1, methods);
 				updateMessage("Combining Chunks");
 				_creation.combineChunks();
+				
 				updateProgress(2, methods);
+				updateMessage("Mixing Audio");
+				_creation.mixAudio();
+				
+				updateProgress(3, methods);
 				updateMessage("Formatting Images");
 				_creation.formatImages();
-				updateProgress(3, methods);
+				
+				updateProgress(4, methods);
 				updateMessage("Making Video");
 				_creation.makeVideo();
+				
 				updateMessage("Making Creation");
-				updateProgress(4, methods);
-				_creation.makeCreation(filename);
-				updateMessage("Done");
 				updateProgress(5, methods);
+				_creation.makeCreation(filename);
+				
+				updateMessage("Done");
+				updateProgress(6, methods);
 				return null;
 			}
 		};

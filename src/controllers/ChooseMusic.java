@@ -73,7 +73,7 @@ public class ChooseMusic extends Controller{
 	public void AuxiliaryFunction(FXMLLoader loader) {
 		String music = _musicView.getSelectionModel().getSelectedItem();
 		if(music.equals("None")) {
-			music=null;
+			music="";
 		}
 		_creation.setMusic(music);
 		ChooseImages controller = loader.getController();
@@ -92,8 +92,8 @@ public class ChooseMusic extends Controller{
 	public void reflectCreation() {
 		// get previously selected music
 		String music =_creation.getMusic();
-		// if music was not selected, set None
-		if(music==null) {
+		// if music was not selected, select None
+		if(music.equals("")) {
 			music="None";
 		}
 		int musicIndex = _musicView.getItems().indexOf(music);
