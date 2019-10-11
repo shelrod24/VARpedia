@@ -272,18 +272,30 @@ public class CreateAudio extends Controller {
         }
 
         _createbutton.setDisable(true);
+        
+        // getting original lyrics
+        String original = _lyrics.getText();
+        // making redacted lyrics
+        String redacted = _lyrics.getText().toLowerCase().replaceAll(" "+_searchterm+" ", " blank ");
+        
+        
 
         Thread thread = new Thread(new Task<Void>() {
 
             @Override
             protected Void call() throws Exception {
+            	//making original
+                ProcessBuilder originalBuilder = new ProcessBuilder("./scripts/festival_make_chunk.sh", name, _searchterm, _chooseaccent.getSelectionModel().getSelectedItem(), original);
+                Process originalProcess = originalBuilder.start();
+                int originalExit = originalProcess.waitFor();
+                
+                //making redacted
+                ProcessBuilder redactedBuilder = new ProcessBuilder("./scripts/festival_make_chunk.sh", name+"_redacted", _searchterm+"/redacted", _chooseaccent.getSelectionModel().getSelectedItem(), redacted);
+                Process redactedProcess = redactedBuilder.start();
+                int redactedExit = redactedProcess.waitFor();
 
-                //right now only have it such that kal_diphone is in it
-                ProcessBuilder builder = new ProcessBuilder("./scripts/festival_make_chunk.sh", name, _searchterm, _chooseaccent.getSelectionModel().getSelectedItem(), _lyrics.getText());
-                Process process = builder.start();
-                int exit = process.waitFor();
 
-                if (exit != 0) {
+                if (originalExit != 0 || redactedExit != 0) {
 
                     Platform.runLater(() -> {
 
