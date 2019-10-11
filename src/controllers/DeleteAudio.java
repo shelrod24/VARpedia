@@ -37,9 +37,9 @@ public class DeleteAudio extends Controller {
             List<String> audiofiles = DirectoryServices.ListFilesInDir("./audio/"+_subdirectory);
 
             for (String s : audiofiles) {
-
-                _audiofiles.getItems().add(s);
-
+            	if (s.endsWith(".wav")) {
+                    _audiofiles.getItems().add(s);
+				}
             }
 
         }
@@ -62,7 +62,7 @@ public class DeleteAudio extends Controller {
          Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
          alert.setTitle("File Deletion Confirmation");
          alert.setHeaderText(null);
-         alert.setContentText("Are you sure you want to delete " + _audio + ".wav?");
+         alert.setContentText("Are you sure you want to delete " + _audio "?");
          DialogPane pane = alert.getDialogPane();
          pane.getStylesheets().add(getClass().getResource("/css/dark.css").toExternalForm());
          pane.setId("background");
@@ -77,6 +77,7 @@ public class DeleteAudio extends Controller {
 
 
              this.ProcessRunner("/bin/bash", "rm -f " + "\"./audio/" + _subdirectory + "/" + _audio + "\"");
+
 
              List<String> audiofiles = DirectoryServices.ListFilesInDir("./audio/"+_subdirectory);
              _audiofiles.getItems().clear();
