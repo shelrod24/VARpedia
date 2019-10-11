@@ -92,6 +92,8 @@ public class ChooseChunk extends Controller{
 	
 	public void updateInputViewList(String folder) {
 		List<String> audioList = DirectoryServices.ListFilesInDir("./audio/"+folder);
+		//dont include redacted folder
+		audioList.removeIf(file -> !file.endsWith(".wav"));
 		_inputAudioView.getItems().setAll(audioList);
 		_outputAudioView.getItems().clear();
 	}

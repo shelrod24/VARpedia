@@ -4,11 +4,12 @@ for DIR in ./audio/*; do
 
   if [ -d "$DIR" ]; then
 
-    STRING=`ls -h audio/$DIR`
+    STRING=`ls -h "$DIR"`
 
-    if [ "$STRING" == "" ]; then
+    if [[ ! "$STRING" == *".wav"* ]]; then
 
-     rmdir  "$DIR"
+     rmdir "$DIR/redacted"
+     rmdir "$DIR"
 
     fi
 

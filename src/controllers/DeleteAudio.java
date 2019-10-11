@@ -62,7 +62,7 @@ public class DeleteAudio extends Controller {
          Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
          alert.setTitle("File Deletion Confirmation");
          alert.setHeaderText(null);
-         alert.setContentText("Are you sure you want to delete " + _audio "?");
+         alert.setContentText("Are you sure you want to delete " + _audio + "?");
          DialogPane pane = alert.getDialogPane();
          pane.getStylesheets().add(getClass().getResource("/css/dark.css").toExternalForm());
          pane.setId("background");
@@ -75,19 +75,25 @@ public class DeleteAudio extends Controller {
 
          } else {
 
-
+        	 // deleting original audio
              this.ProcessRunner("/bin/bash", "rm -f " + "\"./audio/" + _subdirectory + "/" + _audio + "\"");
+             // deleting redacted audio
+             String redactedAudio = _audio.substring(0, _audio.length()-4) + "_redacted.wav";
+             this.ProcessRunner("/bin/bash", "rm -f " + "\"./audio/" + _subdirectory + "/redacted/" + redactedAudio + "\"");
 
 
              List<String> audiofiles = DirectoryServices.ListFilesInDir("./audio/"+_subdirectory);
              _audiofiles.getItems().clear();
 
              for (String s : audiofiles) {
-
-                 _audiofiles.getItems().add(s);
-
+            	 if (s.endsWith(".wav")) {
+            		 _audiofiles.getItems().add(s);
+            	 }
              }
 
+             //check if redacted is empty
+             this.ProcessRunner("sh", "./scripts/checkdir_isempty.sh" + " \"" + _subdirectory + "/redacted\"");
+             //check if subdirectory is empty
              this.ProcessRunner("sh", "./scripts/checkdir_isempty.sh" + " \"" + _subdirectory + "\"");
 
 
