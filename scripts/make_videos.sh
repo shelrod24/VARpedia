@@ -17,11 +17,18 @@ cd ${IMAGE_DIR}
 # thus final slideshow is shorter than expected
 IMAGE_COUNT=`ls image-???.jpg | wc -l`
 
-# make slideshow with fps equal to that of the numebr of images ie duration should last for a second (it really doesnt)
-ffmpeg -y -r ${IMAGE_COUNT} -i image-%3d.jpg -vf "drawbox=y=ih/2-24: color=black@0.4: width=iw: height=48: t=fill, drawtext=fontfile=comic.ttf : fontsize=30 : fontcolor=white : x=(w-text_w)/2:y=(h-text_h)/2 : text='${1}', pad=ceil(iw/2)*2:ceil(ih/2)*2" "TEMPSHORT.mp4"
+# getting current version of ffmpeg as depending on version, t={max,fill}
+version=`ffmpeg -version | grep "ffmpeg version" | sed -e 's/.*version \(.*\) Copyright.*/\1/' | sed 's/\(^.\).*/\1/'`
+if [ $version -ge 4 ] ; then
+	type=`echo "fill"`
+else
+	type=`echo "max"`
+fi
 
+# make slideshow with fps equal to that of the numebr of images ie duration should last for a second (it really doesnt)
+ffmpeg -y -r ${IMAGE_COUNT} -i image-%3d.jpg -vf "drawbox=y=ih/2-24: color=black@0.4: width=iw: height=48: t=${type}, drawtext=fontfile=comic.ttf : fontsize=30 : fontcolor=white : x=(w-text_w)/2:y=(h-text_h)/2 : text='${1}', pad=ceil(iw/2)*2:ceil(ih/2)*2" "TEMPSHORT.mp4"
 # make redacted video which consists of the above, but without the term
-ffmpeg -y -r ${IMAGE_COUNT} -i image-%3d.jpg -vf "drawbox=y=ih/2-24: color=black@0.4: width=iw: height=48: t=fill, pad=ceil(iw/2)*2:ceil(ih/2)*2" "TEMPSHORTREDACT.mp4"
+ffmpeg -y -r ${IMAGE_COUNT} -i image-%3d.jpg -vf "drawbox=y=ih/2-24: color=black@0.4: width=iw: height=48: t=${type}, pad=ceil(iw/2)*2:ceil(ih/2)*2" "TEMPSHORTREDACT.mp4"
 
 # cd to original folder
 cd ..
