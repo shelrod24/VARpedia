@@ -18,11 +18,11 @@
          <children>
             <ToolBar prefHeight="45.0" prefWidth="200.0">
                <items>
-                  <HBox prefHeight="27.0" prefWidth="550.0">
+                  <HBox prefWidth="550.0">
                      <children>
                         <Button mnemonicParsing="false" onAction="#SwitchBackScene" textFill="WHITE">
                            <graphic>
-                              <ImageView fitHeight="33.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../icons/home.png" />
                                  </image>
@@ -46,7 +46,7 @@
                            <children>
                               <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleMoveUp" prefWidth="120.0" text="Move Up">
                                  <graphic>
-                                    <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../icons/up.png" />
                                        </image>
@@ -54,7 +54,7 @@
                                  </graphic></Button>
                               <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleAdd" prefWidth="120.0" text="Add">
                                  <graphic>
-                                    <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="18.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../icons/add.png" />
                                        </image>
@@ -62,7 +62,7 @@
                                  </graphic></Button>
                               <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleRemove" prefWidth="120.0" text="Remove">
                                  <graphic>
-                                    <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../icons/remove.png" />
                                        </image>
@@ -70,7 +70,7 @@
                                  </graphic></Button>
                               <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#handleMoveDown" prefWidth="120.0" text="Move Down">
                                  <graphic>
-                                    <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../icons/down.png" />
                                        </image>
@@ -97,7 +97,7 @@
                         <Region HBox.hgrow="ALWAYS" />
                         <Button id="back-button" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#SwitchPreviousScene" prefWidth="100.0" text="Back">
                            <graphic>
-                              <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../icons/back.png" />
                                  </image>
@@ -108,7 +108,7 @@
                               <Insets />
                            </HBox.margin>
                            <graphic>
-                              <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../icons/next.png" />
                                  </image>

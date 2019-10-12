@@ -25,6 +25,7 @@
 }
 
 
+
 /* Separate colors for toolbar */
 .tool-bar {
 	-fx-background-color: #444444;
@@ -35,6 +36,7 @@
 }
 
 .tool-bar .choice-box {
+	-fx-border-color: transparent;
 	-fx-background-color: #333333;
 }
 

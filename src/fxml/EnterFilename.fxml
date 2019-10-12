@@ -19,11 +19,11 @@
          <children>
             <ToolBar prefHeight="20.0" prefWidth="200.0">
                <items>
-                  <HBox prefHeight="27.0" prefWidth="550.0">
+                  <HBox prefWidth="550.0">
                      <children>
                         <Button mnemonicParsing="false" onAction="#SwitchBackScene">
                            <graphic>
-                              <ImageView fitHeight="150.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../icons/home.png" />
                                  </image>
@@ -58,7 +58,7 @@
                         <Region HBox.hgrow="ALWAYS" />
                         <Button id="back-button" fx:id="_backButton" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#SwitchPreviousScene" prefWidth="100.0" text="Back">
                            <graphic>
-                              <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../icons/back.png" />
                                  </image>
@@ -69,7 +69,7 @@
                               <Insets />
                            </HBox.margin>
                            <graphic>
-                              <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../icons/save.png" />
                                  </image>

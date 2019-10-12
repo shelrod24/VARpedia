@@ -16,21 +16,21 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.media.MediaView?>
 
-<AnchorPane id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" stylesheets="@/css/dark.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MediaViewController">
+<AnchorPane id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="700.0" stylesheets="@/css/dark.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MediaViewController">
    <children>
       <BorderPane prefHeight="500.0" prefWidth="700.0">
          <top>
-            <ToolBar minHeight="-Infinity" prefHeight="42.0" prefWidth="700.0" style="-fx-background-color: #444444;" BorderPane.alignment="CENTER">
+            <ToolBar minHeight="-Infinity" style="-fx-background-color: #444444;" BorderPane.alignment="CENTER">
               <items>
-                  <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#SwitchBackScene" prefHeight="33.0" prefWidth="40.0" style="-fx-background-color: #333333;" textAlignment="CENTER" textFill="#000000cc">
+                  <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#SwitchBackScene" style="-fx-background-color: #333333;" textAlignment="CENTER" textFill="#000000cc">
                      <graphic>
-                        <ImageView fitHeight="33.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../icons/back.png" />
                            </image>
                         </ImageView>
                      </graphic></Button>
-                  <Region prefHeight="200.0" prefWidth="280.0" />
+                  <Region prefWidth="280.0" />
                   <Label fx:id="_timelabel" textFill="WHITE" />
               </items>
             </ToolBar>
@@ -41,7 +41,7 @@
                   <Slider fx:id="_slider" style="-fx-background-color: #555555;" />
                   <HBox alignment="CENTER" prefHeight="64.0" prefWidth="1000.0" style="-fx-background-color: #555555;">
                      <children>
-                        <Button fx:id="_skipbackward" contentDisplay="CENTER" ellipsisString="" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#SkipBackSeconds" prefWidth="103.0" style="-fx-background-color: #555555;" text="Skip back" textAlignment="RIGHT" textFill="#ffffffcc">
+                        <Button fx:id="_skipbackward" contentDisplay="CENTER" ellipsisString="" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#SkipBackSeconds" prefWidth="120.0" style="-fx-background-color: #555555;" text="Skip back" textAlignment="RIGHT" textFill="#ffffffcc">
                            <effect>
                               <Glow level="0.0" />
                            </effect>
@@ -62,7 +62,7 @@
                               <Cursor fx:constant="DEFAULT" />
                            </cursor>
                         </Button>
-                        <Button fx:id="_skipforward" contentDisplay="CENTER" ellipsisString="" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#SkipForwardSeconds" prefWidth="100.0" style="-fx-background-color: #555555;" text="Skip forward" textAlignment="RIGHT" textFill="#ffffffcc">
+                        <Button fx:id="_skipforward" contentDisplay="CENTER" ellipsisString="" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#SkipForwardSeconds" prefWidth="120.0" style="-fx-background-color: #555555;" text="Skip forward" textAlignment="RIGHT" textFill="#ffffffcc">
                            <effect>
                               <Glow level="0.0" />
                            </effect>

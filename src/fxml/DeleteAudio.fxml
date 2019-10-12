@@ -29,11 +29,11 @@
             </HBox>
          </left>
          <top>
-            <ToolBar prefHeight="45.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <ToolBar prefWidth="200.0" BorderPane.alignment="CENTER">
               <items>
                 <Button mnemonicParsing="false" onAction="#SwitchBackScene">
                      <graphic>
-                        <ImageView fitHeight="150.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../icons/home.png" />
                            </image>
@@ -49,7 +49,7 @@
                      <children>
                         <Button id="next-button" fx:id="_previewbutton" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#PreviewExistingAudio" prefWidth="100.0" text="Preview">
                            <graphic>
-                              <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../icons/sound.png" />
                                  </image>
@@ -57,9 +57,9 @@
                            </graphic></Button>
                         <Button id="back-button" fx:id="_deletebutton" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#DeleteAudiofile" prefWidth="100.0" text="Delete">
                            <graphic>
-                              <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../icons/wrong.png" />
+                                    <Image url="@../icons/bin.png" />
                                  </image>
                               </ImageView>
                            </graphic></Button>

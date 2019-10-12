@@ -16,13 +16,13 @@
    <children>
       <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ToolBar prefHeight="45.0" prefWidth="200.0">
+            <ToolBar prefWidth="1000.0">
                <items>
-                  <HBox prefHeight="27.0" prefWidth="550.0">
+                  <HBox prefWidth="550.0">
                      <children>
                         <Button mnemonicParsing="false" onAction="#SwitchBackScene" textFill="WHITE">
                            <graphic>
-                              <ImageView fitHeight="33.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../icons/home.png" />
                                  </image>
@@ -45,7 +45,7 @@
                         <Region HBox.hgrow="ALWAYS" />
                         <Button id="back-button" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#SwitchPreviousScene" prefWidth="100.0" text="Back">
                            <graphic>
-                              <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../icons/back.png" />
                                  </image>
@@ -56,7 +56,7 @@
                               <Insets />
                            </HBox.margin>
                            <graphic>
-                              <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../icons/next.png" />
                                  </image>
