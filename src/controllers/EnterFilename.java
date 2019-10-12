@@ -82,6 +82,8 @@ public class EnterFilename extends Controller{
 	}
 	
 	private void buildCreation(String filename) {
+		//make progressbar visible
+		_progressBar.setVisible(true);
 		//disable buttons
 		_mainButton.setDisable(true);
 		_backButton.setDisable(true);
