@@ -18,9 +18,9 @@
          <top>
             <VBox maxWidth="-Infinity" prefHeight="55.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
                <children>
-                  <ToolBar minWidth="-Infinity" opacity="0.93" prefWidth="1000.0">
+                  <ToolBar minWidth="-Infinity" prefWidth="1000.0">
                     <items>
-                      <Button mnemonicParsing="false" onAction="#SwitchBackScene">
+                      <Button mnemonicParsing="false" onAction="#SwitchBackScene" text="Home">
                            <graphic>
                               <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                                  <image>

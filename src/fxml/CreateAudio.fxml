@@ -24,7 +24,7 @@
                <items>
                   <HBox alignment="CENTER_LEFT" prefWidth="796.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#SwitchBackScene">
+                        <Button mnemonicParsing="false" onAction="#SwitchBackScene" text="Home">
                            <graphic>
                               <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -33,7 +33,7 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Region prefWidth="520.0" />
+                        <Region prefHeight="28.0" prefWidth="487.0" />
                         <Button fx:id="_previewbutton" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#PreviewAudio" prefWidth="100.0" text="Preview">
                            <graphic>
                               <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
