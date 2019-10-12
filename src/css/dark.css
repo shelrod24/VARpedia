@@ -35,6 +35,12 @@
 	-fx-background-color: #333333;
 }
 
+.tool-bar .button:pressed {
+	-fx-border-color: white;
+	-fx-border-radius: 3;
+	-fx-background-color: #444444;
+}
+
 .tool-bar .choice-box {
 	-fx-border-color: transparent;
 	-fx-background-color: #333333;
