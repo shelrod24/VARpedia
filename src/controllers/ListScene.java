@@ -40,8 +40,8 @@ public class ListScene extends Controller{
 
         if (_creationname == null){
 
-            CreateAlert(Alert.AlertType.WARNING, "No Creation Selected", "A Creation was not selected");
-
+        	return;
+        	
         } else {
 
             SwitchForwardScene(event);
@@ -56,7 +56,6 @@ public class ListScene extends Controller{
 
         if (_creationname == null){
 
-            CreateAlert(Alert.AlertType.WARNING, "No item selected", "ERROR You have not selected an item");
             return;
 
         }

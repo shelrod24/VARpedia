@@ -54,7 +54,6 @@ public class DeleteAudio extends Controller {
 
          if (_audio == null) {
 
-             CreateAlert(Alert.AlertType.WARNING, "No item selected", "ERROR You have not selected an item");
              return;
 
          }
@@ -133,6 +132,10 @@ public class DeleteAudio extends Controller {
      }
 
      public void PreviewExistingAudio () throws IOException, InterruptedException {
+    	 
+    	 if(_audiofiles.getSelectionModel().getSelectedItem()==null) {
+    		 return;
+    	 }
 
         _previewbutton.setDisable(true);
 
