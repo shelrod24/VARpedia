@@ -40,7 +40,7 @@ public class ListScene extends Controller{
 
         if (_creationname == null){
 
-            CreateAlert(Alert.AlertType.WARNING, "No item selected", "ERROR You have not selected an item");
+            CreateAlert(Alert.AlertType.WARNING, "No Creation Selected", "A Creation was not selected");
 
         } else {
 

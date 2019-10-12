@@ -55,8 +55,8 @@ public class EnterFilename extends Controller{
 		String filename = _filenameField.getText().trim();
 		if(option.equals("Create")) {
 			//check if file exists
-			if(filename.trim().isEmpty() ||filename==null){
-				CreateAlert(Alert.AlertType.WARNING, "Empty Filename", "The filename was empty");
+			if(filename==null || filename.trim().isEmpty() || !filename.matches("[a-zA-Z0-9]*")){
+				CreateAlert(Alert.AlertType.WARNING, "Invalid Filename", "The filename is either empty or invalid\nPlease only use either letters or numbers");
 				return;
 			}
 			if (DirectoryServices.creationExists(filename)) {

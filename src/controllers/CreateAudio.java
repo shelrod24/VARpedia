@@ -236,9 +236,9 @@ public class CreateAudio extends Controller {
             CreateAlert(AlertType.WARNING, "Too Many Words", "There are more that 40 words of text");
             return;
 
-        } else if (name == null || name.trim().isEmpty()) {
+        } else if (name == null || name.trim().isEmpty() || !name.matches("[a-zA-Z0-9]*")) {
 
-            CreateAlert(AlertType.WARNING, "Invalid Filename", "The filename is empty.");
+            CreateAlert(AlertType.WARNING, "Invalid Filename", "The filename is either empty or invalid\nPlease only use either letters or numbers");
             return;
 
         } else if (lyrics.trim().equals("") || lyrics == null ) {
@@ -284,6 +284,7 @@ public class CreateAudio extends Controller {
 
             @Override
             protected Void call() throws Exception {
+            	
             	//making original
                 ProcessBuilder originalBuilder = new ProcessBuilder("./scripts/festival_make_chunk.sh", name, _searchterm, _chooseaccent.getSelectionModel().getSelectedItem(), original);
                 Process originalProcess = originalBuilder.start();
