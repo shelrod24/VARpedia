@@ -25,6 +25,7 @@ public class EnterFilename extends Controller{
 	private final String _nextFXMLPath="/fxml/MainMenu.fxml";
 	private final String _previousFXMLPath="/fxml/ChooseImages.fxml";
 	private NewCreationService _creation;
+	@FXML private Button _backButton;
 	@FXML private Button _mainButton;
 	@FXML private TextField _filenameField;
 	@FXML private ProgressBar _progressBar;
@@ -81,8 +82,9 @@ public class EnterFilename extends Controller{
 	}
 	
 	private void buildCreation(String filename) {
-		//dont want them switching filename halfway through creation
+		//disable buttons
 		_mainButton.setDisable(true);
+		_backButton.setDisable(true);
 		Task<Void> task = new Task<Void>(){
 			@Override
 			protected Void call() throws Exception {
@@ -127,6 +129,7 @@ public class EnterFilename extends Controller{
 					@Override
 					public void run() {
 						CreateAlert(Alert.AlertType.INFORMATION, "Creation Made", "The creation " + filename + " was made");
+						_backButton.setDisable(false);
 						_mainButton.setDisable(false);
 						_mainButton.setText("Finish");
 					}
