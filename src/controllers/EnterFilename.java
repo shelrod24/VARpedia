@@ -86,7 +86,7 @@ public class EnterFilename extends Controller{
 		Task<Void> task = new Task<Void>(){
 			@Override
 			protected Void call() throws Exception {
-				int methods=6;
+				int methods=7;
 				updateProgress(0, methods);
 				updateMessage("Deleting Temps");
 				_creation.deleteFinals();
@@ -105,14 +105,18 @@ public class EnterFilename extends Controller{
 				
 				updateProgress(4, methods);
 				updateMessage("Making Video");
-				_creation.makeVideo();
+				_creation.makeVideos();
 				
 				updateMessage("Making Creation");
 				updateProgress(5, methods);
 				_creation.makeCreation(filename);
 				
-				updateMessage("Done");
+				updateMessage("Making Question");
 				updateProgress(6, methods);
+				_creation.makeQuestion(filename);
+				
+				updateMessage("Done");
+				updateProgress(7, methods);
 				return null;
 			}
 		};
