@@ -76,9 +76,10 @@ public class ListScene extends Controller{
             return;
 
         } else {
-
-
-            ProcessRunner("/bin/bash","rm -f ./creations/\"" + _creationname + ".mp4\"");
+        	
+        	//delete both creation and question
+        	ProcessRunner("sh", "./scripts/delete_creation_and_question.sh \"" + _creationname + "\"");
+        	
             List<String> creationfiles = DirectoryServices.ListFilesInDir("./creations");
 
             _list.getItems().clear();
