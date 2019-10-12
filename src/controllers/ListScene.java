@@ -64,7 +64,7 @@ public class ListScene extends Controller{
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("File Deletion Confirmation");
         alert.setHeaderText(null);
-        alert.setContentText("Are you sure you want to delete " + _creationname + ".wav?");
+        alert.setContentText("Are you sure you want to delete the creation " + _creationname + "?");
         alert.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
         DialogPane pane = alert.getDialogPane();
         pane.getStylesheets().add(getClass().getResource("/css/dark.css").toExternalForm());
