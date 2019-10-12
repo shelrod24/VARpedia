@@ -51,7 +51,6 @@ public class NewCreationService {
 	public void combineChunks() throws IOException, InterruptedException {
 		// combines list into string separated by spaces
 		String audio = String.join(" ", _audioList).trim();
-		System.out.println(audio);
 		ProcessBuilder builder = new ProcessBuilder("./scripts/combine_chunks.sh", _term, audio);
 		Process process = builder.start();
 		process.waitFor();
@@ -60,7 +59,6 @@ public class NewCreationService {
 	public void mixAudio() throws IOException, InterruptedException {
 		// mix music with audio
 		// will also mix music with redacted audio
-		System.out.println(_music);
 		ProcessBuilder builder = new ProcessBuilder("./scripts/mix_audio.sh", _music);
 		Process process = builder.start();
 		process.waitFor();
@@ -69,14 +67,12 @@ public class NewCreationService {
 	public void formatImages() throws IOException, InterruptedException {
 		// combines list into string separated by spaces
 		String images = String.join(" ", _imageList).trim();
-		System.out.println(images);
 		ProcessBuilder builder = new ProcessBuilder("./scripts/format_images.sh", images);
 		Process process = builder.start();
 		process.waitFor();
 	}
 	
 	public void makeVideos() throws IOException, InterruptedException {
-		System.out.println(_term);
 		// will make both question and creation videos
 		ProcessBuilder builder = new ProcessBuilder("./scripts/make_videos.sh", _term);
 		Process process = builder.start();
@@ -85,7 +81,6 @@ public class NewCreationService {
 	
 	
 	public void makeCreation(String filename) throws IOException, InterruptedException {
-		System.out.println(filename);
 		ProcessBuilder builder = new ProcessBuilder("./scripts/make_creation.sh", filename);
 		Process process = builder.start();
 		process.waitFor();
