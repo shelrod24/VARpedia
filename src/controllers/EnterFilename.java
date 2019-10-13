@@ -25,6 +25,7 @@ public class EnterFilename extends Controller{
 	private final String _nextFXMLPath="/fxml/MainMenu.fxml";
 	private final String _previousFXMLPath="/fxml/ChooseImages.fxml";
 	private NewCreationService _creation;
+	@FXML private Button _backButton;
 	@FXML private Button _mainButton;
 	@FXML private TextField _filenameField;
 	@FXML private ProgressBar _progressBar;
@@ -55,8 +56,8 @@ public class EnterFilename extends Controller{
 		String filename = _filenameField.getText().trim();
 		if(option.equals("Create")) {
 			//check if file exists
-			if(filename.trim().isEmpty() ||filename==null){
-				CreateAlert(Alert.AlertType.WARNING, "Empty Filename", "The filename was empty");
+			if(filename==null || filename.trim().isEmpty() || !filename.matches("[a-zA-Z0-9]*")){
+				CreateAlert(Alert.AlertType.WARNING, "Invalid Filename", "The filename is either empty or invalid\nPlease only use either letters or numbers");
 				return;
 			}
 			if (DirectoryServices.creationExists(filename)) {
@@ -81,12 +82,15 @@ public class EnterFilename extends Controller{
 	}
 	
 	private void buildCreation(String filename) {
-		//dont want them switching filename halfway through creation
+		//make progressbar visible
+		_progressBar.setVisible(true);
+		//disable buttons
 		_mainButton.setDisable(true);
+		_backButton.setDisable(true);
 		Task<Void> task = new Task<Void>(){
 			@Override
 			protected Void call() throws Exception {
-				int methods=6;
+				int methods=7;
 				updateProgress(0, methods);
 				updateMessage("Deleting Temps");
 				_creation.deleteFinals();
@@ -105,14 +109,18 @@ public class EnterFilename extends Controller{
 				
 				updateProgress(4, methods);
 				updateMessage("Making Video");
-				_creation.makeVideo();
+				_creation.makeVideos();
 				
 				updateMessage("Making Creation");
 				updateProgress(5, methods);
 				_creation.makeCreation(filename);
 				
-				updateMessage("Done");
+				updateMessage("Making Question");
 				updateProgress(6, methods);
+				_creation.makeQuestion(filename);
+				
+				updateMessage("Done");
+				updateProgress(7, methods);
 				return null;
 			}
 		};
@@ -123,6 +131,7 @@ public class EnterFilename extends Controller{
 					@Override
 					public void run() {
 						CreateAlert(Alert.AlertType.INFORMATION, "Creation Made", "The creation " + filename + " was made");
+						_backButton.setDisable(false);
 						_mainButton.setDisable(false);
 						_mainButton.setText("Finish");
 					}

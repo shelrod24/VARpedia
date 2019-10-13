@@ -40,8 +40,8 @@ public class ListScene extends Controller{
 
         if (_creationname == null){
 
-            CreateAlert(Alert.AlertType.WARNING, "No item selected", "ERROR You have not selected an item");
-
+        	return;
+        	
         } else {
 
             SwitchForwardScene(event);
@@ -56,7 +56,6 @@ public class ListScene extends Controller{
 
         if (_creationname == null){
 
-            CreateAlert(Alert.AlertType.WARNING, "No item selected", "ERROR You have not selected an item");
             return;
 
         }
@@ -64,7 +63,7 @@ public class ListScene extends Controller{
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("File Deletion Confirmation");
         alert.setHeaderText(null);
-        alert.setContentText("Are you sure you want to delete " + _creationname + ".wav?");
+        alert.setContentText("Are you sure you want to delete the creation " + _creationname + "?");
         alert.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
         DialogPane pane = alert.getDialogPane();
         pane.getStylesheets().add(getClass().getResource("/css/dark.css").toExternalForm());
@@ -76,9 +75,10 @@ public class ListScene extends Controller{
             return;
 
         } else {
-
-
-            ProcessRunner("/bin/bash","rm -f ./creations/\"" + _creationname + ".mp4\"");
+        	
+        	//delete both creation and question
+        	ProcessRunner("sh", "./scripts/delete_creation_and_question.sh \"" + _creationname + "\"");
+        	
             List<String> creationfiles = DirectoryServices.ListFilesInDir("./creations");
 
             _list.getItems().clear();

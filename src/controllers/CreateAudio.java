@@ -130,21 +130,32 @@ public class CreateAudio extends Controller {
 
     @FXML
     private void initialize() throws IOException, InterruptedException {
-
-
-        ProcessRunner("sh", "./scripts/list_voices.sh");
-        ProcessBuilder voicesbuilder = new ProcessBuilder("sh","-c","./scripts/list_voices.sh");
-        Process voiceprocess = voicesbuilder.start();
-        BufferedReader stdout = new BufferedReader(new InputStreamReader(voiceprocess.getInputStream()));
-        voiceprocess.waitFor();
-        String line = stdout.readLine();
-        String[] arr = line.split(" ");
-
-
-        ObservableList<String> accents = FXCollections.observableArrayList(arr);
-        _chooseaccent.setItems(accents);
-        _chooseaccent.getSelectionModel().selectFirst();
-
+    	
+        Thread thread = new Thread(new Task<Void>() {
+			@Override
+			protected Void call() throws Exception {
+				
+				ProcessRunner("sh", "./scripts/list_voices.sh");
+		        ProcessBuilder voicesbuilder = new ProcessBuilder("sh","-c","./scripts/list_voices.sh");
+		        Process voiceprocess = voicesbuilder.start();
+		        BufferedReader stdout = new BufferedReader(new InputStreamReader(voiceprocess.getInputStream()));
+		        voiceprocess.waitFor();
+		        String line = stdout.readLine();
+		        String[] arr = line.split(" ");
+		        
+		        Platform.runLater(new Runnable() {
+					@Override
+					public void run() {
+				        ObservableList<String> accents = FXCollections.observableArrayList(arr);
+				        _chooseaccent.setItems(accents);
+				        _chooseaccent.getSelectionModel().selectFirst();						
+					}
+				});
+		        
+				return null;
+			}
+        });
+        thread.start();
     }
 
 
@@ -236,9 +247,9 @@ public class CreateAudio extends Controller {
             CreateAlert(AlertType.WARNING, "Too Many Words", "There are more that 40 words of text");
             return;
 
-        } else if (name == null || name.trim().isEmpty()) {
+        } else if (name == null || name.trim().isEmpty() || !name.matches("[a-zA-Z0-9]*")) {
 
-            CreateAlert(AlertType.WARNING, "Invalid Filename", "The filename is empty.");
+            CreateAlert(AlertType.WARNING, "Invalid Filename", "The filename is either empty or invalid\nPlease only use either letters or numbers");
             return;
 
         } else if (lyrics.trim().equals("") || lyrics == null ) {
@@ -272,18 +283,31 @@ public class CreateAudio extends Controller {
         }
 
         _createbutton.setDisable(true);
+        
+        // getting original lyrics
+        String original = _lyrics.getText();
+        // making redacted lyrics
+        String redacted = _lyrics.getText().toLowerCase().replaceAll(" "+_searchterm+" ", " blank ");
+        
+        
 
         Thread thread = new Thread(new Task<Void>() {
 
             @Override
             protected Void call() throws Exception {
+            	
+            	//making original
+                ProcessBuilder originalBuilder = new ProcessBuilder("./scripts/festival_make_chunk.sh", name, _searchterm, _chooseaccent.getSelectionModel().getSelectedItem(), original);
+                Process originalProcess = originalBuilder.start();
+                int originalExit = originalProcess.waitFor();
+                
+                //making redacted
+                ProcessBuilder redactedBuilder = new ProcessBuilder("./scripts/festival_make_chunk.sh", name+"_redacted", _searchterm+"/redacted", _chooseaccent.getSelectionModel().getSelectedItem(), redacted);
+                Process redactedProcess = redactedBuilder.start();
+                int redactedExit = redactedProcess.waitFor();
 
-                //right now only have it such that kal_diphone is in it
-                ProcessBuilder builder = new ProcessBuilder("./scripts/festival_make_chunk.sh", name, _searchterm, _chooseaccent.getSelectionModel().getSelectedItem(), _lyrics.getText());
-                Process process = builder.start();
-                int exit = process.waitFor();
 
-                if (exit != 0) {
+                if (originalExit != 0 || redactedExit != 0) {
 
                     Platform.runLater(() -> {
 

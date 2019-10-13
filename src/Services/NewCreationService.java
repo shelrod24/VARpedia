@@ -51,7 +51,6 @@ public class NewCreationService {
 	public void combineChunks() throws IOException, InterruptedException {
 		// combines list into string separated by spaces
 		String audio = String.join(" ", _audioList).trim();
-		System.out.println(audio);
 		ProcessBuilder builder = new ProcessBuilder("./scripts/combine_chunks.sh", _term, audio);
 		Process process = builder.start();
 		process.waitFor();
@@ -59,7 +58,7 @@ public class NewCreationService {
 	
 	public void mixAudio() throws IOException, InterruptedException {
 		// mix music with audio
-		System.out.println(_music);
+		// will also mix music with redacted audio
 		ProcessBuilder builder = new ProcessBuilder("./scripts/mix_audio.sh", _music);
 		Process process = builder.start();
 		process.waitFor();
@@ -68,22 +67,27 @@ public class NewCreationService {
 	public void formatImages() throws IOException, InterruptedException {
 		// combines list into string separated by spaces
 		String images = String.join(" ", _imageList).trim();
-		System.out.println(images);
 		ProcessBuilder builder = new ProcessBuilder("./scripts/format_images.sh", images);
 		Process process = builder.start();
 		process.waitFor();
 	}
 	
-	public void makeVideo() throws IOException, InterruptedException {
-		System.out.println(_term);
-		ProcessBuilder builder = new ProcessBuilder("./scripts/make_video.sh", _term);
+	public void makeVideos() throws IOException, InterruptedException {
+		// will make both question and creation videos
+		ProcessBuilder builder = new ProcessBuilder("./scripts/make_videos.sh", _term);
 		Process process = builder.start();
 		process.waitFor();
 	}
 	
+	
 	public void makeCreation(String filename) throws IOException, InterruptedException {
-		System.out.println(filename);
 		ProcessBuilder builder = new ProcessBuilder("./scripts/make_creation.sh", filename);
+		Process process = builder.start();
+		process.waitFor();
+	}
+	
+	public void makeQuestion(String filename) throws IOException, InterruptedException {
+		ProcessBuilder builder = new ProcessBuilder("./scripts/make_question.sh", filename, _term);
 		Process process = builder.start();
 		process.waitFor();
 	}

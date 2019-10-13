@@ -22,30 +22,30 @@
          <children>
             <ToolBar prefHeight="39.0" prefWidth="1000.0">
                <items>
-                  <HBox alignment="CENTER_LEFT" prefHeight="30.0" prefWidth="851.0">
+                  <HBox alignment="CENTER_LEFT" prefWidth="796.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#SwitchBackScene">
+                        <Button mnemonicParsing="false" onAction="#SwitchBackScene" text="Home">
                            <graphic>
-                              <ImageView fitHeight="33.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../icons/home.png" />
                                  </image>
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Region prefHeight="220.0" prefWidth="520.0" />
+                        <Region prefHeight="28.0" prefWidth="487.0" />
                         <Button fx:id="_previewbutton" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#PreviewAudio" prefWidth="100.0" text="Preview">
                            <graphic>
-                              <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../icons/sound.png" />
                                  </image>
                               </ImageView>
                            </graphic></Button>
-                        <Region prefHeight="200.0" prefWidth="30.0" />
+                        <Region prefWidth="30.0" />
                      </children>
                   </HBox>
-                  <ChoiceBox fx:id="_chooseaccent" prefWidth="129.0" />
+                  <ChoiceBox fx:id="_chooseaccent" prefHeight="26.0" prefWidth="184.0" />
                </items>
             </ToolBar>
             <VBox spacing="10.0" VBox.vgrow="ALWAYS">
@@ -56,10 +56,10 @@
                            <children>
                               <HBox alignment="CENTER_LEFT" prefHeight="27.0" prefWidth="435.0" VBox.vgrow="ALWAYS">
                                  <children>
-                                    <TextField fx:id="_searchfield" alignment="CENTER" opacity="0.8" prefWidth="450.0" promptText="Search Wikepedia" style="-fx-border-color: #D3D3D3;" HBox.hgrow="ALWAYS" />
+                                    <TextField fx:id="_searchfield" alignment="CENTER" opacity="0.8" prefWidth="450.0" promptText="Search Wikipedia" style="-fx-border-color: #D3D3D3;" HBox.hgrow="ALWAYS" />
                                     <Button fx:id="_searchbutton" alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#SearchWikipedia" text="Search" textFill="#00b2ff">
                                        <graphic>
-                                          <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                                          <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
                                                 <Image url="@../icons/search.png" />
                                              </image>
@@ -85,7 +85,7 @@
                            <children>
                               <Button fx:id="_moveoverbutton" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#MoveTextOver" prefWidth="120.0" text="Add">
                                  <graphic>
-                                    <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../icons/add.png" />
                                        </image>
@@ -115,7 +115,7 @@
                         <Region prefHeight="3.0" prefWidth="900.0" HBox.hgrow="ALWAYS" />
                         <Button id="next-button" fx:id="_createbutton" alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#NameFile" prefWidth="100.0" text="Create">
                            <graphic>
-                              <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../icons/save.png" />
                                  </image>
