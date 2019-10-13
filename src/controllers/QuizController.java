@@ -6,6 +6,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.media.Media;
@@ -24,14 +25,38 @@ public class QuizController extends Controller {
     @FXML private MediaView _view;
     @FXML private TextField _textField;
     @FXML private Slider _slider;
+    @FXML private Button _submit;
+    @FXML private Label _outcome;
 
     private ArrayList<String> _listOfCreations;
     private String _previousfxmlpath =  "/fxml/ChooseQuiz.fxml";
     private File _fileUrl;
     private Media _video;
     private MediaPlayer _player;
-    private int numberCorrect = 0;
+    private int _numberCorrect = 0;
+    private int _maximumScore;
     private double _rate = 1.0;
+
+
+
+
+
+    public void junction(ActionEvent event) throws IOException, InterruptedException {
+
+        if (_submit.getText().equals("Next")){
+
+            _outcome.setText("");
+            nextQuestion(event);
+
+        } else {
+
+            checkAnswer();
+
+        }
+
+
+    }
+
 
 
 
@@ -74,36 +99,44 @@ public class QuizController extends Controller {
     public void setFileList(ArrayList<String> listOfCreations){
 
         _listOfCreations = listOfCreations;
+        _maximumScore = _listOfCreations.size();
+
 
     }
 
 
 
-    public void checkAnswer(ActionEvent event) throws InterruptedException, IOException {
+    public void checkAnswer() throws InterruptedException, IOException {
 
         String file = _listOfCreations.get(0);
         String[] s = file.split("_");
-        System.out.println(s[1]);
+
+        String[] answer = s[1].split("\\.");
+
+        System.out.println(answer[0]);
         _player.stop();
 
-        if (_textField.getText().equals(s[1])){
-            System.out.println("Correct");
-            numberCorrect++;
+        if (_textField.getText().toLowerCase().equals(answer[0].toLowerCase())){
+            _numberCorrect++;
+            _outcome.setText("Correct");
+        } else {
+            _outcome.setText("Incorrect");
         }
 
-        nextQuestion(event);
+        _submit.setText("Next");
 
     }
 
     private void nextQuestion(ActionEvent event) throws IOException {
 
+        _submit.setText("Submit");
+        System.out.println("Hello");
         _listOfCreations.remove(0);
-        System.out.println(_listOfCreations.size());
 
         if(_listOfCreations.size()== 0) {
 
             //Got to end screen
-            SwitchBackScene(event);
+            SwitchForwardScene(event);
 
         } else  {
 
@@ -176,7 +209,16 @@ public class QuizController extends Controller {
     @Override
     public String ReturnForwardFXMLPath() {
 
-        return null;
+        return "/fxml/Score.fxml";
+
+    }
+
+    @Override
+    public void AuxiliaryFunction(FXMLLoader loader){
+
+        Score scoreController = loader.<Score>getController();
+
+        scoreController.setLabel(_numberCorrect, _maximumScore);
 
     }
 
