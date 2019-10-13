@@ -98,6 +98,17 @@ public class MainMenu extends Application {
 
     }
 
+    public void SwitchToCredits(ActionEvent event) throws IOException {
+
+        Parent parent = FXMLLoader.load(getClass().getResource("/fxml/Credits.fxml"));
+        Scene scene = new Scene(parent);
+
+        //Get stage information of the current stage
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+
+    }
+
 
 
 }
