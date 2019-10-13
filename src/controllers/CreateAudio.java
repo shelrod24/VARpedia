@@ -130,21 +130,32 @@ public class CreateAudio extends Controller {
 
     @FXML
     private void initialize() throws IOException, InterruptedException {
-
-
-        ProcessRunner("sh", "./scripts/list_voices.sh");
-        ProcessBuilder voicesbuilder = new ProcessBuilder("sh","-c","./scripts/list_voices.sh");
-        Process voiceprocess = voicesbuilder.start();
-        BufferedReader stdout = new BufferedReader(new InputStreamReader(voiceprocess.getInputStream()));
-        voiceprocess.waitFor();
-        String line = stdout.readLine();
-        String[] arr = line.split(" ");
-
-
-        ObservableList<String> accents = FXCollections.observableArrayList(arr);
-        _chooseaccent.setItems(accents);
-        _chooseaccent.getSelectionModel().selectFirst();
-
+    	
+        Thread thread = new Thread(new Task<Void>() {
+			@Override
+			protected Void call() throws Exception {
+				
+				ProcessRunner("sh", "./scripts/list_voices.sh");
+		        ProcessBuilder voicesbuilder = new ProcessBuilder("sh","-c","./scripts/list_voices.sh");
+		        Process voiceprocess = voicesbuilder.start();
+		        BufferedReader stdout = new BufferedReader(new InputStreamReader(voiceprocess.getInputStream()));
+		        voiceprocess.waitFor();
+		        String line = stdout.readLine();
+		        String[] arr = line.split(" ");
+		        
+		        Platform.runLater(new Runnable() {
+					@Override
+					public void run() {
+				        ObservableList<String> accents = FXCollections.observableArrayList(arr);
+				        _chooseaccent.setItems(accents);
+				        _chooseaccent.getSelectionModel().selectFirst();						
+					}
+				});
+		        
+				return null;
+			}
+        });
+        thread.start();
     }
 
 
