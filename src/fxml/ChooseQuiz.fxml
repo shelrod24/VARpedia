@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Region?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxml.ChooseQuiz">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ChooseQuiz">
    <children>
       <BorderPane layoutX="200.0" layoutY="100.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
@@ -15,10 +15,13 @@
               <items>
                 <Button mnemonicParsing="false" text="Button" />
                   <Region prefHeight="28.0" prefWidth="362.0" />
-                  <ChoiceBox prefWidth="150.0" />
+                  <ChoiceBox fx:id="_choiceBox" prefWidth="150.0" />
               </items>
             </ToolBar>
          </top>
+         <center>
+            <Button mnemonicParsing="false" onAction="#switchToQuiz" text="Start Quiz!" BorderPane.alignment="CENTER" />
+         </center>
       </BorderPane>
    </children>
 </AnchorPane>

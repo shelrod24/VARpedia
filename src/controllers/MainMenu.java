@@ -87,6 +87,17 @@ public class MainMenu extends Application {
 
     }
 
+    public void SwitchToStartQuiz(ActionEvent event) throws IOException {
+
+        Parent quizParent = FXMLLoader.load(getClass().getResource("/fxml/ChooseQuiz.fxml"));
+        Scene quiz = new Scene(quizParent);
+
+        //Get stage information of the current stage
+        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        stage.setScene(quiz);
+
+    }
+
 
 
 }
