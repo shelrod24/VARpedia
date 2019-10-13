@@ -30,7 +30,21 @@ public class ChooseChunk extends Controller{
 	
 	@FXML
     private void initialize() {
-		_folderView.getItems().setAll(DirectoryServices.ListFilesInDir("./audio"));
+		Thread thread = new Thread(new Task<Void>() {
+			@Override
+			protected Void call() throws Exception {
+				List<String> folders = DirectoryServices.ListFilesInDir("./audio");
+				
+				Platform.runLater(new Runnable() {
+					@Override
+					public void run() {
+						_folderView.getItems().setAll(folders);						
+					}});
+				return null;
+			}
+			
+		});
+		thread.start();
     }
 
 	@Override
