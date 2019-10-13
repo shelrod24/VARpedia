@@ -97,7 +97,7 @@ public class ChooseQuiz extends Controller {
 
     @Override
     public String ReturnFXMLPath() {
-        return "/fxml/MainMenu";
+        return "/fxml/MainMenu.fxml";
     }
 
     @Override

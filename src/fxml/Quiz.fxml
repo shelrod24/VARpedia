@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.media.MediaView?>
 
-<AnchorPane prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.QuizController">
+<AnchorPane prefHeight="500.0" prefWidth="700.0" stylesheets="@/css/dark.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.QuizController">
    <children>
       <BorderPane prefHeight="500.0" prefWidth="700.0">
          <top>
@@ -80,8 +80,10 @@
                   <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #555555;">
                      <children>
                         <Region prefHeight="36.0" prefWidth="147.0" />
-                        <Button minHeight="-Infinity" mnemonicParsing="false" onAction="#checkAnswer" prefHeight="26.0" prefWidth="62.0" text="Submit" />
                         <TextField fx:id="_textField" prefHeight="27.0" prefWidth="384.0" />
+                        <Button fx:id="_submit" minHeight="-Infinity" mnemonicParsing="false" onAction="#junction" prefHeight="26.0" prefWidth="62.0" text="Submit" />
+                        <Region prefHeight="36.0" prefWidth="13.0" />
+                        <Label fx:id="_outcome" prefHeight="28.0" prefWidth="81.0" />
                      </children>
                   </HBox>
                </children>
