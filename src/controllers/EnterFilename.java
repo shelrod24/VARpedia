@@ -73,6 +73,9 @@ public class EnterFilename extends Controller{
 				if(alert.getResult()==ButtonType.NO) {
 					//exit method if dont want to overwrite
 					return;
+				} else if(alert.getResult()==ButtonType.YES){
+					//if overwriting, need to delete question as well
+		        	ProcessRunner("sh", "./scripts/delete_creation_and_question.sh \"" + filename + "\"");
 				}
 			}
 			buildCreation(filename);
