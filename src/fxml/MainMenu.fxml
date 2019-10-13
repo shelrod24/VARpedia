@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0" stylesheets="@/css/dark.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainMenu">
+<AnchorPane id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0" stylesheets="@/css/dark.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.MainMenu">
    <children>
       <ImageView fitHeight="500.0" fitWidth="1000.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <image>
@@ -27,6 +27,8 @@
                         <Button mnemonicParsing="false" onAction="#SwitchToList" opacity="0.8" prefWidth="180.0" text="Play/Delete Creations" />
                         <Region prefHeight="5.0" prefWidth="8.0" />
                         <Button mnemonicParsing="false" onAction="#SwitchToDeleteAudio" opacity="0.8" prefWidth="180.0" text="Play/Delete Audio" />
+                        <Region prefHeight="7.0" prefWidth="200.0" />
+                        <Button mnemonicParsing="false" onAction="#SwitchToStartQuiz" opacity="0.8" prefWidth="180.0" text="Quiz" />
                      </children>
                   </VBox>
                   <Region prefHeight="379.0" prefWidth="5.0" />
