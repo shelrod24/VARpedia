@@ -72,9 +72,9 @@
                      <children>
                         <VBox prefHeight="200.0" prefWidth="420.0" spacing="10.0" HBox.hgrow="ALWAYS">
                            <children>
-                              <HBox alignment="CENTER_LEFT" prefHeight="27.0" prefWidth="435.0">
+                              <HBox alignment="CENTER_LEFT" prefHeight="27.0" prefWidth="435.0" spacing="5.0">
                                  <children>
-                                    <TextField fx:id="_searchfield" alignment="CENTER" opacity="0.8" prefWidth="450.0" promptText="Search Wikipedia" style="-fx-border-color: #D3D3D3;" HBox.hgrow="ALWAYS" />
+                                    <TextField fx:id="_searchfield" alignment="CENTER" onAction="#SearchWikipedia" opacity="0.8" prefHeight="28.0" prefWidth="450.0" promptText="Search Wikipedia" HBox.hgrow="ALWAYS" />
                                     <Button fx:id="_searchbutton" alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#SearchWikipedia" text="Search" textFill="#00b2ff">
                                        <graphic>
                                           <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
@@ -92,7 +92,7 @@
                                     <Insets top="5.0" />
                                  </VBox.margin>
                               </HBox>
-                              <ListView fx:id="_listarea" opacity="0.8" prefHeight="388.0" style="-fx-background-color: #F5F5F5; -fx-border-color: #D3D3D3;" VBox.vgrow="ALWAYS">
+                              <ListView fx:id="_listarea" opacity="0.8" prefHeight="388.0" style="-fx-background-color: #F5F5F5;" VBox.vgrow="ALWAYS">
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin>
@@ -121,7 +121,7 @@
                               <TextArea fx:id="_lyrics" opacity="0.8" prefHeight="377.0" wrapText="true" VBox.vgrow="ALWAYS" />
                               <HBox prefHeight="27.0" prefWidth="300.0">
                                  <children>
-                                    <TextField fx:id="_filefield" alignment="CENTER" opacity="0.8" prefWidth="450.0" promptText="Name Your File" style="-fx-border-color: #D3D3D3;" />
+                                    <TextField fx:id="_filefield" alignment="CENTER" onAction="#NameFile" opacity="0.8" prefWidth="450.0" promptText="Name Your File" />
                                  </children>
                               </HBox>
                            </children>

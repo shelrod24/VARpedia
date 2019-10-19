@@ -43,7 +43,7 @@
                   <HBox alignment="CENTER" prefWidth="200.0" spacing="5.0">
                      <children>
                         <Region prefWidth="120.0" />
-                        <TextField fx:id="_textField" prefWidth="384.0" promptText="Enter your answer here" HBox.hgrow="ALWAYS">
+                        <TextField fx:id="_textField" onAction="#junction" opacity="0.8" prefWidth="384.0" promptText="Enter your answer here" HBox.hgrow="ALWAYS">
                            <HBox.margin>
                               <Insets bottom="5.0" top="5.0" />
                            </HBox.margin></TextField>
