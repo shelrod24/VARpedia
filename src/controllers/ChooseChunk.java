@@ -28,13 +28,16 @@ public class ChooseChunk extends Controller{
 	@FXML private ListView<String> _inputAudioView;
 	@FXML private ListView<String> _outputAudioView;
 	
+	/**
+	 * Upon initialization, need to load the folders to select
+	 */
 	@FXML
     private void initialize() {
 		Thread thread = new Thread(new Task<Void>() {
 			@Override
 			protected Void call() throws Exception {
 				List<String> folders = DirectoryServices.ListFilesInDir("./audio");
-				
+				//once done, show folders
 				Platform.runLater(new Runnable() {
 					@Override
 					public void run() {
@@ -47,6 +50,7 @@ public class ChooseChunk extends Controller{
 		thread.start();
     }
 
+	
 	@Override
 	public String ReturnFXMLPath() {
 		return _backFXMLPath;
@@ -61,6 +65,9 @@ public class ChooseChunk extends Controller{
 		return _nextFXMLPath;
 	}
 	
+	/**
+	 * If folder clicked, display contents of folder
+	 */
 	@FXML
 	private void handleFolderView() {
 		String folder = _folderView.getSelectionModel().getSelectedItem();
@@ -72,6 +79,9 @@ public class ChooseChunk extends Controller{
 		_creation = new NewCreationService(folder);
 	}
 	
+	/**
+	 * if inputAudioView clicked twice, play audio
+	 */
 	@FXML
 	private void handleInputAudioView(MouseEvent event) {
 		if(event.getButton() == MouseButton.PRIMARY && event.getClickCount()==2 && _inputAudioView.getSelectionModel().getSelectedItem() != null) {
@@ -88,6 +98,9 @@ public class ChooseChunk extends Controller{
 		}
 	}
 	
+	/**
+	 * if outputAudioView clicked twice, play audio
+	 */
 	@FXML
 	private void handleOutputAudioView(MouseEvent event) {
 		if(event.getButton() == MouseButton.PRIMARY && event.getClickCount()==2 && _outputAudioView.getSelectionModel().getSelectedItem() != null) {
@@ -104,6 +117,10 @@ public class ChooseChunk extends Controller{
 		}
 	}
 	
+	/**
+	 * Updates the input view list to contain the current files specified folder
+	 * @param folder the string dictating the folder clicked
+	 */
 	public void updateInputViewList(String folder) {
 		List<String> audioList = DirectoryServices.ListFilesInDir("./audio/"+folder);
 		//dont include redacted folder
@@ -112,6 +129,9 @@ public class ChooseChunk extends Controller{
 		_outputAudioView.getItems().clear();
 	}
 	
+	/**
+	 * Once add button clicked, adds selected audio to output
+	 */
 	@FXML
 	private void handleAdd() {
 		if (_inputAudioView.getSelectionModel().getSelectedItem()!=null) {
@@ -120,6 +140,9 @@ public class ChooseChunk extends Controller{
 		}
 	}
 	
+	/**
+	 * Once remove button clicked, removes selected audio
+	 */
 	@FXML
 	private void handleRemove() {
 		if (_outputAudioView.getSelectionModel().getSelectedItem()!=null) {
@@ -161,6 +184,9 @@ public class ChooseChunk extends Controller{
 		controller.setCreation(_creation);
 	}
 	
+	/**
+	 * makes it so that the listViews reflect the current creation object
+	 */
 	public void reflectCreation() {
 		//select the right folder
 		int folderIndex = _folderView.getItems().indexOf(_creation.getTerm());

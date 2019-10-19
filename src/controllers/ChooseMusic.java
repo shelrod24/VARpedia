@@ -27,9 +27,13 @@ public class ChooseMusic extends Controller{
 	private NewCreationService _creation;
 	@FXML private ListView<String> _musicView;
 	
+	/**
+	 * Upon initialization, load music in music directory
+	 */
 	@FXML
     private void initialize() {
 		_musicView.getItems().add("None");
+		// not that intensive, so doesnt need to be threaded
 		_musicView.getItems().addAll(DirectoryServices.ListFilesInDir("./music"));
 		// as default, select None
 		_musicView.getSelectionModel().clearAndSelect(0);
@@ -54,6 +58,9 @@ public class ChooseMusic extends Controller{
 		_creation=creation;
 	}
 
+	/**
+	 * Plays audio when double clicked
+	 */
 	@FXML
 	private void handleInputAudioView(MouseEvent event) {
 		if(event.getButton() == MouseButton.PRIMARY && event.getClickCount()==2 && _musicView.getSelectionModel().getSelectedItem() != null) {
@@ -89,6 +96,9 @@ public class ChooseMusic extends Controller{
 		controller.reflectCreation();
 	}
 	
+	/**
+	 * makes it so that the listViews reflect the current creation object
+	 */
 	public void reflectCreation() {
 		// get previously selected music
 		String music =_creation.getMusic();

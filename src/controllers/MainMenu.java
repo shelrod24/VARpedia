@@ -21,7 +21,7 @@ public class MainMenu extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-
+    	//create all required directories on startup
         DirectoryServices.CreateDirectories();
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/MainMenu.fxml"));
         primaryStage.setScene(new Scene(root, 1000, 500));
@@ -48,9 +48,7 @@ public class MainMenu extends Application {
 
     }
 
-    /**
-     * This method will change the scene to the audio creation scene.
-     */
+    
     public void SwitchToCreateAudio(ActionEvent event) throws IOException {
 
         Parent createaudioparent = FXMLLoader.load(getClass().getResource("/fxml/CreateAudio.fxml"));
@@ -62,9 +60,7 @@ public class MainMenu extends Application {
 
     }
     
-    /**
-     * 
-     */
+    
     public void SwitchToCreateCreation(ActionEvent event) throws IOException {
 
     	Parent createcreationparent = FXMLLoader.load(getClass().getResource("/fxml/ChooseChunk.fxml"));

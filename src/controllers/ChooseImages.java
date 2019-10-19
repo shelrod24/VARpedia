@@ -107,6 +107,9 @@ public class ChooseImages extends Controller{
 		}
 	}
 
+	/**
+	 * Initializes the data required for the creation
+	 */
 	public void initData() {
 		Task<Void>  task = new Task<Void>() {
 			@Override
@@ -146,6 +149,9 @@ public class ChooseImages extends Controller{
 		thread.start();
 	}
 
+	/**
+	 * Updates the imageView to show what is currently in the folder
+	 */
 	public void updateImageList() {
 		List<String> imageList=DirectoryServices.ListFilesInDir("./temps/image");
 		if (!imageList.isEmpty()) {
@@ -155,6 +161,10 @@ public class ChooseImages extends Controller{
 		}
 	}
 
+	/**
+	 * Adds all images specified in imageList to the imageList
+	 * @param imageList the list of images to be added
+	 */
 	public void addImageList(List<String> imageList) {
 		if (imageList.isEmpty()) {
 			CreateAlert(Alert.AlertType.WARNING, "No Images Found", "No images were found on Flickr");
@@ -165,6 +175,9 @@ public class ChooseImages extends Controller{
 		}
 	}
 
+	/**
+	 * makes it so that the listViews reflect the current creation object
+	 */
 	public void reflectCreation() {
 		_outputImageView.getItems().setAll(_creation.getImageList());
 		renderImageView(_outputImageView);
@@ -195,8 +208,14 @@ public class ChooseImages extends Controller{
 		controller.reflectCreation();
 	}
 
+	/**
+	 * Renders the selected listView to show the images within the list
+	 * @param imageView the listView which contains the image to be rendered
+	 */
 	public void renderImageView(ListView<String> imageView) {
+		// sets the cellfactory of the imageview
 		imageView.setCellFactory(param -> new ListCell<String>() {
+			// create imageview for each cell
 			private ImageView imageView = new ImageView();
 			@Override
 			public void updateItem(String imageName, boolean empty) {

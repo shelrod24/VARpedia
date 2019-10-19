@@ -64,6 +64,7 @@ public class EnterFilename extends Controller{
 				return;
 			}
 			if (DirectoryServices.creationExists(filename)) {
+				//prompt overwrite
 				Alert alert = new Alert(AlertType.CONFIRMATION);
 				alert.setTitle("Overwrite Creation");
 				alert.setHeaderText(null);
@@ -86,7 +87,11 @@ public class EnterFilename extends Controller{
 			SwitchForwardScene(event);
 		}
 	}
-
+	
+	/**
+	 * builds the creation as specified by the _creation
+	 * @param filename the filename specified by user
+	 */
 	private void buildCreation(String filename) {
 		//make progressbar visible
 		_progressBar.setVisible(true);
@@ -130,6 +135,7 @@ public class EnterFilename extends Controller{
 				return null;
 			}
 		};
+		//upon succeed, create an alert, and chnage main button from create to finish
 		task.setOnSucceeded(new EventHandler<WorkerStateEvent>() {
 			@Override
 			public void handle(WorkerStateEvent arg0) {
@@ -148,6 +154,7 @@ public class EnterFilename extends Controller{
 		});
 		Thread thread = new Thread(task);
 		thread.start();
+		//bind label and progress bar to task process
 		_progressBar.progressProperty().bind(task.progressProperty());
 		_progressLabel.textProperty().bind(task.messageProperty());
 	}
