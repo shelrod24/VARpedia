@@ -33,7 +33,10 @@ public class CreateAudio extends Controller {
 
 
     public void SearchWikipedia() throws IOException {
-
+    	// if the button is disabled, return
+    	if(_searchbutton.isDisable()) {
+    		return;
+    	}
         _searchterm = _searchfield.getText();
         _searchterm = _searchterm.replaceAll("(^\\s+)|(\\s+$)", "");
 
