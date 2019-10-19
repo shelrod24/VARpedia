@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="1000.0" stylesheets="@/css/dark.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ChooseChunk">
    <children>
@@ -18,7 +19,7 @@
          <children>
             <ToolBar prefHeight="20.0" prefWidth="200.0">
                <items>
-                  <HBox prefWidth="550.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="797.0">
                      <children>
                         <Button mnemonicParsing="false" onAction="#SwitchBackScene" text="Home">
                            <graphic>
@@ -28,6 +29,19 @@
                                  </image>
                               </ImageView>
                            </graphic></Button>
+                        <Region prefHeight="28.0" prefWidth="350.0" />
+                        <Label text="Combine Audio">
+                           <graphic>
+                              <ImageView fitHeight="15160.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icons/combine_audio.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
                      </children>
                   </HBox>
                </items>

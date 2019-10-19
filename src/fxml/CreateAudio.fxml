@@ -15,6 +15,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="background" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="500.0" prefWidth="1000.0" stylesheets="@/css/dark.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.CreateAudio">
    <children>
@@ -22,7 +23,7 @@
          <children>
             <ToolBar prefHeight="39.0" prefWidth="1000.0">
                <items>
-                  <HBox alignment="CENTER_LEFT" prefWidth="796.0">
+                  <HBox alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="986.0">
                      <children>
                         <Button mnemonicParsing="false" onAction="#SwitchBackScene" text="Home">
                            <graphic>
@@ -33,7 +34,25 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Region prefHeight="28.0" prefWidth="487.0" />
+                        <Region prefHeight="28.0" prefWidth="355.0" />
+                        <Label text="Create Audio">
+                           <graphic>
+                              <ImageView fitHeight="15160.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icons/sound.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Label>
+                        <Region prefHeight="28.0" prefWidth="120.0" />
+                        <ChoiceBox fx:id="_chooseaccent" prefHeight="28.0" prefWidth="206.0">
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </ChoiceBox>
                         <Button fx:id="_previewbutton" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#PreviewAudio" prefWidth="100.0" text="Preview">
                            <graphic>
                               <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
@@ -42,10 +61,8 @@
                                  </image>
                               </ImageView>
                            </graphic></Button>
-                        <Region prefWidth="30.0" />
                      </children>
                   </HBox>
-                  <ChoiceBox fx:id="_chooseaccent" prefHeight="26.0" prefWidth="184.0" />
                </items>
             </ToolBar>
             <VBox spacing="10.0" VBox.vgrow="ALWAYS">
@@ -54,7 +71,7 @@
                      <children>
                         <VBox prefHeight="200.0" prefWidth="420.0" spacing="10.0" HBox.hgrow="ALWAYS">
                            <children>
-                              <HBox alignment="CENTER_LEFT" prefHeight="27.0" prefWidth="435.0" VBox.vgrow="ALWAYS">
+                              <HBox alignment="CENTER_LEFT" prefHeight="27.0" prefWidth="435.0">
                                  <children>
                                     <TextField fx:id="_searchfield" alignment="CENTER" opacity="0.8" prefWidth="450.0" promptText="Search Wikipedia" style="-fx-border-color: #D3D3D3;" HBox.hgrow="ALWAYS" />
                                     <Button fx:id="_searchbutton" alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#SearchWikipedia" text="Search" textFill="#00b2ff">
