@@ -229,6 +229,13 @@ public class QuizController extends Controller {
         scoreController.setLabel(_numberCorrect, _maximumScore);
 
     }
+    
+    @Override
+    public void AuxiliaryFunctionBackwards(FXMLLoader loader) throws IOException {
+    	// stops player when pressing back
+    	_player.stop();
+    }
+
 
 
 
