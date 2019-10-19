@@ -105,7 +105,7 @@
                <children>
                   <HBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <MediaView fx:id="_view" fitHeight="380.0" fitWidth="700.0" />
+                        <MediaView fx:id="_view" fitHeight="370.0" fitWidth="700.0" HBox.hgrow="ALWAYS" />
                      </children>
                   </HBox>
                </children></AnchorPane>
