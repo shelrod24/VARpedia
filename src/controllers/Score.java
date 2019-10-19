@@ -7,10 +7,11 @@ import javafx.scene.control.Label;
 import java.io.IOException;
 
 public class Score extends Controller {
+	
+	private final String _backFXMLPath="/fxml/MainMenu.fxml";
 
-    @FXML
-    Label _scorelabel;
-
+    @FXML Label _scorelabel;
+	
 
     public void setLabel(int score, int maxScore){
 
@@ -24,7 +25,7 @@ public class Score extends Controller {
 
     @Override
     public String ReturnFXMLPath() {
-        return null;
+		return _backFXMLPath;
     }
 
     @Override

@@ -40,8 +40,9 @@
          <bottom>
             <VBox prefHeight="84.0" prefWidth="700.0" BorderPane.alignment="CENTER">
                <children>
-                  <HBox alignment="CENTER" prefWidth="200.0">
+                  <HBox alignment="CENTER" prefWidth="200.0" spacing="5.0">
                      <children>
+                        <Region prefWidth="120.0" />
                         <TextField fx:id="_textField" prefWidth="384.0" promptText="Enter your answer here" HBox.hgrow="ALWAYS">
                            <HBox.margin>
                               <Insets bottom="5.0" top="5.0" />
@@ -50,10 +51,13 @@
                            <HBox.margin>
                               <Insets bottom="5.0" top="5.0" />
                            </HBox.margin></Button>
-                        <Label fx:id="_outcome" prefWidth="120.0" />
+                        <Label fx:id="_outcome" prefHeight="16.0" prefWidth="120.0">
+                           <graphic>
+                              <ImageView fx:id="_result" fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" />
+                           </graphic></Label>
                      </children>
                      <VBox.margin>
-                        <Insets left="50.0" right="50.0" />
+                        <Insets />
                      </VBox.margin>
                   </HBox>
                   <Slider fx:id="_slider" style="-fx-background-color: #555555;" />

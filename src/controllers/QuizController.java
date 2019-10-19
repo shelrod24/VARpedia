@@ -9,6 +9,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaView;
@@ -27,6 +29,7 @@ public class QuizController extends Controller {
     @FXML private Slider _slider;
     @FXML private Button _submit;
     @FXML private Label _outcome;
+    @FXML private ImageView _result;
 
     private ArrayList<String> _listOfCreations;
     private String _previousfxmlpath =  "/fxml/ChooseQuiz.fxml";
@@ -119,8 +122,10 @@ public class QuizController extends Controller {
         if (_textField.getText().toLowerCase().equals(answer[0].toLowerCase())){
             _numberCorrect++;
             _outcome.setText("Correct");
+            _result.setImage(new Image(getClass().getResourceAsStream("/icons/right.png")));
         } else {
             _outcome.setText("Incorrect");
+            _result.setImage(new Image(getClass().getResourceAsStream("/icons/wrong.png")));
         }
 
         _submit.setText("Next");
@@ -130,6 +135,9 @@ public class QuizController extends Controller {
     private void nextQuestion(ActionEvent event) throws IOException {
 
         _submit.setText("Submit");
+        _result.setImage(null);
+        _outcome.setText(null);
+        _textField.setText(null);
         System.out.println("Hello");
         _listOfCreations.remove(0);
 

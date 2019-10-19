@@ -28,6 +28,7 @@ public class EnterFilename extends Controller{
 	private final String _nextFXMLPath="/fxml/MainMenu.fxml";
 	private final String _previousFXMLPath="/fxml/ChooseImages.fxml";
 	private NewCreationService _creation;
+	
 	@FXML private Button _backButton;
 	@FXML private Button _mainButton;
 	@FXML private TextField _filenameField;
