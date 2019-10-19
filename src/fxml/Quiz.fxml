@@ -17,15 +17,15 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.media.MediaView?>
 
-<AnchorPane prefHeight="500.0" prefWidth="700.0" stylesheets="@/css/dark.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.QuizController">
+<AnchorPane id="background" prefHeight="500.0" prefWidth="700.0" stylesheets="@/css/dark.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.QuizController">
    <children>
       <BorderPane prefHeight="500.0" prefWidth="700.0">
          <top>
-            <ToolBar minHeight="-Infinity" prefHeight="42.0" prefWidth="700.0" style="-fx-background-color: #444444;" BorderPane.alignment="CENTER">
+            <ToolBar minHeight="-Infinity" prefHeight="40.0" prefWidth="700.0" style="-fx-background-color: #444444;" BorderPane.alignment="CENTER">
                <items>
-                  <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#SwitchBackScene" prefHeight="33.0" prefWidth="40.0" style="-fx-background-color: #333333;" textAlignment="CENTER" textFill="#000000cc">
+                  <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#SwitchBackScene" style="-fx-background-color: #333333;" text="Back" textAlignment="CENTER" textFill="#000000cc">
                      <graphic>
-                        <ImageView fitHeight="33.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../icons/back.png" />
                            </image>
@@ -40,10 +40,26 @@
          <bottom>
             <VBox prefHeight="84.0" prefWidth="700.0" BorderPane.alignment="CENTER">
                <children>
+                  <HBox alignment="CENTER" prefWidth="200.0">
+                     <children>
+                        <TextField fx:id="_textField" prefWidth="384.0" promptText="Enter your answer here" HBox.hgrow="ALWAYS">
+                           <HBox.margin>
+                              <Insets bottom="5.0" top="5.0" />
+                           </HBox.margin></TextField>
+                        <Button fx:id="_submit" minHeight="-Infinity" mnemonicParsing="false" onAction="#junction" prefHeight="26.0" prefWidth="120.0" text="Submit">
+                           <HBox.margin>
+                              <Insets bottom="5.0" top="5.0" />
+                           </HBox.margin></Button>
+                        <Label fx:id="_outcome" prefWidth="120.0" />
+                     </children>
+                     <VBox.margin>
+                        <Insets left="50.0" right="50.0" />
+                     </VBox.margin>
+                  </HBox>
                   <Slider fx:id="_slider" style="-fx-background-color: #555555;" />
                   <HBox alignment="CENTER" prefHeight="64.0" prefWidth="1000.0" style="-fx-background-color: #555555;">
                      <children>
-                        <Button fx:id="_skipbackward" contentDisplay="CENTER" ellipsisString="" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#SkipBackSeconds" prefWidth="103.0" style="-fx-background-color: #555555;" text="Skip back" textAlignment="RIGHT" textFill="#ffffffcc">
+                        <Button fx:id="_skipbackward" contentDisplay="CENTER" ellipsisString="" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#SkipBackSeconds" prefWidth="120.0" style="-fx-background-color: #555555;" text="Skip back" textAlignment="RIGHT" textFill="#ffffffcc">
                            <effect>
                               <Glow level="0.0" />
                            </effect>
@@ -54,9 +70,9 @@
                               <Insets />
                            </opaqueInsets>
                         </Button>
-                        <Button fx:id="_slower" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#SlowDown" prefWidth="100.0" style="-fx-background-color: #555555;" text="Slower  " textAlignment="CENTER" textFill="#f8f8f8cc" />
-                        <Button fx:id="_play" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#PausePlay" prefWidth="100.0" style="-fx-background-color: #555555;" text="Pause" textAlignment="CENTER" textFill="#ffffffcc" />
-                        <Button fx:id="_faster" contentDisplay="CENTER" ellipsisString="" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#FastForward" prefWidth="100.0" style="-fx-background-color: #555555;" text="Faster" textAlignment="RIGHT" textFill="#ffffffcc">
+                        <Button fx:id="_slower" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#SlowDown" prefWidth="120.0" style="-fx-background-color: #555555;" text="Slower  " textAlignment="CENTER" textFill="#f8f8f8cc" />
+                        <Button fx:id="_play" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#PausePlay" prefWidth="120.0" style="-fx-background-color: #555555;" text="Pause" textAlignment="CENTER" textFill="#ffffffcc" />
+                        <Button fx:id="_faster" contentDisplay="CENTER" ellipsisString="" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#FastForward" prefWidth="120.0" style="-fx-background-color: #555555;" text="Faster" textAlignment="RIGHT" textFill="#ffffffcc">
                            <effect>
                               <Glow level="0.0" />
                            </effect>
@@ -64,7 +80,7 @@
                               <Cursor fx:constant="DEFAULT" />
                            </cursor>
                         </Button>
-                        <Button fx:id="_skipforward" contentDisplay="CENTER" ellipsisString="" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#SkipForwardSeconds" prefWidth="100.0" style="-fx-background-color: #555555;" text="Skip forward" textAlignment="RIGHT" textFill="#ffffffcc">
+                        <Button fx:id="_skipforward" contentDisplay="CENTER" ellipsisString="" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#SkipForwardSeconds" prefWidth="120.0" style="-fx-background-color: #555555;" text="Skip forward" textAlignment="RIGHT" textFill="#ffffffcc">
                            <effect>
                               <Glow level="0.0" />
                            </effect>
@@ -77,22 +93,17 @@
                         <Insets bottom="5.0" />
                      </padding>
                   </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #555555;">
-                     <children>
-                        <Region prefHeight="36.0" prefWidth="147.0" />
-                        <TextField fx:id="_textField" prefHeight="27.0" prefWidth="384.0" />
-                        <Button fx:id="_submit" minHeight="-Infinity" mnemonicParsing="false" onAction="#junction" prefHeight="26.0" prefWidth="62.0" text="Submit" />
-                        <Region prefHeight="36.0" prefWidth="13.0" />
-                        <Label fx:id="_outcome" prefHeight="28.0" prefWidth="81.0" />
-                     </children>
-                  </HBox>
                </children>
             </VBox>
          </bottom>
          <center>
             <AnchorPane fx:id="_anchor" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="326.0" prefWidth="700.0" BorderPane.alignment="CENTER">
                <children>
-                  <MediaView fx:id="_view" fitHeight="380.0" fitWidth="700.0" />
+                  <HBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <MediaView fx:id="_view" fitHeight="380.0" fitWidth="700.0" />
+                     </children>
+                  </HBox>
                </children></AnchorPane>
          </center>
       </BorderPane>
