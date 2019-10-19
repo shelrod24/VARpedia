@@ -50,7 +50,14 @@
                <children>
                   <VBox spacing="5.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <Label text="Music" />
+                        <Label text="Music">
+                           <graphic>
+                              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icons/music.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Label>
                         <ListView fx:id="_musicView" opacity="0.8" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
                      </children>
                   </VBox>

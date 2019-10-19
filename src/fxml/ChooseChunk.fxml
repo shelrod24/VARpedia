@@ -54,13 +54,27 @@
                            <children>
                               <VBox spacing="5.0">
                                  <children>
-                                    <Label text="Audio Folders" />
+                                    <Label text="Audio Folders">
+                                       <graphic>
+                                          <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../icons/folder.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic></Label>
                                     <ListView fx:id="_folderView" onMouseClicked="#handleFolderView" opacity="0.8" prefWidth="210.0" VBox.vgrow="ALWAYS" />
                                  </children>
                               </VBox>
                               <VBox spacing="5.0">
                                  <children>
-                                    <Label text="Audio" />
+                                    <Label text="Audio">
+                                       <graphic>
+                                          <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../icons/sound.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic></Label>
                                     <ListView fx:id="_inputAudioView" onMouseClicked="#handleInputAudioView" opacity="0.8" prefWidth="210.0" VBox.vgrow="ALWAYS" />
                                  </children>
                               </VBox>
@@ -107,7 +121,14 @@
                         </VBox>
                         <VBox spacing="5.0" HBox.hgrow="ALWAYS">
                            <children>
-                              <Label text="Selected Audio" />
+                              <Label text="Selected Audio">
+                                 <graphic>
+                                    <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../icons/sound.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></Label>
                               <ListView fx:id="_outputAudioView" onMouseClicked="#handleOutputAudioView" opacity="0.8" prefWidth="420.0" VBox.vgrow="ALWAYS" />
                            </children>
                         </VBox>
