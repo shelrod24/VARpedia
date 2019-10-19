@@ -1,6 +1,7 @@
 package controllers;
 
 import java.io.IOException;
+import java.net.URISyntaxException;
 
 import Services.DirectoryServices;
 import Services.NewCreationService;
@@ -19,6 +20,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class EnterFilename extends Controller{
 	private final String _backFXMLPath="/fxml/MainMenu.fxml";
@@ -30,11 +33,11 @@ public class EnterFilename extends Controller{
 	@FXML private TextField _filenameField;
 	@FXML private ProgressBar _progressBar;
 	@FXML private Label _progressLabel;
-	
+
 	public void setCreation(NewCreationService creation) {
 		_creation=creation;
 	}
-	
+
 	@Override
 	public String ReturnFXMLPath() {
 		return _backFXMLPath;
@@ -44,12 +47,12 @@ public class EnterFilename extends Controller{
 	public String ReturnForwardFXMLPath() {
 		return _nextFXMLPath;
 	}
-	
+
 	@Override
 	public String ReturnPreviousFXMLPath() {
 		return _previousFXMLPath;
 	}
-	
+
 	@FXML
 	public void handleMainButton(ActionEvent event) throws IOException {
 		String option = _mainButton.getText();
@@ -67,15 +70,15 @@ public class EnterFilename extends Controller{
 				alert.setContentText("The creation already exists.\nDo you want to ovewrite " + filename + "?");
 				alert.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
 				DialogPane pane = alert.getDialogPane();
-		        pane.getStylesheets().add(getClass().getResource("/css/dark.css").toExternalForm());
-		        pane.setId("background");
+				pane.getStylesheets().add(getClass().getResource("/css/dark.css").toExternalForm());
+				pane.setId("background");
 				alert.showAndWait();
 				if(alert.getResult()==ButtonType.NO) {
 					//exit method if dont want to overwrite
 					return;
 				} else if(alert.getResult()==ButtonType.YES){
 					//if overwriting, need to delete question as well
-		        	ProcessRunner("sh", "./scripts/delete_creation_and_question.sh \"" + filename + "\"");
+					ProcessRunner("sh", "./scripts/delete_creation_and_question.sh \"" + filename + "\"");
 				}
 			}
 			buildCreation(filename);
@@ -83,7 +86,7 @@ public class EnterFilename extends Controller{
 			SwitchForwardScene(event);
 		}
 	}
-	
+
 	private void buildCreation(String filename) {
 		//make progressbar visible
 		_progressBar.setVisible(true);
@@ -97,31 +100,31 @@ public class EnterFilename extends Controller{
 				updateProgress(0, methods);
 				updateMessage("Deleting Temps");
 				_creation.deleteFinals();
-				
+
 				updateProgress(1, methods);
 				updateMessage("Combining Chunks");
 				_creation.combineChunks();
-				
+
 				updateProgress(2, methods);
 				updateMessage("Mixing Audio");
 				_creation.mixAudio();
-				
+
 				updateProgress(3, methods);
 				updateMessage("Formatting Images");
 				_creation.formatImages();
-				
+
 				updateProgress(4, methods);
 				updateMessage("Making Video");
 				_creation.makeVideos();
-				
+
 				updateMessage("Making Creation");
 				updateProgress(5, methods);
 				_creation.makeCreation(filename);
-				
+
 				updateMessage("Making Question");
 				updateProgress(6, methods);
 				_creation.makeQuestion(filename);
-				
+
 				updateMessage("Done");
 				updateProgress(7, methods);
 				return null;
@@ -137,6 +140,8 @@ public class EnterFilename extends Controller{
 						_backButton.setDisable(false);
 						_mainButton.setDisable(false);
 						_mainButton.setText("Finish");
+						Image image = new Image(getClass().getResourceAsStream("/icons/home.png"));
+						_mainButton.setGraphic(new ImageView(image));
 					}
 				});
 			}
@@ -146,7 +151,7 @@ public class EnterFilename extends Controller{
 		_progressBar.progressProperty().bind(task.progressProperty());
 		_progressLabel.textProperty().bind(task.messageProperty());
 	}
-	
+
 	@Override
 	public void AuxiliaryFunctionPrevious(FXMLLoader loader) {
 		ChooseImages controller = loader.getController();
@@ -154,5 +159,5 @@ public class EnterFilename extends Controller{
 		controller.updateImageList();
 		controller.reflectCreation();
 	}
-	
+
 }
