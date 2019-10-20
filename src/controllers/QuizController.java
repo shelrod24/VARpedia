@@ -159,11 +159,17 @@ public class QuizController extends Controller {
 
             _player.pause();
             _play.setText("Play");
+			Image image = new Image(getClass().getResourceAsStream("/icons/play.png"));
+			_play.setGraphic(new ImageView(image));
+
 
         } else {
 
             _player.play();
             _play.setText("Pause");
+			Image image = new Image(getClass().getResourceAsStream("/icons/pause.png"));
+			_play.setGraphic(new ImageView(image));
+
 
         }
     }
