@@ -10,6 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="background" prefHeight="500.0" prefWidth="1000.0" stylesheets="@/css/dark.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.Score">
    <children>
@@ -26,6 +27,19 @@
                         </ImageView>
                      </graphic>
                   </Button>
+                  <Region prefHeight="28.0" prefWidth="354.0" />
+                  <Label text="Results">
+                     <graphic>
+                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../icons/results.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
               </items>
             </ToolBar>
             <VBox alignment="CENTER" VBox.vgrow="ALWAYS">
@@ -35,7 +49,14 @@
                   <Region prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
                   <HBox alignment="BOTTOM_RIGHT">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#SwitchForwardScene" prefHeight="29.0" prefWidth="109.0" text="Finish" />
+                        <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#SwitchForwardScene" prefHeight="29.0" prefWidth="109.0" text="Retry">
+                           <graphic>
+                              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icons/quiz.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
                      </children>
                   </HBox>
                </children>
