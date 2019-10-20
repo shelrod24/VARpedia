@@ -63,7 +63,7 @@
                   <Slider fx:id="_slider" style="-fx-background-color: #555555;" />
                   <HBox alignment="CENTER" prefHeight="64.0" prefWidth="1000.0" style="-fx-background-color: #555555;">
                      <children>
-                        <Button fx:id="_skipbackward" contentDisplay="CENTER" ellipsisString="" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#SkipBackSeconds" prefWidth="120.0" style="-fx-background-color: #555555;" text="Skip back" textAlignment="RIGHT" textFill="#ffffffcc">
+                        <Button fx:id="_skipbackward" ellipsisString="" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#SkipBackSeconds" prefWidth="130.0" style="-fx-background-color: #555555;" text="Skip Back" textAlignment="RIGHT" textFill="#ffffffcc">
                            <effect>
                               <Glow level="0.0" />
                            </effect>
@@ -73,24 +73,59 @@
                            <opaqueInsets>
                               <Insets />
                            </opaqueInsets>
+                           <graphic>
+                              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icons/skip_back.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
                         </Button>
-                        <Button fx:id="_slower" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#SlowDown" prefWidth="120.0" style="-fx-background-color: #555555;" text="Slower  " textAlignment="CENTER" textFill="#f8f8f8cc" />
-                        <Button fx:id="_play" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#PausePlay" prefWidth="120.0" style="-fx-background-color: #555555;" text="Pause" textAlignment="CENTER" textFill="#ffffffcc" />
-                        <Button fx:id="_faster" contentDisplay="CENTER" ellipsisString="" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#FastForward" prefWidth="120.0" style="-fx-background-color: #555555;" text="Faster" textAlignment="RIGHT" textFill="#ffffffcc">
+                        <Button fx:id="_slower" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#SlowDown" prefWidth="120.0" style="-fx-background-color: #555555;" text="Slower  " textAlignment="CENTER" textFill="#f8f8f8cc">
+                           <graphic>
+                              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icons/slower.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
+                        <Button fx:id="_play" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#PausePlay" prefWidth="120.0" style="-fx-background-color: #555555;" text="Pause" textAlignment="CENTER" textFill="#ffffffcc">
+                           <graphic>
+                              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icons/pause.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
+                        <Button fx:id="_faster" ellipsisString="" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#FastForward" prefWidth="120.0" style="-fx-background-color: #555555;" text="Faster" textAlignment="RIGHT" textFill="#ffffffcc">
                            <effect>
                               <Glow level="0.0" />
                            </effect>
                            <cursor>
                               <Cursor fx:constant="DEFAULT" />
                            </cursor>
+                           <graphic>
+                              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icons/faster.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
                         </Button>
-                        <Button fx:id="_skipforward" contentDisplay="CENTER" ellipsisString="" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" onAction="#SkipForwardSeconds" prefWidth="120.0" style="-fx-background-color: #555555;" text="Skip forward" textAlignment="RIGHT" textFill="#ffffffcc">
+                        <Button fx:id="_skipforward" ellipsisString="" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#SkipForwardSeconds" prefWidth="130.0" style="-fx-background-color: #555555;" text="Skip Forward" textAlignment="RIGHT" textFill="#ffffffcc">
                            <effect>
                               <Glow level="0.0" />
                            </effect>
                            <cursor>
                               <Cursor fx:constant="DEFAULT" />
                            </cursor>
+                           <graphic>
+                              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icons/skip_forward.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
                         </Button>
                      </children>
                      <padding>
