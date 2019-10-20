@@ -27,6 +27,8 @@ public class ChooseImages extends Controller{
 	private final String _nextFXMLPath="/fxml/EnterFilename.fxml";
 	private final String _previousFXMLPath="/fxml/ChooseMusic.fxml";
 	private NewCreationService _creation;
+	private Task<Boolean> _getImageTask;
+	
 	@FXML private ListView<String> _inputImageView;
 	@FXML private ListView<String> _outputImageView;
 
@@ -111,21 +113,26 @@ public class ChooseImages extends Controller{
 	 * Initializes the data required for the creation
 	 */
 	public void initData() {
-		Task<Void>  task = new Task<Void>() {
+		_getImageTask = new Task<Boolean>() {
 			@Override
-			protected Void call() throws Exception {
+			protected Boolean call() throws Exception {
 				//delete previous images
 				ProcessBuilder deleteBuilder = new ProcessBuilder("./scripts/delete_images.sh");
 				Process deleteProcess = deleteBuilder.start();
 				deleteProcess.waitFor();
 				for (int i = 1; i <= 5; i++) {
+					//check if cancel is pressed
+					if(isCancelled()==true) {
+						return true;
+					}
+					
 					//download images
 					List<String> imageList = FlickrAPIService.getImages(_creation.getTerm(), 3, i);
 					
-					//check if no images found
+					//check if no images found, and return false if so
 					if(i==1 && DirectoryServices.ListFilesInDir("./temps/image").isEmpty()) {
 						cancel();
-						return null;
+						return false;
 					}
 
 					//populate list once done
@@ -136,16 +143,19 @@ public class ChooseImages extends Controller{
 						}
 					});
 				}
-				return null;
+				return true;
 			}
 		};
-		task.setOnCancelled(new EventHandler<WorkerStateEvent>() {
+		_getImageTask.setOnCancelled(new EventHandler<WorkerStateEvent>() {
 			@Override
 			public void handle(WorkerStateEvent arg0) {
-				CreateAlert(Alert.AlertType.ERROR, "No Images Found", "More than 10 images were chosen");
+				Boolean imagesExist = _getImageTask.getValue();
+				if(imagesExist!=null && imagesExist) {
+					CreateAlert(Alert.AlertType.ERROR, "No Images Found", "More than 10 images were chosen");
+				}
 			}
 		});
-		Thread thread = new Thread(task);
+		Thread thread = new Thread(_getImageTask);
 		thread.start();
 	}
 
@@ -194,6 +204,7 @@ public class ChooseImages extends Controller{
 		}
 	}
 
+	@Override
 	public void AuxiliaryFunction(FXMLLoader loader){
 		_creation.setImageList(_outputImageView.getItems());
 		EnterFilename controller = loader.getController();
@@ -202,10 +213,18 @@ public class ChooseImages extends Controller{
 
 	@Override
 	public void AuxiliaryFunctionPrevious(FXMLLoader loader) {
-		//called when switching scenes
+		//stop loading images when back is pressed
+		_getImageTask.cancel();
+		
 		ChooseMusic controller = loader.getController();
 		controller.setCreation(_creation);
 		controller.reflectCreation();
+	}
+	
+	@Override
+	public void AuxiliaryFunctionBackwards(FXMLLoader loader) {
+		//stop loading images when home is pressed
+		_getImageTask.cancel();
 	}
 
 	/**
