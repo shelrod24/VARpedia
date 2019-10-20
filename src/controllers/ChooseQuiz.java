@@ -6,6 +6,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,7 +15,7 @@ import java.util.ArrayList;
 
 public class ChooseQuiz extends Controller {
 
-    @FXML private ChoiceBox<Integer> _choiceBox;
+    @FXML private ComboBox<Integer> _choiceBox;
     String[] files;
     ArrayList<String> quizFiles;
 

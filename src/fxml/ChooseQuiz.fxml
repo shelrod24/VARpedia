@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -24,7 +24,7 @@
                         </ImageView>
                      </graphic></Button>
                   <Region prefHeight="28.0" prefWidth="362.0" />
-                  <ChoiceBox fx:id="_choiceBox" prefWidth="150.0" />
+                  <ComboBox fx:id="_choiceBox" prefWidth="150.0" />
               </items>
             </ToolBar>
          </top>

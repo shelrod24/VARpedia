@@ -23,10 +23,12 @@ public class CreateAudio extends Controller {
     @FXML private Button _searchbutton;
     @FXML private ListView<String> _listarea;
     @FXML private TextArea _lyrics;
-    @FXML private ChoiceBox<String> _chooseaccent;
+    @FXML private ComboBox<String> _chooseaccent;
     @FXML private TextField _filefield;
     @FXML private Button _createbutton;
     @FXML private Button _previewbutton;
+    
+    
     private String _previousfxmlpath = "/fxml/MainMenu.fxml";
     private String _searchterm;
 
