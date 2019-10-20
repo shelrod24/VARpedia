@@ -12,6 +12,8 @@ import javafx.scene.control.DialogPane;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 
@@ -139,47 +141,72 @@ public class DeleteAudio extends Controller {
 	}
 
 	public void PreviewExistingAudio() throws IOException, InterruptedException {
-
 		if(_audiofiles.getSelectionModel().getSelectedItem()==null) {
 			return;
 		}
 
 		if(_previewbutton.getText().equals("Play")) {
-			
 			// Change button to stop
 			_previewbutton.setText("Stop");
 			Image image = new Image(getClass().getResourceAsStream("/icons/stop.png"));
 			_previewbutton.setGraphic(new ImageView(image));
-			
-			// Play audio
-			_audio = _audiofiles.getSelectionModel().getSelectedItem();
-			File fileUrl = new File("./audio/" + _subdirectory + "/" + _audio);
-			Media audio = new Media(fileUrl.toURI().toString());
-			_player = new MediaPlayer(audio);
-			_player.autoPlayProperty().set(true);
-			
-			// At the end, call method again to reset button
-			_player.setOnEndOfMedia(new Runnable() {
-				@Override
-				public void run() {
-					try {
-						PreviewExistingAudio();
-					} catch (IOException | InterruptedException e) {
-						e.printStackTrace();
-					}
-				}
-			});
-			
+
+			playAudio();
+
 		} else if(_previewbutton.getText().equals("Stop") && _player!=null) {
 			// Stop player and set button to play
-			_player.stop();
 			_previewbutton.setText("Play");
 			Image image = new Image(getClass().getResourceAsStream("/icons/play.png"));
 			_previewbutton.setGraphic(new ImageView(image));
+			
+			_player.stop();
+			
 		}
-
 	}
 
+	/**
+	 * if _audiofiles clicked twice, stop current audio and play currently selected
+	 */
+	@FXML
+	private void handleAudioView(MouseEvent event) throws IOException, InterruptedException {
+		if(event.getButton() == MouseButton.PRIMARY && event.getClickCount()==2 && _audiofiles.getSelectionModel().getSelectedItem() != null) {
+			// Change button to stop
+			_previewbutton.setText("Stop");
+			Image image = new Image(getClass().getResourceAsStream("/icons/stop.png"));
+			_previewbutton.setGraphic(new ImageView(image));
+
+			playAudio();		
+		}
+	}
+
+	/**
+	 * Plays the currently selected audio
+	 * Will stop currently playing audio before playing
+	 */
+	private void playAudio() {
+		if(_player != null) {
+			_player.stop();
+		}
+		
+		// Play audio
+		_audio = _audiofiles.getSelectionModel().getSelectedItem();
+		File fileUrl = new File("./audio/" + _subdirectory + "/" + _audio);
+		Media audio = new Media(fileUrl.toURI().toString());
+		_player = new MediaPlayer(audio);
+		_player.autoPlayProperty().set(true);
+
+		// At the end, call method again to reset button
+		_player.setOnEndOfMedia(new Runnable() {
+			@Override
+			public void run() {
+				try {
+					PreviewExistingAudio();
+				} catch (IOException | InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 
 	@Override
 	public String ReturnFXMLPath() {
