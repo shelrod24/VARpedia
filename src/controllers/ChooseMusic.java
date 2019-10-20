@@ -69,15 +69,7 @@ public class ChooseMusic extends Controller{
 	@FXML
 	private void handleMusicView(MouseEvent event) {
 		if(event.getButton() == MouseButton.PRIMARY && event.getClickCount()==2 && _musicView.getSelectionModel().getSelectedItem() != null) {
-			//	        Thread worker = new Thread(new Task<Void>(){
-			//	            @Override
-			//	            protected Void call() throws Exception {
-			//	                String music = _musicView.getSelectionModel().getSelectedItem();
-			//	                AudioService.playMusic(music);
-			//	                return null;
-			//	            }
-			//	        });
-			//	        worker.start();
+			// stop current track
 			if(_player != null) {
 				_player.stop();
 			}
@@ -92,12 +84,16 @@ public class ChooseMusic extends Controller{
 				_player = new MediaPlayer(musicMedia);
 				_player.autoPlayProperty().set(true);
 			}
-
 		}
 	}
 
 	@Override
 	public void AuxiliaryFunction(FXMLLoader loader) {
+		//stop current audio
+		if(_player!=null) {
+			_player.stop();
+		}
+		
 		String music = _musicView.getSelectionModel().getSelectedItem();
 		if(music.equals("None")) {
 			music="";
@@ -110,10 +106,23 @@ public class ChooseMusic extends Controller{
 
 	@Override
 	public void AuxiliaryFunctionPrevious(FXMLLoader loader) {
+		// stop current audio
+		if(_player!=null) {
+			_player.stop();
+		}
+		
 		//called when switching scenes
 		ChooseChunk controller = loader.getController();
 		controller.setCreation(_creation);
 		controller.reflectCreation();
+	}
+	
+	@Override
+	public void AuxiliaryFunctionBackwards(FXMLLoader loader) {
+		//stop current audio
+		if(_player!=null) {
+			_player.stop();
+		}
 	}
 
 	/**

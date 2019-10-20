@@ -1,5 +1,6 @@
 package controllers;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,21 +19,25 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionModel;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.control.Alert.AlertType;
 
 public class ChooseChunk extends Controller{
 	private final String _backFXMLPath="/fxml/MainMenu.fxml";
 	private final String _nextFXMLPath="/fxml/ChooseMusic.fxml";
 	private NewCreationService _creation;
+	private MediaPlayer _player;
+
 	@FXML private ListView<String> _folderView;
 	@FXML private ListView<String> _inputAudioView;
 	@FXML private ListView<String> _outputAudioView;
-	
+
 	/**
 	 * Upon initialization, need to load the folders to select
 	 */
 	@FXML
-    private void initialize() {
+	private void initialize() {
 		Thread thread = new Thread(new Task<Void>() {
 			@Override
 			protected Void call() throws Exception {
@@ -45,12 +50,12 @@ public class ChooseChunk extends Controller{
 					}});
 				return null;
 			}
-			
+
 		});
 		thread.start();
-    }
+	}
 
-	
+
 	@Override
 	public String ReturnFXMLPath() {
 		return _backFXMLPath;
@@ -64,7 +69,7 @@ public class ChooseChunk extends Controller{
 	public String ReturnForwardFXMLPath() {
 		return _nextFXMLPath;
 	}
-	
+
 	/**
 	 * If folder clicked, display contents of folder
 	 */
@@ -78,45 +83,55 @@ public class ChooseChunk extends Controller{
 		// make a new creation with the term as the folder name
 		_creation = new NewCreationService(folder);
 	}
-	
+
 	/**
 	 * if inputAudioView clicked twice, play audio
 	 */
 	@FXML
 	private void handleInputAudioView(MouseEvent event) {
 		if(event.getButton() == MouseButton.PRIMARY && event.getClickCount()==2 && _inputAudioView.getSelectionModel().getSelectedItem() != null) {
-	        Thread worker = new Thread(new Task<Void>(){
-	            @Override
-	            protected Void call() throws Exception {
-	                String audio = _inputAudioView.getSelectionModel().getSelectedItem();
-	                String folder = _folderView.getSelectionModel().getSelectedItem();
-	                AudioService.playAudio(folder, audio);
-	                return null;
-	            }
-	        });
-	        worker.start();
+			// build filepath
+			String folder = _folderView.getSelectionModel().getSelectedItem();
+			String audio = _inputAudioView.getSelectionModel().getSelectedItem();
+			String filepath ="./audio/"+folder+"/"+audio; 
+
+			playAudio(filepath);
 		}
 	}
-	
+
 	/**
 	 * if outputAudioView clicked twice, play audio
 	 */
 	@FXML
 	private void handleOutputAudioView(MouseEvent event) {
 		if(event.getButton() == MouseButton.PRIMARY && event.getClickCount()==2 && _outputAudioView.getSelectionModel().getSelectedItem() != null) {
-	        Thread worker = new Thread(new Task<Void>(){
-	            @Override
-	            protected Void call() throws Exception {
-	                String audio = _outputAudioView.getSelectionModel().getSelectedItem();
-	                String folder = _folderView.getSelectionModel().getSelectedItem();
-	                AudioService.playAudio(folder, audio);
-	                return null;
-	            }
-	        });
-	        worker.start();
+			// build filepath
+			String folder = _folderView.getSelectionModel().getSelectedItem();
+			String audio = _outputAudioView.getSelectionModel().getSelectedItem();
+			String filepath ="./audio/"+folder+"/"+audio; 
+			
+			playAudio(filepath);
 		}
 	}
 	
+	/**
+	 * plays audio specified by filepath
+	 * @param filepath path to audio file to play
+	 */
+	private void playAudio(String filepath) {
+		// stop currently playing audio
+		if(_player!=null) {
+			_player.stop();
+		}
+		
+		// play audio
+		File fileUrl = new File(filepath);
+		Media audioMedia = new Media(fileUrl.toURI().toString());
+		_player = new MediaPlayer(audioMedia);
+		_player.autoPlayProperty().set(true);
+	}
+
+
 	/**
 	 * Updates the input view list to contain the current files specified folder
 	 * @param folder the string dictating the folder clicked
@@ -128,7 +143,7 @@ public class ChooseChunk extends Controller{
 		_inputAudioView.getItems().setAll(audioList);
 		_outputAudioView.getItems().clear();
 	}
-	
+
 	/**
 	 * Once add button clicked, adds selected audio to output
 	 */
@@ -139,7 +154,7 @@ public class ChooseChunk extends Controller{
 			_outputAudioView.getItems().add(chunk);
 		}
 	}
-	
+
 	/**
 	 * Once remove button clicked, removes selected audio
 	 */
@@ -150,7 +165,7 @@ public class ChooseChunk extends Controller{
 			_outputAudioView.getItems().remove(index);
 		}
 	}
-	
+
 	@FXML
 	private void handleMoveUp() {
 		int index = _outputAudioView.getSelectionModel().getSelectedIndex();
@@ -163,7 +178,7 @@ public class ChooseChunk extends Controller{
 			_outputAudioView.getSelectionModel().clearAndSelect(index - 1);
 		}
 	}
-	
+
 	@FXML
 	private void handleMoveDown() {
 		int index = _outputAudioView.getSelectionModel().getSelectedIndex();
@@ -176,14 +191,26 @@ public class ChooseChunk extends Controller{
 			_outputAudioView.getSelectionModel().clearAndSelect(index + 1);
 		}
 	}
-	
+
 	@Override
 	public void AuxiliaryFunction(FXMLLoader loader) {
+		//stop current audio
+		if(_player!=null) {
+			_player.stop();
+		}
 		_creation.setAudioList(_outputAudioView.getItems());
 		ChooseMusic controller = loader.getController();
 		controller.setCreation(_creation);
 	}
 	
+	@Override
+	public void AuxiliaryFunctionBackwards(FXMLLoader loader) {
+		//stop current audio
+		if(_player!=null) {
+			_player.stop();
+		}
+	}
+
 	/**
 	 * makes it so that the listViews reflect the current creation object
 	 */
@@ -196,7 +223,7 @@ public class ChooseChunk extends Controller{
 		//set output values to creation current
 		_outputAudioView.getItems().setAll(_creation.getAudioList());
 	}
-	
+
 	@FXML
 	public void handleNextButton(ActionEvent event) throws IOException {
 		if(_outputAudioView.getItems().isEmpty()) {
@@ -205,5 +232,5 @@ public class ChooseChunk extends Controller{
 			SwitchForwardScene(event);
 		}
 	}
-	
+
 }

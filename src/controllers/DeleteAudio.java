@@ -5,6 +5,7 @@ import Services.DirectoryServices;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -217,5 +218,14 @@ public class DeleteAudio extends Controller {
 	public String ReturnForwardFXMLPath() {
 		return null;
 	}
+	
+	@Override
+	public void AuxiliaryFunctionBackwards(FXMLLoader loader) {
+		//stop current audio
+		if(_player!=null) {
+			_player.stop();
+		}
+	}
+
 
 }
