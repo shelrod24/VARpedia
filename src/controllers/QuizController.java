@@ -107,6 +107,10 @@ public class QuizController extends Controller {
 
 
     public void checkAnswer() throws InterruptedException, IOException {
+    	//nothing was entered, so do nothing
+    	if(_textField.getText()==null || _textField.getText().toLowerCase().trim().equals("")) {
+    		return;
+    	}
 
         String file = _listOfCreations.get(0);
         String[] s = file.split("_");
