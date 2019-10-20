@@ -1,5 +1,6 @@
 package controllers;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +19,8 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionModel;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.control.Alert.AlertType;
 
 public class ChooseMusic extends Controller{
@@ -25,19 +28,21 @@ public class ChooseMusic extends Controller{
 	private final String _nextFXMLPath="/fxml/ChooseImages.fxml";
 	private final String _previousFXMLPath="/fxml/ChooseChunk.fxml";
 	private NewCreationService _creation;
+	private MediaPlayer _player;
+
 	@FXML private ListView<String> _musicView;
-	
+
 	/**
 	 * Upon initialization, load music in music directory
 	 */
 	@FXML
-    private void initialize() {
+	private void initialize() {
 		_musicView.getItems().add("None");
 		// not that intensive, so doesnt need to be threaded
 		_musicView.getItems().addAll(DirectoryServices.ListFilesInDir("./music"));
 		// as default, select None
 		_musicView.getSelectionModel().clearAndSelect(0);
-    }
+	}
 
 	@Override
 	public String ReturnFXMLPath() {
@@ -62,20 +67,35 @@ public class ChooseMusic extends Controller{
 	 * Plays audio when double clicked
 	 */
 	@FXML
-	private void handleInputAudioView(MouseEvent event) {
+	private void handleMusicView(MouseEvent event) {
 		if(event.getButton() == MouseButton.PRIMARY && event.getClickCount()==2 && _musicView.getSelectionModel().getSelectedItem() != null) {
-	        Thread worker = new Thread(new Task<Void>(){
-	            @Override
-	            protected Void call() throws Exception {
-	                String music = _musicView.getSelectionModel().getSelectedItem();
-	                AudioService.playMusic(music);
-	                return null;
-	            }
-	        });
-	        worker.start();
+			//	        Thread worker = new Thread(new Task<Void>(){
+			//	            @Override
+			//	            protected Void call() throws Exception {
+			//	                String music = _musicView.getSelectionModel().getSelectedItem();
+			//	                AudioService.playMusic(music);
+			//	                return null;
+			//	            }
+			//	        });
+			//	        worker.start();
+			if(_player != null) {
+				_player.stop();
+			}
+
+			// get currently selected music
+			String music = _musicView.getSelectionModel().getSelectedItem();
+			
+			// if None is selected, skip playing track
+			if(music != "None") {
+				File fileUrl = new File("./music/" + music);
+				Media musicMedia = new Media(fileUrl.toURI().toString());
+				_player = new MediaPlayer(musicMedia);
+				_player.autoPlayProperty().set(true);
+			}
+
 		}
 	}
-	
+
 	@Override
 	public void AuxiliaryFunction(FXMLLoader loader) {
 		String music = _musicView.getSelectionModel().getSelectedItem();
@@ -87,7 +107,7 @@ public class ChooseMusic extends Controller{
 		controller.setCreation(_creation);
 		controller.initData();
 	}
-	
+
 	@Override
 	public void AuxiliaryFunctionPrevious(FXMLLoader loader) {
 		//called when switching scenes
@@ -95,7 +115,7 @@ public class ChooseMusic extends Controller{
 		controller.setCreation(_creation);
 		controller.reflectCreation();
 	}
-	
+
 	/**
 	 * makes it so that the listViews reflect the current creation object
 	 */
@@ -109,5 +129,5 @@ public class ChooseMusic extends Controller{
 		int musicIndex = _musicView.getItems().indexOf(music);
 		_musicView.getSelectionModel().clearAndSelect(musicIndex);
 	}
-	
+
 }

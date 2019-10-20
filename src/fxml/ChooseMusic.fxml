@@ -58,7 +58,7 @@
                                  </image>
                               </ImageView>
                            </graphic></Label>
-                        <ListView fx:id="_musicView" opacity="0.8" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
+                        <ListView fx:id="_musicView" onMouseClicked="#handleMusicView" opacity="0.8" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
                      </children>
                   </VBox>
                   <HBox spacing="10.0">

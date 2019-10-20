@@ -39,10 +39,7 @@ public class QuizController extends Controller {
     private int _numberCorrect = 0;
     private int _maximumScore;
     private double _rate = 1.0;
-
-
-
-
+    
 
     public void junction(ActionEvent event) throws IOException, InterruptedException {
 

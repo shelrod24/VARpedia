@@ -48,7 +48,7 @@
                               </ImageView>
                            </graphic>
                         </Label>
-                        <ListView fx:id="_audiofiles" opacity="0.8" prefHeight="200.0" prefWidth="300.0" VBox.vgrow="ALWAYS" />
+                        <ListView fx:id="_audiofiles" onMouseClicked="#handleAudioView" opacity="0.8" prefHeight="200.0" prefWidth="300.0" VBox.vgrow="ALWAYS" />
                      </children>
                      <padding>
                         <Insets top="5.0" />
