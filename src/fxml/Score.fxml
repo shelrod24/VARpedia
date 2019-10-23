@@ -18,7 +18,7 @@
          <children>
             <ToolBar prefHeight="40.0" prefWidth="200.0">
               <items>
-                <Button mnemonicParsing="false" onAction="#SwitchBackScene" text="Home">
+                <Button mnemonicParsing="false" onAction="#switchBackScene" text="Home">
                      <graphic>
                         <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -49,7 +49,7 @@
                   <Region prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS" />
                   <HBox alignment="BOTTOM_RIGHT">
                      <children>
-                        <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#SwitchForwardScene" prefHeight="29.0" prefWidth="109.0" text="Retry">
+                        <Button alignment="TOP_LEFT" mnemonicParsing="false" onAction="#switchForwardScene" prefHeight="29.0" prefWidth="109.0" text="Retry">
                            <graphic>
                               <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                                  <image>

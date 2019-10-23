@@ -45,17 +45,17 @@ public class ChooseMusic extends Controller{
 	}
 
 	@Override
-	public String ReturnFXMLPath() {
+	public String returnFXMLPath() {
 		return _backFXMLPath;
 	}
 
 	@Override
-	public String ReturnForwardFXMLPath() {
+	public String returnForwardFXMLPath() {
 		return _nextFXMLPath;
 	}
 
 	@Override
-	public String ReturnPreviousFXMLPath() {
+	public String returnPreviousFXMLPath() {
 		return _previousFXMLPath;
 	}
 
@@ -88,7 +88,7 @@ public class ChooseMusic extends Controller{
 	}
 
 	@Override
-	public void AuxiliaryFunction(FXMLLoader loader) {
+	public void auxiliaryFunction(FXMLLoader loader) {
 		//stop current audio
 		if(_player!=null) {
 			_player.stop();
@@ -105,7 +105,7 @@ public class ChooseMusic extends Controller{
 	}
 
 	@Override
-	public void AuxiliaryFunctionPrevious(FXMLLoader loader) {
+	public void auxiliaryFunctionPrevious(FXMLLoader loader) {
 		// stop current audio
 		if(_player!=null) {
 			_player.stop();
@@ -118,7 +118,7 @@ public class ChooseMusic extends Controller{
 	}
 	
 	@Override
-	public void AuxiliaryFunctionBackwards(FXMLLoader loader) {
+	public void auxiliaryFunctionBackwards(FXMLLoader loader) {
 		//stop current audio
 		if(_player!=null) {
 			_player.stop();

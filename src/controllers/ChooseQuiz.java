@@ -24,7 +24,7 @@ public class ChooseQuiz extends Controller {
     public void switchToQuiz(ActionEvent event) throws IOException {
 
         pupulateQuizList();
-        SwitchForwardScene(event);
+        switchForwardScene(event);
 
     }
 
@@ -98,17 +98,17 @@ public class ChooseQuiz extends Controller {
     }
 
     @Override
-    public String ReturnFXMLPath() {
+    public String returnFXMLPath() {
         return "/fxml/MainMenu.fxml";
     }
 
     @Override
-    public String ReturnForwardFXMLPath() {
+    public String returnForwardFXMLPath() {
         return "/fxml/Quiz.fxml";
     }
 
     @Override
-    public void AuxiliaryFunction(FXMLLoader loader){
+    public void auxiliaryFunction(FXMLLoader loader){
 
         QuizController controller = loader.<QuizController>getController();
         controller.setFileList(quizFiles);

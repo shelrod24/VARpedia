@@ -57,7 +57,7 @@ public class ChooseChunk extends Controller{
 
 
 	@Override
-	public String ReturnFXMLPath() {
+	public String returnFXMLPath() {
 		return _backFXMLPath;
 	}
 
@@ -66,7 +66,7 @@ public class ChooseChunk extends Controller{
 	}
 
 	@Override
-	public String ReturnForwardFXMLPath() {
+	public String returnForwardFXMLPath() {
 		return _nextFXMLPath;
 	}
 
@@ -193,7 +193,7 @@ public class ChooseChunk extends Controller{
 	}
 
 	@Override
-	public void AuxiliaryFunction(FXMLLoader loader) {
+	public void auxiliaryFunction(FXMLLoader loader) {
 		//stop current audio
 		if(_player!=null) {
 			_player.stop();
@@ -204,7 +204,7 @@ public class ChooseChunk extends Controller{
 	}
 	
 	@Override
-	public void AuxiliaryFunctionBackwards(FXMLLoader loader) {
+	public void auxiliaryFunctionBackwards(FXMLLoader loader) {
 		//stop current audio
 		if(_player!=null) {
 			_player.stop();
@@ -227,9 +227,9 @@ public class ChooseChunk extends Controller{
 	@FXML
 	public void handleNextButton(ActionEvent event) throws IOException {
 		if(_outputAudioView.getItems().isEmpty()) {
-			CreateAlert(Alert.AlertType.WARNING, "No Audio Chosen", "No audio was chosen");
+			createAlert(Alert.AlertType.WARNING, "No Audio Chosen", "No audio was chosen");
 		}else {
-			SwitchForwardScene(event);
+			switchForwardScene(event);
 		}
 	}
 

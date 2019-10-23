@@ -40,17 +40,17 @@ public class EnterFilename extends Controller{
 	}
 
 	@Override
-	public String ReturnFXMLPath() {
+	public String returnFXMLPath() {
 		return _backFXMLPath;
 	}
 
 	@Override
-	public String ReturnForwardFXMLPath() {
+	public String returnForwardFXMLPath() {
 		return _nextFXMLPath;
 	}
 
 	@Override
-	public String ReturnPreviousFXMLPath() {
+	public String returnPreviousFXMLPath() {
 		return _previousFXMLPath;
 	}
 
@@ -61,7 +61,7 @@ public class EnterFilename extends Controller{
 		if(option.equals("Create")) {
 			//check if file exists
 			if(filename==null || filename.trim().isEmpty() || !filename.matches("[a-zA-Z0-9]*")){
-				CreateAlert(Alert.AlertType.WARNING, "Invalid Filename", "The filename is either empty or invalid\nPlease only use either letters or numbers");
+				createAlert(Alert.AlertType.WARNING, "Invalid Filename", "The filename is either empty or invalid\nPlease only use either letters or numbers");
 				return;
 			}
 			if (DirectoryServices.creationExists(filename)) {
@@ -80,12 +80,12 @@ public class EnterFilename extends Controller{
 					return;
 				} else if(alert.getResult()==ButtonType.YES){
 					//if overwriting, need to delete question as well
-					ProcessRunner("sh", "./scripts/delete_creation_and_question.sh \"" + filename + "\"");
+					processRunner("sh", "./scripts/delete_creation_and_question.sh \"" + filename + "\"");
 				}
 			}
 			buildCreation(filename);
 		} else {
-			SwitchForwardScene(event);
+			switchForwardScene(event);
 		}
 	}
 	
@@ -143,7 +143,7 @@ public class EnterFilename extends Controller{
 				Platform.runLater(new Runnable() {
 					@Override
 					public void run() {
-						CreateAlert(Alert.AlertType.INFORMATION, "Creation Made", "The creation " + filename + " was made");
+						createAlert(Alert.AlertType.INFORMATION, "Creation Made", "The creation " + filename + " was made");
 						_backButton.setDisable(false);
 						_mainButton.setDisable(false);
 						_mainButton.setText("Finish");
@@ -161,7 +161,7 @@ public class EnterFilename extends Controller{
 	}
 
 	@Override
-	public void AuxiliaryFunctionPrevious(FXMLLoader loader) {
+	public void auxiliaryFunctionPrevious(FXMLLoader loader) {
 		ChooseImages controller = loader.getController();
 		controller.setCreation(_creation);
 		controller.updateImageList();

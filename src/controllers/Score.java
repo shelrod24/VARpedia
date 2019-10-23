@@ -24,12 +24,12 @@ public class Score extends Controller {
 
 
     @Override
-    public String ReturnFXMLPath() {
+    public String returnFXMLPath() {
 		return _backFXMLPath;
     }
 
     @Override
-    public String ReturnForwardFXMLPath() {
+    public String returnForwardFXMLPath() {
         return "/fxml/ChooseQuiz.fxml";
     }
 

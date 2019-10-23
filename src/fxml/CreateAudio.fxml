@@ -25,7 +25,7 @@
                <items>
                   <HBox alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="986.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#SwitchBackScene" text="Home">
+                        <Button mnemonicParsing="false" onAction="#switchBackScene" text="Home">
                            <graphic>
                               <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -75,7 +75,7 @@
                               <HBox alignment="CENTER_LEFT" prefHeight="27.0" prefWidth="435.0" spacing="5.0">
                                  <children>
                                     <TextField fx:id="_searchfield" alignment="CENTER" onAction="#SearchWikipedia" opacity="0.8" prefHeight="28.0" prefWidth="450.0" promptText="Search Wikipedia" HBox.hgrow="ALWAYS" />
-                                    <Button fx:id="_searchbutton" alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#SearchWikipedia" text="Search" textFill="#00b2ff">
+                                    <Button fx:id="_searchbutton" alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#SearchWikipedia" text="Search">
                                        <graphic>
                                           <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
@@ -92,7 +92,7 @@
                                     <Insets top="5.0" />
                                  </VBox.margin>
                               </HBox>
-                              <ListView fx:id="_listarea" opacity="0.8" prefHeight="388.0" style="-fx-background-color: #F5F5F5;" VBox.vgrow="ALWAYS">
+                              <ListView fx:id="_listarea" opacity="0.8" prefHeight="388.0" VBox.vgrow="ALWAYS">
                                  <VBox.margin>
                                     <Insets />
                                  </VBox.margin>

@@ -86,10 +86,10 @@ public class DeleteAudio extends Controller {
 		} else {
 
 			// deleting original audio
-			this.ProcessRunner("/bin/bash", "rm -f " + "\"./audio/" + _subdirectory + "/" + _audio + "\"");
+			this.processRunner("/bin/bash", "rm -f " + "\"./audio/" + _subdirectory + "/" + _audio + "\"");
 			// deleting redacted audio
 			String redactedAudio = _audio.substring(0, _audio.length()-4) + "_redacted.wav";
-			this.ProcessRunner("/bin/bash", "rm -f " + "\"./audio/" + _subdirectory + "/redacted/" + redactedAudio + "\"");
+			this.processRunner("/bin/bash", "rm -f " + "\"./audio/" + _subdirectory + "/redacted/" + redactedAudio + "\"");
 
 
 			List<String> audiofiles = DirectoryServices.ListFilesInDir("./audio/"+_subdirectory);
@@ -102,9 +102,9 @@ public class DeleteAudio extends Controller {
 			}
 
 			//check if redacted is empty
-			this.ProcessRunner("sh", "./scripts/checkdir_isempty.sh" + " \"" + _subdirectory + "/redacted\"");
+			this.processRunner("sh", "./scripts/checkdir_isempty.sh" + " \"" + _subdirectory + "/redacted\"");
 			//check if subdirectory is empty
-			this.ProcessRunner("sh", "./scripts/checkdir_isempty.sh" + " \"" + _subdirectory + "\"");
+			this.processRunner("sh", "./scripts/checkdir_isempty.sh" + " \"" + _subdirectory + "\"");
 
 
 			_audiosubdirs.getItems().clear();
@@ -210,17 +210,17 @@ public class DeleteAudio extends Controller {
 	}
 
 	@Override
-	public String ReturnFXMLPath() {
+	public String returnFXMLPath() {
 		return _previousscene;
 	}
 
 	@Override
-	public String ReturnForwardFXMLPath() {
+	public String returnForwardFXMLPath() {
 		return null;
 	}
 	
 	@Override
-	public void AuxiliaryFunctionBackwards(FXMLLoader loader) {
+	public void auxiliaryFunctionBackwards(FXMLLoader loader) {
 		//stop current audio
 		if(_player!=null) {
 			_player.stop();

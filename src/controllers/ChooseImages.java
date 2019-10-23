@@ -38,17 +38,17 @@ public class ChooseImages extends Controller{
 	}
 
 	@Override
-	public String ReturnFXMLPath() {
+	public String returnFXMLPath() {
 		return _backFXMLPath;
 	}
 
 	@Override
-	public String ReturnForwardFXMLPath() {
+	public String returnForwardFXMLPath() {
 		return _nextFXMLPath;
 	}
 
 	@Override
-	public String ReturnPreviousFXMLPath() {
+	public String returnPreviousFXMLPath() {
 		return _previousFXMLPath;
 	}
 
@@ -151,7 +151,7 @@ public class ChooseImages extends Controller{
 			public void handle(WorkerStateEvent arg0) {
 				Boolean imagesExist = _getImageTask.getValue();
 				if(imagesExist!=null && imagesExist) {
-					CreateAlert(Alert.AlertType.ERROR, "No Images Found", "More than 10 images were chosen");
+					createAlert(Alert.AlertType.ERROR, "No Images Found", "More than 10 images were chosen");
 				}
 			}
 		});
@@ -177,7 +177,7 @@ public class ChooseImages extends Controller{
 	 */
 	public void addImageList(List<String> imageList) {
 		if (imageList.isEmpty()) {
-			CreateAlert(Alert.AlertType.WARNING, "No Images Found", "No images were found on Flickr");
+			createAlert(Alert.AlertType.WARNING, "No Images Found", "No images were found on Flickr");
 		}else {
 			// render image once updated
 			_inputImageView.getItems().addAll(imageList);
@@ -196,23 +196,23 @@ public class ChooseImages extends Controller{
 	@FXML
 	public void handleNextButton(ActionEvent event) throws IOException {
 		if(_outputImageView.getItems().isEmpty()) {
-			CreateAlert(Alert.AlertType.WARNING, "No Images Chosen", "No images were chosen");
+			createAlert(Alert.AlertType.WARNING, "No Images Chosen", "No images were chosen");
 		} else if(_outputImageView.getItems().size()>10) {
-			CreateAlert(Alert.AlertType.WARNING, "Too Many Images Chosen", "More than 10 images were chosen");
+			createAlert(Alert.AlertType.WARNING, "Too Many Images Chosen", "More than 10 images were chosen");
 		} else {
-			SwitchForwardScene(event);
+			switchForwardScene(event);
 		}
 	}
 
 	@Override
-	public void AuxiliaryFunction(FXMLLoader loader){
+	public void auxiliaryFunction(FXMLLoader loader){
 		_creation.setImageList(_outputImageView.getItems());
 		EnterFilename controller = loader.getController();
 		controller.setCreation(_creation);
 	}
 
 	@Override
-	public void AuxiliaryFunctionPrevious(FXMLLoader loader) {
+	public void auxiliaryFunctionPrevious(FXMLLoader loader) {
 		//stop loading images when back is pressed
 		_getImageTask.cancel();
 		
@@ -222,9 +222,11 @@ public class ChooseImages extends Controller{
 	}
 	
 	@Override
-	public void AuxiliaryFunctionBackwards(FXMLLoader loader) {
+	public void auxiliaryFunctionBackwards(FXMLLoader loader) {
 		//stop loading images when home is pressed
-		_getImageTask.cancel();
+		if(_getImageTask!=null) {
+			_getImageTask.cancel();
+		}
 	}
 
 	/**

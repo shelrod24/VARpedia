@@ -179,21 +179,21 @@ public class MediaViewController extends Controller{
 
 
     @Override
-    public String ReturnFXMLPath() {
+    public String returnFXMLPath() {
 
         return _previousfxmlpath;
 
     }
 
     @Override
-    public String ReturnForwardFXMLPath() {
+    public String returnForwardFXMLPath() {
 
         return null;
 
     }
 
     @Override
-    public void AuxiliaryFunctionBackwards(FXMLLoader loader) {
+    public void auxiliaryFunctionBackwards(FXMLLoader loader) {
 
         _player.stop();
         ListScene listcontroller = loader.<ListScene>getController();

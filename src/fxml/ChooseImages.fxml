@@ -21,7 +21,7 @@
                <items>
                   <HBox alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="805.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#SwitchBackScene" text="Home" textFill="WHITE">
+                        <Button mnemonicParsing="false" onAction="#switchBackScene" text="Home" textFill="WHITE">
                            <graphic>
                               <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -123,7 +123,7 @@
                   <HBox spacing="10.0">
                      <children>
                         <Region HBox.hgrow="ALWAYS" />
-                        <Button id="back-button" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#SwitchPreviousScene" prefWidth="100.0" text="Back">
+                        <Button id="back-button" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#switchPreviousScene" prefWidth="100.0" text="Back">
                            <graphic>
                               <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                                  <image>

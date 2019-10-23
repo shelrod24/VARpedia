@@ -84,8 +84,8 @@ public class CreateAudio extends Controller {
     public void FillWikiTextFiles(String searchterm) throws IOException, InterruptedException {
 
         String echowiki = "echo $(wikit "+searchterm+") > ./temps/text.txt";
-        ProcessRunner("/bin/bash", echowiki);
-        ProcessRunner("sh", "./scripts/AddWikiToLinedTextFile.sh");
+        processRunner("/bin/bash", echowiki);
+        processRunner("sh", "./scripts/AddWikiToLinedTextFile.sh");
 
     }
 
@@ -140,7 +140,7 @@ public class CreateAudio extends Controller {
 			@Override
 			protected Void call() throws Exception {
 				
-				ProcessRunner("sh", "./scripts/list_voices.sh");
+				processRunner("sh", "./scripts/list_voices.sh");
 		        ProcessBuilder voicesbuilder = new ProcessBuilder("sh","-c","./scripts/list_voices.sh");
 		        Process voiceprocess = voicesbuilder.start();
 		        BufferedReader stdout = new BufferedReader(new InputStreamReader(voiceprocess.getInputStream()));
@@ -171,7 +171,7 @@ public class CreateAudio extends Controller {
 
         if(name == null) {
             
-            CreateAlert(AlertType.WARNING, "No Selected Text", "There is no text to move over");
+            createAlert(AlertType.WARNING, "No Selected Text", "There is no text to move over");
 
         } else {
 
@@ -190,7 +190,7 @@ public class CreateAudio extends Controller {
 
         if (arr.length > 40){
 
-            CreateAlert(AlertType.WARNING, "Too Many Words", "There are more that 40 words of text");
+            createAlert(AlertType.WARNING, "Too Many Words", "There are more that 40 words of text");
 
         } else {
 
@@ -208,7 +208,7 @@ public class CreateAudio extends Controller {
 
                         Platform.runLater(()->{
 
-                            CreateAlert(AlertType.ERROR, "Festival Error", "The text could not be handled by the current festival voice.\nTry another voice");
+                            createAlert(AlertType.ERROR, "Festival Error", "The text could not be handled by the current festival voice.\nTry another voice");
 
                         });
 
@@ -249,17 +249,17 @@ public class CreateAudio extends Controller {
 
         if (arr.length > 40) {
 
-            CreateAlert(AlertType.WARNING, "Too Many Words", "There are more that 40 words of text");
+            createAlert(AlertType.WARNING, "Too Many Words", "There are more that 40 words of text");
             return;
 
         } else if (name == null || name.trim().isEmpty() || !name.matches("[a-zA-Z0-9]*")) {
 
-            CreateAlert(AlertType.WARNING, "Invalid Filename", "The filename is either empty or invalid\nPlease only use either letters or numbers");
+            createAlert(AlertType.WARNING, "Invalid Filename", "The filename is either empty or invalid\nPlease only use either letters or numbers");
             return;
 
         } else if (lyrics.trim().equals("") || lyrics == null ) {
 
-            CreateAlert(AlertType.WARNING, "No Text Selected", "The text selection is empty.");
+            createAlert(AlertType.WARNING, "No Text Selected", "The text selection is empty.");
             return;
 
         } else if (DirectoryServices.SearchDirectoryForName(_searchterm, name)) {
@@ -282,7 +282,7 @@ public class CreateAudio extends Controller {
 
         } else if(_searchterm == null || _searchterm == "" ) {
 
-            CreateAlert(AlertType.WARNING, "No Search Term", "You have not made a search");
+            createAlert(AlertType.WARNING, "No Search Term", "You have not made a search");
             return;
 
         }
@@ -316,7 +316,7 @@ public class CreateAudio extends Controller {
 
                     Platform.runLater(() -> {
 
-                        CreateAlert(AlertType.ERROR, "Festival Error", "The text could not be handled by the current festival voice.\nTry another voice");
+                        createAlert(AlertType.ERROR, "Festival Error", "The text could not be handled by the current festival voice.\nTry another voice");
                         _createbutton.setDisable(false);
 
                     });
@@ -328,12 +328,12 @@ public class CreateAudio extends Controller {
                     @Override
                     public void run() {
 
-                        CreateAlert(Alert.AlertType.INFORMATION, "Audio Made", "The audio file " + name + ".wav was made");
+                        createAlert(Alert.AlertType.INFORMATION, "Audio Made", "The audio file " + name + ".wav was made");
                         _lyrics.clear();
                         _filefield.clear();
                         _createbutton.setDisable(false);
                         try {
-                            ProcessRunner("/bin/bash", "rm -f ./temps/*.txt");
+                            processRunner("/bin/bash", "rm -f ./temps/*.txt");
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -352,22 +352,22 @@ public class CreateAudio extends Controller {
 
 
     @Override
-    public String ReturnFXMLPath() {
+    public String returnFXMLPath() {
 
         return _previousfxmlpath;
 
     }
 
     @Override
-    public String ReturnForwardFXMLPath() {
+    public String returnForwardFXMLPath() {
 
         return null;
 
     }
 
-    public void AuxiliaryFunctionBackwards(FXMLLoader loader) throws IOException {
+    public void auxiliaryFunctionBackwards(FXMLLoader loader) throws IOException {
 
-        ProcessRunner("/bin/bash", "rm -f ./temps/*.txt");
+        processRunner("/bin/bash", "rm -f ./temps/*.txt");
 
     }
 

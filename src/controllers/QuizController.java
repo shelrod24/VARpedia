@@ -145,7 +145,7 @@ public class QuizController extends Controller {
         if(_listOfCreations.size()== 0) {
 
             //Got to end screen
-            SwitchForwardScene(event);
+            switchForwardScene(event);
 
         } else  {
 
@@ -214,7 +214,7 @@ public class QuizController extends Controller {
 
 
     @Override
-    public String ReturnFXMLPath() {
+    public String returnFXMLPath() {
 
         return _previousfxmlpath;
 
@@ -222,14 +222,14 @@ public class QuizController extends Controller {
 
 
     @Override
-    public String ReturnForwardFXMLPath() {
+    public String returnForwardFXMLPath() {
 
         return "/fxml/Score.fxml";
 
     }
 
     @Override
-    public void AuxiliaryFunction(FXMLLoader loader){
+    public void auxiliaryFunction(FXMLLoader loader){
 
         Score scoreController = loader.<Score>getController();
 
@@ -238,7 +238,7 @@ public class QuizController extends Controller {
     }
     
     @Override
-    public void AuxiliaryFunctionBackwards(FXMLLoader loader) throws IOException {
+    public void auxiliaryFunctionBackwards(FXMLLoader loader) throws IOException {
     	// stops player when pressing back
     	_player.stop();
     }

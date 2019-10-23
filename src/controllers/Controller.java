@@ -15,48 +15,43 @@ public abstract class Controller {
 
 
 
-    public final void SwitchBackScene(ActionEvent event) throws IOException {
-
-        String fxmlpath = ReturnFXMLPath();
+    public final void switchBackScene(ActionEvent event) throws IOException {
+        String fxmlpath = returnFXMLPath();
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlpath));
         Parent sceneparent = loader.load();
         Scene scene = new Scene(sceneparent);
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);
-        AuxiliaryFunctionBackwards(loader);
-
+        auxiliaryFunctionBackwards(loader);
     }
 
 
 
-    public final void SwitchForwardScene(ActionEvent event) throws IOException {
-
-        String fxmlpath = ReturnForwardFXMLPath();
+    public final void switchForwardScene(ActionEvent event) throws IOException {
+        String fxmlpath = returnForwardFXMLPath();
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlpath));
         Parent sceneparent = loader.load();
         Scene scene = new Scene(sceneparent);
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);
-        AuxiliaryFunction(loader);
-
+        auxiliaryFunction(loader);
     }
 
 
 
-    public final void SwitchPreviousScene(ActionEvent event) throws IOException {
-        String fxmlpath = ReturnPreviousFXMLPath();
+    public final void switchPreviousScene(ActionEvent event) throws IOException {
+        String fxmlpath = returnPreviousFXMLPath();
         FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlpath));
         Parent sceneparent = loader.load();
         Scene scene = new Scene(sceneparent);
         Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
         stage.setScene(scene);
-        AuxiliaryFunctionPrevious(loader);
+        auxiliaryFunctionPrevious(loader);
     }
 
 
 
-    public void CreateAlert(Alert.AlertType alerttype, String title, String message){
-
+    public void createAlert(Alert.AlertType alerttype, String title, String message){
         Alert alert = new Alert(alerttype);
         alert.setTitle(title);
         alert.setHeaderText(null);
@@ -66,42 +61,41 @@ public abstract class Controller {
         pane.getStylesheets().add(getClass().getResource("/css/dark.css").toExternalForm());
         pane.setId("background");
         alert.showAndWait();
-
     }
 
 
 
-    public abstract String ReturnFXMLPath();
+    public abstract String returnFXMLPath();
 
 
 
 
-    public abstract String ReturnForwardFXMLPath();
+    public abstract String returnForwardFXMLPath();
 
 
 
 
-    public String ReturnPreviousFXMLPath() {
+    public String returnPreviousFXMLPath() {
     	return null;
     };
 
 
 
 
-    public void AuxiliaryFunction(FXMLLoader loader){}
+    public void auxiliaryFunction(FXMLLoader loader){}
 
 
 
 
-    public void AuxiliaryFunctionBackwards(FXMLLoader loader) throws IOException {}
+    public void auxiliaryFunctionBackwards(FXMLLoader loader) throws IOException {}
 
 
 
 
-    public void AuxiliaryFunctionPrevious(FXMLLoader loader) {}
+    public void auxiliaryFunctionPrevious(FXMLLoader loader) {}
 
 
-    public void ProcessRunner(String typeofprocess, String pathtoscriptwithargs) throws IOException {
+    public void processRunner(String typeofprocess, String pathtoscriptwithargs) throws IOException {
 
         ProcessBuilder processBuilder = new ProcessBuilder(typeofprocess, "-c", pathtoscriptwithargs);
         Process process = processBuilder.start();

@@ -44,7 +44,7 @@ public class ListScene extends Controller{
         	
         } else {
 
-            SwitchForwardScene(event);
+            switchForwardScene(event);
 
         }
 
@@ -77,7 +77,7 @@ public class ListScene extends Controller{
         } else {
         	
         	//delete both creation and question
-        	ProcessRunner("sh", "./scripts/delete_creation_and_question.sh \"" + _creationname + "\"");
+        	processRunner("sh", "./scripts/delete_creation_and_question.sh \"" + _creationname + "\"");
         	
             List<String> creationfiles = DirectoryServices.ListFilesInDir("./creations");
 
@@ -96,17 +96,17 @@ public class ListScene extends Controller{
 
 
     @Override
-    public String ReturnFXMLPath() {
+    public String returnFXMLPath() {
         return _previousfxmlpath;
     }
 
     @Override
-    public String ReturnForwardFXMLPath() {
+    public String returnForwardFXMLPath() {
         return _returnforwardfxmlpath;
     }
 
     @Override
-    public void AuxiliaryFunction(FXMLLoader loader){
+    public void auxiliaryFunction(FXMLLoader loader){
         MediaViewController mediaview = loader.<MediaViewController>getController();
         mediaview.playMedia(_creationname);
 

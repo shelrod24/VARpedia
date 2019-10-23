@@ -22,7 +22,7 @@
                <items>
                   <HBox alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="647.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#SwitchBackScene" text="Home">
+                        <Button mnemonicParsing="false" onAction="#switchBackScene" text="Home">
                            <graphic>
                               <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -70,7 +70,7 @@
                         <ProgressBar fx:id="_progressBar" opacity="0.8" prefHeight="25.0" prefWidth="300.0" progress="0.0" visible="false" />
                         <Label fx:id="_progressLabel" />
                         <Region HBox.hgrow="ALWAYS" />
-                        <Button id="back-button" fx:id="_backButton" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#SwitchPreviousScene" prefWidth="100.0" text="Back">
+                        <Button id="back-button" fx:id="_backButton" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#switchPreviousScene" prefWidth="100.0" text="Back">
                            <graphic>
                               <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
