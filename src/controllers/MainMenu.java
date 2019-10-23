@@ -31,7 +31,7 @@ public class MainMenu extends Application {
     }
 
 
-    public void SwitchToList(ActionEvent event) throws IOException {
+    public void switchToList(ActionEvent event) throws IOException {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ListScene.fxml"));
         Parent Listcreationsparent = loader.load();
@@ -49,7 +49,7 @@ public class MainMenu extends Application {
     }
 
     
-    public void SwitchToCreateAudio(ActionEvent event) throws IOException {
+    public void switchToCreateAudio(ActionEvent event) throws IOException {
 
         Parent createaudioparent = FXMLLoader.load(getClass().getResource("/fxml/CreateAudio.fxml"));
         Scene createaudioscene = new Scene(createaudioparent);
@@ -61,7 +61,7 @@ public class MainMenu extends Application {
     }
     
     
-    public void SwitchToCreateCreation(ActionEvent event) throws IOException {
+    public void switchToCreateCreation(ActionEvent event) throws IOException {
 
     	Parent createcreationparent = FXMLLoader.load(getClass().getResource("/fxml/ChooseChunk.fxml"));
         Scene createcreationscene = new Scene(createcreationparent);
@@ -72,7 +72,7 @@ public class MainMenu extends Application {
     }
 
 
-    public void SwitchToDeleteAudio(ActionEvent event) throws IOException {
+    public void switchToDeleteAudio(ActionEvent event) throws IOException {
 
         Parent deleteaudioparent = FXMLLoader.load(getClass().getResource("/fxml/DeleteAudio.fxml"));
         Scene deleteaudioscene = new Scene(deleteaudioparent);
@@ -83,7 +83,7 @@ public class MainMenu extends Application {
 
     }
 
-    public void SwitchToStartQuiz(ActionEvent event) throws IOException {
+    public void switchToStartQuiz(ActionEvent event) throws IOException {
 
         Parent quizParent = FXMLLoader.load(getClass().getResource("/fxml/ChooseQuiz.fxml"));
         Scene quiz = new Scene(quizParent);
@@ -94,7 +94,7 @@ public class MainMenu extends Application {
 
     }
 
-    public void SwitchToCredits(ActionEvent event) throws IOException {
+    public void switchToCredits(ActionEvent event) throws IOException {
 
         Parent parent = FXMLLoader.load(getClass().getResource("/fxml/Credits.fxml"));
         Scene scene = new Scene(parent);
