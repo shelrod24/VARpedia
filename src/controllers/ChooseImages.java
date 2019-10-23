@@ -4,9 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import Services.DirectoryServices;
-import Services.FlickrAPIService;
-import Services.NewCreationService;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
@@ -20,6 +17,9 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import services.DirectoryServices;
+import services.FlickrAPIService;
+import services.NewCreationService;
 import javafx.scene.control.Alert.AlertType;
 
 public class ChooseImages extends Controller{

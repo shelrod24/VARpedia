@@ -3,8 +3,6 @@ package controllers;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-import Services.DirectoryServices;
-import Services.NewCreationService;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.concurrent.WorkerStateEvent;
@@ -22,6 +20,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import services.DirectoryServices;
+import services.NewCreationService;
 
 public class EnterFilename extends Controller{
 	private final String _backFXMLPath="/fxml/MainMenu.fxml";
