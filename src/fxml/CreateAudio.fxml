@@ -54,7 +54,7 @@
                               <Insets left="10.0" right="10.0" />
                            </HBox.margin>
                         </ComboBox>
-                        <Button fx:id="_previewbutton" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#PreviewAudio" prefWidth="100.0" text="Preview">
+                        <Button fx:id="_previewbutton" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#previewAudio" prefWidth="100.0" text="Preview">
                            <graphic>
                               <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -74,8 +74,8 @@
                            <children>
                               <HBox alignment="CENTER_LEFT" prefHeight="27.0" prefWidth="435.0" spacing="5.0">
                                  <children>
-                                    <TextField fx:id="_searchfield" alignment="CENTER" onAction="#SearchWikipedia" opacity="0.8" prefHeight="28.0" prefWidth="450.0" promptText="Search Wikipedia" HBox.hgrow="ALWAYS" />
-                                    <Button fx:id="_searchbutton" alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#SearchWikipedia" text="Search">
+                                    <TextField fx:id="_searchfield" alignment="CENTER" onAction="#searchWikipedia" opacity="0.8" prefHeight="28.0" prefWidth="450.0" promptText="Search Wikipedia" HBox.hgrow="ALWAYS" />
+                                    <Button fx:id="_searchbutton" alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#searchWikipedia" text="Search">
                                        <graphic>
                                           <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
@@ -101,7 +101,7 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="390.0" prefWidth="120.0" HBox.hgrow="ALWAYS">
                            <children>
-                              <Button fx:id="_moveoverbutton" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#MoveTextOver" prefWidth="120.0" text="Add">
+                              <Button fx:id="_moveoverbutton" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#moveTextOver" prefWidth="120.0" text="Add">
                                  <graphic>
                                     <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
@@ -121,7 +121,7 @@
                               <TextArea fx:id="_lyrics" opacity="0.8" prefHeight="377.0" wrapText="true" VBox.vgrow="ALWAYS" />
                               <HBox prefHeight="27.0" prefWidth="300.0">
                                  <children>
-                                    <TextField fx:id="_filefield" alignment="CENTER" onAction="#NameFile" opacity="0.8" prefWidth="450.0" promptText="Name Your File" />
+                                    <TextField fx:id="_filefield" alignment="CENTER" onAction="#nameFile" opacity="0.8" prefWidth="450.0" promptText="Name Your File" />
                                  </children>
                               </HBox>
                            </children>
@@ -131,7 +131,7 @@
                   <HBox>
                      <children>
                         <Region prefHeight="3.0" prefWidth="900.0" HBox.hgrow="ALWAYS" />
-                        <Button id="next-button" fx:id="_createbutton" alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#NameFile" prefWidth="100.0" text="Create">
+                        <Button id="next-button" fx:id="_createbutton" alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#nameFile" prefWidth="100.0" text="Create">
                            <graphic>
                               <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
                                  <image>

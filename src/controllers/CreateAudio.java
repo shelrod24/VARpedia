@@ -35,7 +35,7 @@ public class CreateAudio extends Controller {
 
 
 
-    public void SearchWikipedia() throws IOException {
+    public void searchWikipedia() throws IOException {
     	// if the button is disabled, return
     	if(_searchbutton.isDisable()) {
     		return;
@@ -55,7 +55,7 @@ public class CreateAudio extends Controller {
             @Override
             protected Void call() throws Exception {
 
-                FillWikiTextFiles(searchterm);
+                fillWikiTextFiles(searchterm);
 
                 return null;
             }
@@ -65,7 +65,7 @@ public class CreateAudio extends Controller {
 
                 Platform.runLater(()->{
 
-                    PrintWikiArticleFromLinedFile();
+                    printWikiArticleFromLinedFile();
                     _searchbutton.setDisable(false);
 
                 });
@@ -82,7 +82,7 @@ public class CreateAudio extends Controller {
 
 
 
-    public void FillWikiTextFiles(String searchterm) throws IOException, InterruptedException {
+    public void fillWikiTextFiles(String searchterm) throws IOException, InterruptedException {
 
         String echowiki = "echo $(wikit "+searchterm+") > ./temps/text.txt";
         processRunner("/bin/bash", echowiki);
@@ -92,7 +92,7 @@ public class CreateAudio extends Controller {
 
 
 
-    public int PrintWikiArticleFromLinedFile() {
+    public int printWikiArticleFromLinedFile() {
 
         BufferedReader reader = null;
         List<String> wikicontent = new ArrayList<String>();
@@ -166,7 +166,7 @@ public class CreateAudio extends Controller {
 
 
 
-    public void MoveTextOver() {
+    public void moveTextOver() {
 
         String name = _listarea.getSelectionModel().getSelectedItem();
 
@@ -184,7 +184,7 @@ public class CreateAudio extends Controller {
 
 
 
-    public void PreviewAudio() throws IOException, InterruptedException {
+    public void previewAudio() throws IOException, InterruptedException {
 
         String lyrics = _lyrics.getText();
         String[] arr = lyrics.split(" ");
@@ -241,7 +241,7 @@ public class CreateAudio extends Controller {
 
 
 
-    public void NameFile() throws IOException, InterruptedException {
+    public void nameFile() throws IOException, InterruptedException {
 
         String name = _filefield.getText();
         String lyrics = _lyrics.getText();
