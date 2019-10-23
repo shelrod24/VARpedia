@@ -38,7 +38,7 @@ public class MediaViewController extends Controller{
     private double _rate = 1.0;
 
     @FXML
-    public void Initialize(){
+    public void initializePlayer(){
 
         _player.currentTimeProperty().addListener(new ChangeListener<Duration>() {
 
@@ -50,7 +50,6 @@ public class MediaViewController extends Controller{
                 time+=":";
                 time+=String.format("%02d", ((int)newValue.toSeconds()) % 60);
                 _timelabel.setText(time);
-
             }
 
         });
@@ -108,7 +107,7 @@ public class MediaViewController extends Controller{
             @Override
             public void run() {
 
-                Initialize();
+                initializePlayer();
                 _slider.setMin(0);
                 _slider.setMax(_player.getTotalDuration().toMillis());
 
@@ -120,7 +119,7 @@ public class MediaViewController extends Controller{
 
 
 
-    public void PausePlay(){
+    public void pausePlay(){
 
             if (_player.getStatus() == MediaPlayer.Status.PLAYING) {
 
@@ -144,7 +143,7 @@ public class MediaViewController extends Controller{
 
 
 
-    public void FastForward() {
+    public void fastForward() {
 
         if ((_rate + 0.25) <= 2) {
 
@@ -155,7 +154,7 @@ public class MediaViewController extends Controller{
 
     }
 
-    public void SlowDown() {
+    public void slowDown() {
 
         if ((_rate - 0.25) > 0) {
             _rate = _rate - 0.25;
@@ -164,12 +163,12 @@ public class MediaViewController extends Controller{
 
     }
 
-    public void SkipForwardSeconds() {
+    public void skipForwardSeconds() {
 
         _player.seek(_player.getCurrentTime().add(Duration.seconds(5)));
     }
 
-    public void SkipBackSeconds() {
+    public void skipBackSeconds() {
 
         _player.seek(_player.getCurrentTime().add(Duration.seconds(-5)));
     }

@@ -157,7 +157,7 @@ public class QuizController extends Controller {
     }
 
 
-    public void PausePlay(){
+    public void pausePlay(){
 
         if (_player.getStatus() == MediaPlayer.Status.PLAYING) {
 
@@ -179,7 +179,7 @@ public class QuizController extends Controller {
     }
 
 
-    public void FastForward() {
+    public void fastForward() {
 
         if ((_rate + 0.25) <= 2) {
 
@@ -191,7 +191,7 @@ public class QuizController extends Controller {
     }
 
 
-    public void SlowDown() {
+    public void slowDown() {
 
         if ((_rate - 0.25) > 0) {
             _rate = _rate - 0.25;
@@ -201,13 +201,13 @@ public class QuizController extends Controller {
     }
 
 
-    public void SkipForwardSeconds() {
+    public void skipForwardSeconds() {
 
         _player.seek(_player.getCurrentTime().add(Duration.seconds(5)));
     }
 
 
-    public void SkipBackSeconds() {
+    public void skipBackSeconds() {
 
         _player.seek(_player.getCurrentTime().add(Duration.seconds(-5)));
     }
