@@ -36,7 +36,7 @@
                   </HBox>
                   <HBox alignment="CENTER" spacing="10.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#switchToStartQuiz" opacity="0.8" prefWidth="180.0" text="Quiz (Beta)" />
+                        <Button mnemonicParsing="false" onAction="#switchToStartQuiz" opacity="0.8" prefWidth="180.0" text="Quiz" />
                         <Button mnemonicParsing="false" onAction="#switchToCredits" opacity="0.8" prefWidth="180.0" text="Credits" />
                      </children>
                   </HBox>
