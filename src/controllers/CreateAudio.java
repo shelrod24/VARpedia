@@ -54,27 +54,19 @@ public class CreateAudio extends Controller {
 
             @Override
             protected Void call() throws Exception {
-
                 fillWikiTextFiles(searchterm);
-
                 return null;
             }
 
             @Override
             public void done() {
-
                 Platform.runLater(()->{
-
                     printWikiArticleFromLinedFile();
                     _searchbutton.setDisable(false);
-
                 });
-
             }
 
         });
-
-
     	_searchbutton.setDisable(true);
         thread.start();
 
@@ -177,7 +169,23 @@ public class CreateAudio extends Controller {
         } else {
 
             _lyrics.appendText(name + "\n");
-
+            
+            //make it so that the filename is automatically generated from searchterm
+            //remove all spaces from searchterm
+            String filenameStart = _searchterm.replaceAll("\\s+","");
+        	int filenameEnd=0;
+        	String filename = null;
+        	while(true) {
+        		//make filename by combining term and a counter that is padded to the left with 0s
+        		filename = filenameStart + String.format("%02d",filenameEnd);
+        		//if file doesnt exist, use that name
+        		if(!DirectoryServices.SearchDirectoryForName(_searchterm, filename)) {
+        			break;
+        		}
+        		//otherwise add a 1 to filenameEnd and try again
+        		filenameEnd++;
+        	}
+        	_filefield.setText(filename);
         }
 
     }
