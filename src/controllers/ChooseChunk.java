@@ -66,20 +66,20 @@ public class ChooseChunk extends Controller{
 	}
 
 	/**
-	 * sets current creation
-	 * @param creation creation to be set
-	 */
-	public void setCreation(NewCreationService creation) {
-		_creation=creation;
-	}
-
-	/**
 	 * returns path to take when clicking next button
 	 * is called by superclass as a template method
 	 */
 	@Override
 	public String returnForwardFXMLPath() {
 		return _nextFXMLPath;
+	}
+
+	/**
+	 * sets current creation
+	 * @param creation creation to be set
+	 */
+	public void setCreation(NewCreationService creation) {
+		_creation=creation;
 	}
 
 	/**
