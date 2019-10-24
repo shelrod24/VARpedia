@@ -23,7 +23,7 @@ import services.DirectoryServices;
 import services.NewCreationService;
 import javafx.scene.control.Alert.AlertType;
 
-public class ChooseChunk extends Controller{
+public class ChooseAudio extends Controller{
 	private final String _backFXMLPath="/fxml/MainMenu.fxml";
 	private final String _nextFXMLPath="/fxml/ChooseMusic.fxml";
 	private NewCreationService _creation;

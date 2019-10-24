@@ -26,7 +26,7 @@ import javafx.scene.control.Alert.AlertType;
 public class ChooseMusic extends Controller{
 	private final String _backFXMLPath="/fxml/MainMenu.fxml";
 	private final String _nextFXMLPath="/fxml/ChooseImages.fxml";
-	private final String _previousFXMLPath="/fxml/ChooseChunk.fxml";
+	private final String _previousFXMLPath="/fxml/ChooseAudio.fxml";
 	private NewCreationService _creation;
 	private MediaPlayer _player;
 
@@ -135,7 +135,7 @@ public class ChooseMusic extends Controller{
 		}
 		
 		//set the previous scene to contain the current creation
-		ChooseChunk controller = loader.getController();
+		ChooseAudio controller = loader.getController();
 		controller.setCreation(_creation);
 		//make the previous scene refect the current creation, so that it looks like last inputs were saved
 		controller.reflectCreation();

@@ -63,7 +63,7 @@ public class MainMenu extends Application {
     
     public void switchToCreateCreation(ActionEvent event) throws IOException {
 
-    	Parent createcreationparent = FXMLLoader.load(getClass().getResource("/fxml/ChooseChunk.fxml"));
+    	Parent createcreationparent = FXMLLoader.load(getClass().getResource("/fxml/ChooseAudio.fxml"));
         Scene createcreationscene = new Scene(createcreationparent);
 
         //Get stage information of the current stage
