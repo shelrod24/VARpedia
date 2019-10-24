@@ -37,6 +37,7 @@ public class ChooseMusic extends Controller{
 	 */
 	@FXML
 	private void initialize() {
+		// add option to have no music
 		_musicView.getItems().add("None");
 		// not that intensive, so doesnt need to be threaded
 		_musicView.getItems().addAll(DirectoryServices.ListFilesInDir("./music"));
@@ -71,6 +72,10 @@ public class ChooseMusic extends Controller{
 		return _previousFXMLPath;
 	}
 
+	/**
+	 * sets current creation
+	 * @param creation the creation to be set
+	 */
 	public void setCreation(NewCreationService creation) {
 		_creation=creation;
 	}
@@ -99,6 +104,9 @@ public class ChooseMusic extends Controller{
 		}
 	}
 
+	/**
+	 * Called when switch scene forward
+	 */
 	@Override
 	public void auxiliaryFunction(FXMLLoader loader) {
 		//stop current audio
@@ -116,6 +124,9 @@ public class ChooseMusic extends Controller{
 		controller.initData();
 	}
 
+	/**
+	 * Called when switching scene using back button
+	 */
 	@Override
 	public void auxiliaryFunctionPrevious(FXMLLoader loader) {
 		// stop current audio
@@ -123,12 +134,16 @@ public class ChooseMusic extends Controller{
 			_player.stop();
 		}
 		
-		//called when switching scenes
+		//set the previous scene to contain the current creation
 		ChooseChunk controller = loader.getController();
 		controller.setCreation(_creation);
+		//make the previous scene refect the current creation, so that it looks like last inputs were saved
 		controller.reflectCreation();
 	}
 	
+	/**
+	 * Called when switching scene using home button
+	 */
 	@Override
 	public void auxiliaryFunctionBackwards(FXMLLoader loader) {
 		//stop current audio
@@ -147,6 +162,7 @@ public class ChooseMusic extends Controller{
 		if(music.equals("")) {
 			music="None";
 		}
+		//select item selected previously
 		int musicIndex = _musicView.getItems().indexOf(music);
 		_musicView.getSelectionModel().clearAndSelect(musicIndex);
 	}
