@@ -175,7 +175,7 @@ public class ChooseImages extends Controller{
 			@Override
 			public void handle(WorkerStateEvent arg0) {
 				Boolean imagesExist = _getImageTask.getValue();
-				if(imagesExist!=null && imagesExist) {
+				if(imagesExist!=null && !imagesExist) {
 					createAlert(Alert.AlertType.ERROR, "No Images Found", "No images were found on Flickr\nTry another search term");
 				}
 			}
