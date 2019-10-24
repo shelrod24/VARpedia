@@ -10,7 +10,7 @@ public class DirectoryServices {
 
 
 
-    public static boolean SearchDirectoryForName(String term, String name){
+    public static boolean searchDirectoryForName(String term, String name){
 
         File[] listoffiles = new File("./audio/"+term).listFiles();
         boolean exists = false;
@@ -60,7 +60,7 @@ public class DirectoryServices {
 
 
 
-    public static List<String> ListFilesInDir(String fullpath){
+    public static List<String> listFilesInDir(String fullpath){
 
         File[] listoffiles = new File(fullpath).listFiles();
         ArrayList<String> _arrayoffiles = new ArrayList<String>();
@@ -78,7 +78,7 @@ public class DirectoryServices {
 
 
 
-    public final static void CreateDirectories() throws IOException {
+    public final static void createDirectories() throws IOException {
 
         ProcessBuilder makedirectoriesprocessbuilder = new ProcessBuilder("sh", "-c", "./scripts/make_directories.sh");
         makedirectoriesprocessbuilder.start();

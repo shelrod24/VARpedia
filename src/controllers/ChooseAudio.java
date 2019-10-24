@@ -41,7 +41,7 @@ public class ChooseAudio extends Controller{
 			@Override
 			protected Void call() throws Exception {
 				//get audio directories
-				List<String> folders = DirectoryServices.ListFilesInDir("./audio");
+				List<String> folders = DirectoryServices.listFilesInDir("./audio");
 				//once done, show folders
 				Platform.runLater(new Runnable() {
 					@Override
@@ -149,7 +149,7 @@ public class ChooseAudio extends Controller{
 	 * @param folder the string dictating the folder clicked
 	 */
 	public void updateInputViewList(String folder) {
-		List<String> audioList = DirectoryServices.ListFilesInDir("./audio/"+folder);
+		List<String> audioList = DirectoryServices.listFilesInDir("./audio/"+folder);
 		//only add to view if it ends in .wav
 		audioList.removeIf(file -> !file.endsWith(".wav"));
 		//set audio to view

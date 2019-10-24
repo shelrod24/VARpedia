@@ -44,7 +44,7 @@ public class DeleteAudio extends Controller {
 
 		} else {
 
-			List<String> audiofiles = DirectoryServices.ListFilesInDir("./audio/"+_subdirectory);
+			List<String> audiofiles = DirectoryServices.listFilesInDir("./audio/"+_subdirectory);
 
 			for (String s : audiofiles) {
 				if (s.endsWith(".wav")) {
@@ -91,7 +91,7 @@ public class DeleteAudio extends Controller {
 			this.processRunner("/bin/bash", "rm -f " + "\"./audio/" + _subdirectory + "/redacted/" + redactedAudio + "\"");
 
 
-			List<String> audiofiles = DirectoryServices.ListFilesInDir("./audio/"+_subdirectory);
+			List<String> audiofiles = DirectoryServices.listFilesInDir("./audio/"+_subdirectory);
 			_audiofiles.getItems().clear();
 
 			for (String s : audiofiles) {
@@ -107,7 +107,7 @@ public class DeleteAudio extends Controller {
 
 
 			_audiosubdirs.getItems().clear();
-			List<String> _audiosubfolders = DirectoryServices.ListFilesInDir("./audio");
+			List<String> _audiosubfolders = DirectoryServices.listFilesInDir("./audio");
 
 			for (String s : _audiosubfolders) {
 
@@ -130,7 +130,7 @@ public class DeleteAudio extends Controller {
 		deletedirprocess.waitFor();
 
 		// Populate ListView
-		List<String> _audiosubfolders = DirectoryServices.ListFilesInDir("./audio");
+		List<String> _audiosubfolders = DirectoryServices.listFilesInDir("./audio");
 
 		for(String s: _audiosubfolders) {
 

@@ -39,7 +39,7 @@ public class ChooseMusic extends Controller{
 		// add option to have no music
 		_musicView.getItems().add("None");
 		// not that intensive, so doesnt need to be threaded
-		_musicView.getItems().addAll(DirectoryServices.ListFilesInDir("./music"));
+		_musicView.getItems().addAll(DirectoryServices.listFilesInDir("./music"));
 		// as default, select None
 		_musicView.getSelectionModel().clearAndSelect(0);
 	}

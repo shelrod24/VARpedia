@@ -24,7 +24,7 @@ public class ListScene extends Controller{
 
     public void innitialiseList(){
 
-        List<String> creationfiles = DirectoryServices.ListFilesInDir("./creations");
+        List<String> creationfiles = DirectoryServices.listFilesInDir("./creations");
 
         for(String s: creationfiles) {
 
@@ -80,7 +80,7 @@ public class ListScene extends Controller{
         	//delete both creation and question
         	processRunner("sh", "./scripts/delete_creation_and_question.sh \"" + _creationname + "\"");
         	
-            List<String> creationfiles = DirectoryServices.ListFilesInDir("./creations");
+            List<String> creationfiles = DirectoryServices.listFilesInDir("./creations");
 
             _list.getItems().clear();
 

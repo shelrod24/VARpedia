@@ -22,7 +22,7 @@ public class MainMenu extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
     	//create all required directories on startup
-        DirectoryServices.CreateDirectories();
+        DirectoryServices.createDirectories();
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/MainMenu.fxml"));
         primaryStage.setScene(new Scene(root, 1000, 500));
         primaryStage.setResizable(false);

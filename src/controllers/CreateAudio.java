@@ -179,7 +179,7 @@ public class CreateAudio extends Controller {
         		//make filename by combining term and a counter that is padded to the left with 0s
         		filename = filenameStart + String.format("%02d",filenameEnd);
         		//if file doesnt exist, use that name
-        		if(!DirectoryServices.SearchDirectoryForName(_searchterm, filename)) {
+        		if(!DirectoryServices.searchDirectoryForName(_searchterm, filename)) {
         			break;
         		}
         		//otherwise add a 1 to filenameEnd and try again
@@ -271,7 +271,7 @@ public class CreateAudio extends Controller {
             createAlert(AlertType.WARNING, "No Text Selected", "The text selection is empty.");
             return;
 
-        } else if (DirectoryServices.SearchDirectoryForName(_searchterm, name)) {
+        } else if (DirectoryServices.searchDirectoryForName(_searchterm, name)) {
 
             Alert alert = new Alert(AlertType.CONFIRMATION);
             alert.setTitle("Overwrite Audio");

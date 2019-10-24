@@ -154,7 +154,7 @@ public class ChooseImages extends Controller{
 					List<String> imageList = FlickrAPIService.getImages(_creation.getTerm(), 3, i);
 					
 					//check if no images found, and return false if so
-					if(i==1 && DirectoryServices.ListFilesInDir("./temps/image").isEmpty()) {
+					if(i==1 && DirectoryServices.listFilesInDir("./temps/image").isEmpty()) {
 						cancel();
 						return false;
 					}
@@ -188,7 +188,7 @@ public class ChooseImages extends Controller{
 	 * Updates the imageView to show what is currently in the folder
 	 */
 	public void updateImageList() {
-		List<String> imageList=DirectoryServices.ListFilesInDir("./temps/image");
+		List<String> imageList=DirectoryServices.listFilesInDir("./temps/image");
 		if (!imageList.isEmpty()) {
 			// render image once updated
 			_inputImageView.getItems().setAll(imageList);
