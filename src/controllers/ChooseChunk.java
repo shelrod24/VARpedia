@@ -57,7 +57,7 @@ public class ChooseChunk extends Controller{
 	}
 
 	/**
-	 * returns path to take when clicking back button
+	 * returns path to take when clicking home button
 	 * is called by superclass as a template method
 	 */
 	@Override
@@ -233,7 +233,7 @@ public class ChooseChunk extends Controller{
 	}
 	
 	/**
-	 * Called when pressing back button
+	 * Called when pressing home button
 	 */
 	@Override
 	public void auxiliaryFunctionBackwards(FXMLLoader loader) {

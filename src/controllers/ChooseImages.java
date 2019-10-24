@@ -32,30 +32,44 @@ public class ChooseImages extends Controller{
 	@FXML private ListView<String> _inputImageView;
 	@FXML private ListView<String> _outputImageView;
 
-
-	@FXML
-	private void initialize() {
-	}
-
+	/**
+	 * returns path to take when clicking home button
+	 * is called by superclass as a template method
+	 */
 	@Override
 	public String returnFXMLPath() {
 		return _backFXMLPath;
 	}
 
+	/**
+	 * returns path to take when clicking next button
+	 * is called by superclass as a template method
+	 */
 	@Override
 	public String returnForwardFXMLPath() {
 		return _nextFXMLPath;
 	}
 
+	/**
+	 * returns path to take when clicking back button
+	 * is called by superclass as a template method
+	 */
 	@Override
 	public String returnPreviousFXMLPath() {
 		return _previousFXMLPath;
 	}
 
+	/**
+	 * sets current creation
+	 * @param creation the creation to be set
+	 */
 	public void setCreation(NewCreationService creation) {
 		_creation=creation;
 	}
 
+	/**
+	 * when add button clicked, adds currently selected image to the outputImageView
+	 */
 	@FXML
 	private void handleAdd() {
 		if (_inputImageView.getSelectionModel().getSelectedItem()!=null) {
@@ -65,6 +79,9 @@ public class ChooseImages extends Controller{
 		}
 	}
 
+	/**
+	 * when remove button clicked, removes currently selected image in the outputImageView
+	 */
 	@FXML
 	private void handleRemove() {
 		if (_outputImageView.getSelectionModel().getSelectedItem()!=null) {
@@ -74,6 +91,9 @@ public class ChooseImages extends Controller{
 		}
 	}
 
+	/**
+	 * when move up button clicked, moves currently selected image in outputImageView
+	 */
 	@FXML
 	private void handleMoveUp() {
 		if(_outputImageView.getSelectionModel().getSelectedIndex()==-1){
@@ -91,6 +111,9 @@ public class ChooseImages extends Controller{
 		}
 	}
 
+	/**
+	 * when move down button clicked, moves currently selected image in outputImageView
+	 */
 	@FXML
 	private void handleMoveDown() {
 		if(_outputImageView.getSelectionModel().getSelectedIndex()==-1){
@@ -110,9 +133,10 @@ public class ChooseImages extends Controller{
 	}
 
 	/**
-	 * Initializes the data required for the creation
+	 * dowloads the images required to be chosen
 	 */
 	public void initData() {
+		//set task as a field to be cancelled when necessary (eg back or home button clicked)
 		_getImageTask = new Task<Boolean>() {
 			@Override
 			protected Boolean call() throws Exception {
@@ -146,12 +170,13 @@ public class ChooseImages extends Controller{
 				return true;
 			}
 		};
+		//if cancelled, check whether images exist, and if they dont, return an error
 		_getImageTask.setOnCancelled(new EventHandler<WorkerStateEvent>() {
 			@Override
 			public void handle(WorkerStateEvent arg0) {
 				Boolean imagesExist = _getImageTask.getValue();
 				if(imagesExist!=null && imagesExist) {
-					createAlert(Alert.AlertType.ERROR, "No Images Found", "More than 10 images were chosen");
+					createAlert(Alert.AlertType.ERROR, "No Images Found", "No images were found on Flickr\nTry another search term");
 				}
 			}
 		});
@@ -193,6 +218,9 @@ public class ChooseImages extends Controller{
 		renderImageView(_outputImageView);
 	}
 
+	/**
+	 * Called when next button is clicked
+	 */
 	@FXML
 	public void handleNextButton(ActionEvent event) throws IOException {
 		if(_outputImageView.getItems().isEmpty()) {
@@ -200,27 +228,41 @@ public class ChooseImages extends Controller{
 		} else if(_outputImageView.getItems().size()>10) {
 			createAlert(Alert.AlertType.WARNING, "Too Many Images Chosen", "More than 10 images were chosen");
 		} else {
+			//swicth scene if there are no errors
 			switchForwardScene(event);
 		}
 	}
-
+	
+	/**
+	 * Called when switching scene forward
+	 */
 	@Override
 	public void auxiliaryFunction(FXMLLoader loader){
+		//set creation to contain the selected images
 		_creation.setImageList(_outputImageView.getItems());
 		EnterFilename controller = loader.getController();
+		//set next scene to contain the current creation
 		controller.setCreation(_creation);
 	}
-
+	
+	/**
+	 * Called when switching scene by clicking back button
+	 */
 	@Override
 	public void auxiliaryFunctionPrevious(FXMLLoader loader) {
 		//stop loading images when back is pressed
 		_getImageTask.cancel();
-		
+		//get controller and set creation as currently creation
 		ChooseMusic controller = loader.getController();
 		controller.setCreation(_creation);
+		//make controller reflect the current creation
+		//this makes it so that it saves the previous input
 		controller.reflectCreation();
 	}
 	
+	/**
+	 * Called when switcing scene by clicking home button
+	 */
 	@Override
 	public void auxiliaryFunctionBackwards(FXMLLoader loader) {
 		//stop loading images when home is pressed
@@ -242,6 +284,7 @@ public class ChooseImages extends Controller{
 			public void updateItem(String imageName, boolean empty) {
 				super.updateItem(imageName, empty);
 				if(empty) {
+					// if emptu, then set image and text as nothing
 					setText(null);
 					setGraphic(null);
 				} else {
