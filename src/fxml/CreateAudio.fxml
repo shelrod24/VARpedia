@@ -74,7 +74,7 @@
                            <children>
                               <HBox alignment="CENTER_LEFT" prefHeight="27.0" prefWidth="435.0" spacing="5.0">
                                  <children>
-                                    <TextField fx:id="_searchfield" alignment="CENTER" onAction="#searchWikipedia" opacity="0.8" prefHeight="28.0" prefWidth="450.0" promptText="Search Wikipedia" HBox.hgrow="ALWAYS" />
+                                    <TextField fx:id="_searchfield" onAction="#searchWikipedia" opacity="0.8" prefHeight="28.0" prefWidth="450.0" promptText="Search Wikipedia" HBox.hgrow="ALWAYS" />
                                     <Button fx:id="_searchbutton" alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#searchWikipedia" text="Search">
                                        <graphic>
                                           <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
@@ -121,7 +121,7 @@
                               <TextArea fx:id="_lyrics" opacity="0.8" prefHeight="377.0" wrapText="true" VBox.vgrow="ALWAYS" />
                               <HBox prefHeight="27.0" prefWidth="300.0">
                                  <children>
-                                    <TextField fx:id="_filefield" alignment="CENTER" onAction="#nameFile" opacity="0.8" prefWidth="450.0" promptText="Name Your File" />
+                                    <TextField fx:id="_filefield" onAction="#nameFile" opacity="0.8" prefWidth="450.0" promptText="Enter the filename" />
                                  </children>
                               </HBox>
                            </children>
