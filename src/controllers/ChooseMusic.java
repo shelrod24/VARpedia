@@ -44,16 +44,28 @@ public class ChooseMusic extends Controller{
 		_musicView.getSelectionModel().clearAndSelect(0);
 	}
 
+	/**
+	 * returns path to take when clicking home button
+	 * is called by superclass as a template method
+	 */
 	@Override
 	public String returnFXMLPath() {
 		return _backFXMLPath;
 	}
 
+	/**
+	 * returns path to take when clicking next button
+	 * is called by superclass as a template method
+	 */
 	@Override
 	public String returnForwardFXMLPath() {
 		return _nextFXMLPath;
 	}
 
+	/**
+	 * returns path to take when clicking back button
+	 * is called by superclass as a template method
+	 */
 	@Override
 	public String returnPreviousFXMLPath() {
 		return _previousFXMLPath;
