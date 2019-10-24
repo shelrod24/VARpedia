@@ -35,27 +35,49 @@ public class EnterFilename extends Controller{
 	@FXML private ProgressBar _progressBar;
 	@FXML private Label _progressLabel;
 
+	/**
+	 * sets current creation
+	 * @param creation the creation to be set
+	 */
 	public void setCreation(NewCreationService creation) {
 		_creation=creation;
 	}
 
+	/**
+	 * returns path to take when clicking home button
+	 * is called by superclass as a template method
+	 */
 	@Override
 	public String returnFXMLPath() {
 		return _backFXMLPath;
 	}
 
+	/**
+	 * returns path to take when clicking next button
+	 * is called by superclass as a template method
+	 */
 	@Override
 	public String returnForwardFXMLPath() {
 		return _nextFXMLPath;
 	}
 
+	/**
+	 * returns path to take when clicking back button
+	 * is called by superclass as a template method
+	 */
 	@Override
 	public String returnPreviousFXMLPath() {
 		return _previousFXMLPath;
 	}
 
+	/**
+	 * is called when the main button is clicked
+	 * if creation has not been made, then create the creation
+	 * otherwise should return to home menu
+	 */
 	@FXML
 	public void handleMainButton(ActionEvent event) throws IOException {
+		//get current text of button as welll as filename
 		String option = _mainButton.getText();
 		String filename = _filenameField.getText().trim();
 		if(option.equals("Create")) {
@@ -71,6 +93,7 @@ public class EnterFilename extends Controller{
 				alert.setHeaderText(null);
 				alert.setContentText("The creation already exists.\nDo you want to ovewrite " + filename + "?");
 				alert.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
+				//set alert css
 				DialogPane pane = alert.getDialogPane();
 				pane.getStylesheets().add(getClass().getResource("/css/dark.css").toExternalForm());
 				pane.setId("background");
@@ -83,8 +106,10 @@ public class EnterFilename extends Controller{
 					processRunner("sh", "./scripts/delete_creation_and_question.sh \"" + filename + "\"");
 				}
 			}
+			//build creation
 			buildCreation(filename);
 		} else {
+			//if creation built, then return home
 			switchForwardScene(event);
 		}
 	}
@@ -99,6 +124,7 @@ public class EnterFilename extends Controller{
 		//disable buttons
 		_mainButton.setDisable(true);
 		_backButton.setDisable(true);
+		//make creation as well as returning update message and progress
 		Task<Void> task = new Task<Void>(){
 			@Override
 			protected Void call() throws Exception {
@@ -160,10 +186,15 @@ public class EnterFilename extends Controller{
 		_progressLabel.textProperty().bind(task.messageProperty());
 	}
 
+	/**
+	 * called when back button is pressed
+	 */
 	@Override
 	public void auxiliaryFunctionPrevious(FXMLLoader loader) {
 		ChooseImages controller = loader.getController();
+		//set the prevuous scene to contain the current creation
 		controller.setCreation(_creation);
+		//update image list as well as reflect the current creation
 		controller.updateImageList();
 		controller.reflectCreation();
 	}
