@@ -41,6 +41,7 @@ public class ChooseChunk extends Controller{
 		Thread thread = new Thread(new Task<Void>() {
 			@Override
 			protected Void call() throws Exception {
+				//get audio directories
 				List<String> folders = DirectoryServices.ListFilesInDir("./audio");
 				//once done, show folders
 				Platform.runLater(new Runnable() {
@@ -55,16 +56,27 @@ public class ChooseChunk extends Controller{
 		thread.start();
 	}
 
-
+	/**
+	 * returns path to take when clicking back button
+	 * is called by superclass as a template method
+	 */
 	@Override
 	public String returnFXMLPath() {
 		return _backFXMLPath;
 	}
 
+	/**
+	 * sets current creation
+	 * @param creation creation to be set
+	 */
 	public void setCreation(NewCreationService creation) {
 		_creation=creation;
 	}
 
+	/**
+	 * returns path to take when clicking next button
+	 * is called by superclass as a template method
+	 */
 	@Override
 	public String returnForwardFXMLPath() {
 		return _nextFXMLPath;
@@ -75,12 +87,14 @@ public class ChooseChunk extends Controller{
 	 */
 	@FXML
 	private void handleFolderView() {
+		//get currently selected folder
 		String folder = _folderView.getSelectionModel().getSelectedItem();
 		if(folder==null) {
 			return;
 		}
+		//set inputView to show contents of folder 
 		updateInputViewList(folder);
-		// make a new creation with the term as the folder name
+		//make a new creation with the term as the folder name
 		_creation = new NewCreationService(folder);
 	}
 
@@ -94,7 +108,7 @@ public class ChooseChunk extends Controller{
 			String folder = _folderView.getSelectionModel().getSelectedItem();
 			String audio = _inputAudioView.getSelectionModel().getSelectedItem();
 			String filepath ="./audio/"+folder+"/"+audio; 
-
+			//play audio chunk clicked
 			playAudio(filepath);
 		}
 	}
@@ -105,11 +119,11 @@ public class ChooseChunk extends Controller{
 	@FXML
 	private void handleOutputAudioView(MouseEvent event) {
 		if(event.getButton() == MouseButton.PRIMARY && event.getClickCount()==2 && _outputAudioView.getSelectionModel().getSelectedItem() != null) {
-			// build filepath
+			// build filepath to audio file
 			String folder = _folderView.getSelectionModel().getSelectedItem();
 			String audio = _outputAudioView.getSelectionModel().getSelectedItem();
 			String filepath ="./audio/"+folder+"/"+audio; 
-			
+			//play audio chunk clicked
 			playAudio(filepath);
 		}
 	}
@@ -123,7 +137,6 @@ public class ChooseChunk extends Controller{
 		if(_player!=null) {
 			_player.stop();
 		}
-		
 		// play audio
 		File fileUrl = new File(filepath);
 		Media audioMedia = new Media(fileUrl.toURI().toString());
@@ -138,8 +151,9 @@ public class ChooseChunk extends Controller{
 	 */
 	public void updateInputViewList(String folder) {
 		List<String> audioList = DirectoryServices.ListFilesInDir("./audio/"+folder);
-		//dont include redacted folder
+		//only add to view if it ends in .wav
 		audioList.removeIf(file -> !file.endsWith(".wav"));
+		//set audio to view
 		_inputAudioView.getItems().setAll(audioList);
 		_outputAudioView.getItems().clear();
 	}
@@ -150,6 +164,7 @@ public class ChooseChunk extends Controller{
 	@FXML
 	private void handleAdd() {
 		if (_inputAudioView.getSelectionModel().getSelectedItem()!=null) {
+			//add chunk selected to output view
 			String chunk = _inputAudioView.getSelectionModel().getSelectedItem();
 			_outputAudioView.getItems().add(chunk);
 		}
@@ -161,17 +176,22 @@ public class ChooseChunk extends Controller{
 	@FXML
 	private void handleRemove() {
 		if (_outputAudioView.getSelectionModel().getSelectedItem()!=null) {
+			//remove item selected in output view
 			int index = _outputAudioView.getSelectionModel().getSelectedIndex();
 			_outputAudioView.getItems().remove(index);
 		}
 	}
-
+	
+	/**
+	 * Once move up button clicked, moves up audio
+	 */
 	@FXML
 	private void handleMoveUp() {
 		int index = _outputAudioView.getSelectionModel().getSelectedIndex();
 		List<String> chunkList = _outputAudioView.getItems();
 		//if index is less than or equal to zero, do nothing
 		if (index>0 && index<chunkList.size()) {
+			//swap selected item with item above
 			String chunk = chunkList.get(index);
 			chunkList.set(index, chunkList.get(index - 1));
 			chunkList.set(index - 1, chunk);
@@ -179,12 +199,16 @@ public class ChooseChunk extends Controller{
 		}
 	}
 
+	/**
+	 * Once move up button clicked, moves up audio
+	 */
 	@FXML
 	private void handleMoveDown() {
 		int index = _outputAudioView.getSelectionModel().getSelectedIndex();
 		List<String> chunkList = _outputAudioView.getItems();
 		//if index is more than or equal to index of last element, do nothing
 		if (index<chunkList.size()-1 && index>=0) {
+			//swap selected item with item below
 			String chunk = chunkList.get(index);
 			chunkList.set(index, chunkList.get(index + 1));
 			chunkList.set(index + 1, chunk);
@@ -192,17 +216,25 @@ public class ChooseChunk extends Controller{
 		}
 	}
 
+	/**
+	 * Called when switching scene forward
+	 */
 	@Override
 	public void auxiliaryFunction(FXMLLoader loader) {
 		//stop current audio
 		if(_player!=null) {
 			_player.stop();
 		}
+		//set audioList in creations to audio in outputAudioView
 		_creation.setAudioList(_outputAudioView.getItems());
 		ChooseMusic controller = loader.getController();
+		//set next scene to have the current creation
 		controller.setCreation(_creation);
 	}
 	
+	/**
+	 * Called when pressing back button
+	 */
 	@Override
 	public void auxiliaryFunctionBackwards(FXMLLoader loader) {
 		//stop current audio
@@ -223,11 +255,16 @@ public class ChooseChunk extends Controller{
 		//set output values to creation current
 		_outputAudioView.getItems().setAll(_creation.getAudioList());
 	}
-
+	
+	/**
+	 * Called when the next button is clicked
+	 */
 	@FXML
 	public void handleNextButton(ActionEvent event) throws IOException {
+		//checking if output is empty, then throw alert
 		if(_outputAudioView.getItems().isEmpty()) {
 			createAlert(Alert.AlertType.WARNING, "No Audio Chosen", "No audio was chosen");
+		//else switch scene
 		}else {
 			switchForwardScene(event);
 		}
