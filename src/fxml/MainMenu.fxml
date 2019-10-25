@@ -17,14 +17,14 @@
                <children>
                   <HBox alignment="CENTER" spacing="10.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#switchToList" opacity="0.8" prefWidth="180.0" text="Play/Delete Creations" />
-                        <Button mnemonicParsing="false" onAction="#switchToCreateCreation" opacity="0.8" prefWidth="180.0" text="Create Creation" />
+                        <Button mnemonicParsing="false" onAction="#switchToCreateAudio" opacity="0.8" prefWidth="180.0" text="Create Audio" />
+                        <Button mnemonicParsing="false" onAction="#switchToDeleteAudio" opacity="0.8" prefWidth="180.0" text="Play/Delete Audio" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" spacing="10.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#switchToDeleteAudio" opacity="0.8" prefWidth="180.0" text="Play/Delete Audio" />
-                        <Button mnemonicParsing="false" onAction="#switchToCreateAudio" opacity="0.8" prefWidth="180.0" text="Create Audio" />
+                        <Button mnemonicParsing="false" onAction="#switchToCreateCreation" opacity="0.8" prefWidth="180.0" text="Create Creation" />
+                        <Button mnemonicParsing="false" onAction="#switchToList" opacity="0.8" prefWidth="180.0" text="Play/Delete Creations" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" spacing="10.0">
