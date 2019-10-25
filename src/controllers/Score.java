@@ -30,7 +30,6 @@ public class Score extends Controller {
     	_xAxis.setAnimated(false);
     	_xAxis.setTickLabelGap(0);
     	
-    	_yAxis.setLabel("Score");
     	_yAxis.setAutoRanging(false);
     	//set upper bound to be max score as a visual comparison
     	_yAxis.setUpperBound(maxScore);
