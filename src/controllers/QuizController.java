@@ -234,6 +234,8 @@ public class QuizController extends Controller {
         Score scoreController = loader.<Score>getController();
 
         scoreController.setLabel(_numberCorrect, _maximumScore);
+        scoreController.setChart(_numberCorrect, _maximumScore);
+        
 
     }
     

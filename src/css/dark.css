@@ -49,6 +49,16 @@
 }
 
 
+/* Bar-Chart Styling */
+.bar-chart .chart-content .chart-plot-background {
+	-fx-background-color: lightgray;
+}
+
+.axis {
+	-fx-tick-label-fill: white;
+}
+
+
 /* Separate colors for toolbar */
 .tool-bar {
 	-fx-background-color: #444444;
