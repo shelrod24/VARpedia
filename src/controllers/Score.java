@@ -26,22 +26,27 @@ public class Score extends Controller {
     }
     
     public void setChart(int correct, int maxScore) {
+    	//stops animating the x axis to make it expand vertically
     	_xAxis.setAnimated(false);
     	_xAxis.setTickLabelGap(0);
     	
     	_yAxis.setLabel("Score");
     	_yAxis.setAutoRanging(false);
+    	//set upper bound to be max score as a visual comparison
     	_yAxis.setUpperBound(maxScore);
+    	//set the units to be whole numbers
     	_yAxis.setTickUnit(1);
     	
     	int incorrect = maxScore-correct;
-    	
+    	//make a series with the required data
     	XYChart.Series<String, Integer> correctSeries =  new XYChart.Series<String, Integer>();
     	correctSeries.getData().add(new XYChart.Data<String, Integer>("Correct", correct));
     	correctSeries.getData().add(new XYChart.Data<String, Integer>("Incorrect", incorrect));
     	
+    	//add series to the BarChart
     	_chart.getData().add(correctSeries);
     	
+    	//chnage the color of the bars depending on the position
     	Node n = _chart.lookup(".data0.chart-bar");
         n.setStyle("-fx-bar-fill: #abb7ff");
         n = _chart.lookup(".data1.chart-bar");
