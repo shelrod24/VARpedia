@@ -6,6 +6,7 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -16,25 +17,26 @@
          <children>
             <ToolBar prefHeight="40.0" prefWidth="200.0">
               <items>
-                <Button mnemonicParsing="false" onAction="#switchBackScene" text="Home">
-                     <graphic>
-                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../icons/home.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
+                  <HBox alignment="CENTER_LEFT">
+                     <children>
+                      <Button mnemonicParsing="false" onAction="#switchBackScene" text="Home">
+                           <graphic>
+                              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icons/home.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Region prefHeight="28.0" prefWidth="390.0" />
+                        <Label text="Credits" />
+                     </children>
+                  </HBox>
               </items>
             </ToolBar>
             <VBox alignment="TOP_CENTER" spacing="5.0" VBox.vgrow="ALWAYS">
                <children>
-                  <Region prefHeight="40.0" />
-                  <Label alignment="CENTER" contentDisplay="CENTER" text="Credits">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
+                  <Region prefHeight="92.0" prefWidth="1000.0" />
                   <Label text="Programmers">
                      <font>
                         <Font size="18.0" />
