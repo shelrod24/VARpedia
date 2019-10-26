@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 
@@ -23,8 +24,16 @@ public class ChooseQuiz extends Controller {
 
     public void switchToQuiz(ActionEvent event) throws IOException {
 
-        pupulateQuizList();
-        switchForwardScene(event);
+        Integer numOfItems = _choiceBox.getSelectionModel().getSelectedItem();
+
+        if (numOfItems == null) {
+
+            createAlert(Alert.AlertType.WARNING, "Unknown number of questions", "You have not chosen the number of questions in your quiz");
+
+        } else {
+            pupulateQuizList();
+            switchForwardScene(event);
+        }
 
     }
 
@@ -45,40 +54,40 @@ public class ChooseQuiz extends Controller {
     }
 
 
-    private void pupulateQuizList(){
+    private void pupulateQuizList() {
 
         Integer numOfItems = _choiceBox.getSelectionModel().getSelectedItem();
-        quizFiles = new ArrayList<String>();
-        boolean exists;
 
-        for(int i = 0; i < numOfItems; i++){
+            quizFiles = new ArrayList<String>();
+            boolean exists;
 
-            exists = false;
-            int random = getRandomIntegerBetweenRange(numOfItems);
+            for (int i = 0; i < numOfItems; i++) {
 
-            //Checking to see if the randomly selected quiz item has already been added to the list.
-            for(int j = 0; j < quizFiles.size(); j++) {
+                exists = false;
+                int random = getRandomIntegerBetweenRange(numOfItems);
 
-                if(files[random-1].equals(quizFiles.get(j))) {
+                //Checking to see if the randomly selected quiz item has already been added to the list.
+                for (int j = 0; j < quizFiles.size(); j++) {
 
-                    exists = true;
+                    if (files[random - 1].equals(quizFiles.get(j))) {
+
+                        exists = true;
+
+                    }
 
                 }
 
+                if (!exists) {
+
+                    quizFiles.add(files[random - 1]);
+
+                } else {
+
+                    i--;
+                }
+
+                System.out.println(quizFiles.get(i));
             }
-
-            if (!exists){
-
-                quizFiles.add(files[random-1]);
-
-            } else {
-
-                i--;
-            }
-
-            System.out.println(quizFiles.get(i));
-        }
-
 
     }
 
