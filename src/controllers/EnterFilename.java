@@ -77,6 +77,9 @@ public class EnterFilename extends Controller{
 	 */
 	@FXML
 	public void handleMainButton(ActionEvent event) throws IOException {
+		if(_mainButton.isDisable()) {
+			return;
+		}
 		//get current text of button as welll as filename
 		String option = _mainButton.getText();
 		String filename = _filenameField.getText().trim();
