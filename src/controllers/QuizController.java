@@ -95,8 +95,24 @@ public class QuizController extends Controller {
 
                 _slider.setMin(0);
                 _slider.setMax(_player.getTotalDuration().toMillis());
+                _slider.valueProperty().addListener(observable -> {
+                    if (_slider.isPressed()){
+                        _player.seek(new Duration(_slider.getValue()));
+                    }
+                });
 
             }
+
+        });
+
+        _player.setOnEndOfMedia(()-> {
+            _player.seek(Duration.ZERO);
+            _slider.adjustValue(0);
+            _player.pause();
+            _play.setText("Play");
+            Image image = new Image(getClass().getResourceAsStream("/icons/play.png"));
+            _play.setGraphic(new ImageView(image));
+
 
         });
 
@@ -128,7 +144,7 @@ public class QuizController extends Controller {
         _answer.setText(answer[0]);
         _player.stop();
 
-        if (_textField.getText().toLowerCase().equals(answer[0].toLowerCase())){
+        if (_textField.getText().trim().toLowerCase().equals(answer[0].toLowerCase())){
             _numberCorrect++;
             _outcome.setText("Correct");
             _result.setImage(new Image(getClass().getResourceAsStream("/icons/right.png")));
@@ -156,7 +172,9 @@ public class QuizController extends Controller {
             switchForwardScene(event);
 
         } else  {
-
+            _play.setText("Pause");
+            Image image = new Image(getClass().getResourceAsStream("/icons/pause.png"));
+            _play.setGraphic(new ImageView(image));
             playMedia();
 
         }
@@ -210,14 +228,22 @@ public class QuizController extends Controller {
 
 
     public void skipForwardSeconds() {
+        if(_player.getStatus() == MediaPlayer.Status.PAUSED){
+            //Do nothing
+        } else {
+            _player.seek(_player.getCurrentTime().add(Duration.seconds(5)));
+        }
 
-        _player.seek(_player.getCurrentTime().add(Duration.seconds(5)));
+
     }
 
-
     public void skipBackSeconds() {
+        if(_player.getStatus() == MediaPlayer.Status.PAUSED){
+            //Do nothing
+        } else {
+            _player.seek(_player.getCurrentTime().add(Duration.seconds(-5)));
+        }
 
-        _player.seek(_player.getCurrentTime().add(Duration.seconds(-5)));
     }
 
 

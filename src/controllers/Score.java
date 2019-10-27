@@ -21,7 +21,7 @@ public class Score extends Controller {
 	@FXML private NumberAxis _yAxis;
 
     public void setLabel(int correct, int maxScore){
-        String outcome = "You got: "+ correct+ " out of "+ maxScore;
+        String outcome = "You got: "+ correct+ " out of "+ maxScore + " correct";
         _scorelabel.setText(outcome);
     }
     
