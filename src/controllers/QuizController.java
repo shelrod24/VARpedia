@@ -40,8 +40,13 @@ public class QuizController extends Controller {
     private int _numberCorrect = 0;
     private int _maximumScore;
     private double _rate = 1.0;
-    
 
+
+    /**
+     *
+     * @param event
+     * Depending on the text of the button when it is pressed,
+     */
     public void junction(ActionEvent event) throws IOException, InterruptedException {
 
         if (_submit.getText().equals("Next")){

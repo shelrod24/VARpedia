@@ -56,21 +56,13 @@ public class MediaViewController extends Controller{
 
 
         _player.setOnEndOfMedia(()-> {
+            _player.seek(Duration.ZERO);
+            _slider.adjustValue(0);
+            _player.pause();
+            _play.setText("Play");
+            Image image = new Image(getClass().getResourceAsStream("/icons/play.png"));
+            _play.setGraphic(new ImageView(image));
 
-            _play.setDisable(true);
-            _slider.adjustValue(_player.getTotalDuration().toMillis());
-
-            String time = "";
-            time+=String.format("%02d", ((int)_player.getTotalDuration().toMinutes()));
-            time+=":";
-            time+=String.format("%02d", ((int)_player.getTotalDuration().toSeconds())%60);
-            _timelabel.setText(time);
-
-
-            _slower.setDisable(true);
-            _faster.setDisable(true);
-            _skipbackward.setDisable(true);
-            _skipforward.setDisable(true);
 
         });
 
@@ -110,6 +102,11 @@ public class MediaViewController extends Controller{
                 initializePlayer();
                 _slider.setMin(0);
                 _slider.setMax(_player.getTotalDuration().toMillis());
+                _slider.valueProperty().addListener(observable -> {
+                    if (_slider.isPressed()){
+                        _player.seek(new Duration(_slider.getValue()));
+                    }
+                });
 
             }
 
@@ -155,22 +152,29 @@ public class MediaViewController extends Controller{
     }
 
     public void slowDown() {
-
         if ((_rate - 0.25) > 0) {
             _rate = _rate - 0.25;
             _player.setRate(_rate);
         }
-
     }
 
     public void skipForwardSeconds() {
+        if(_player.getStatus() == MediaPlayer.Status.PAUSED){
+            //Do nothing
+        } else {
+            _player.seek(_player.getCurrentTime().add(Duration.seconds(5)));
+        }
 
-        _player.seek(_player.getCurrentTime().add(Duration.seconds(5)));
+
     }
 
     public void skipBackSeconds() {
+        if(_player.getStatus() == MediaPlayer.Status.PAUSED){
+            //Do nothing
+        } else {
+            _player.seek(_player.getCurrentTime().add(Duration.seconds(-5)));
+        }
 
-        _player.seek(_player.getCurrentTime().add(Duration.seconds(-5)));
     }
 
 
@@ -179,16 +183,12 @@ public class MediaViewController extends Controller{
 
     @Override
     public String returnFXMLPath() {
-
         return _previousfxmlpath;
-
     }
 
     @Override
     public String returnForwardFXMLPath() {
-
         return null;
-
     }
 
     @Override
