@@ -1,2 +1,0 @@
-apiKey = c7c3ff6170bb8ec2369915b93e73843a
-sharedSecret = cd58b3ab83a0048a
