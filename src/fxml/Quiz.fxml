@@ -14,10 +14,12 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.media.MediaView?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="background" prefHeight="500.0" prefWidth="700.0" stylesheets="@/css/dark.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.QuizController">
+<AnchorPane id="background" prefHeight="500.0" prefWidth="700.0" stylesheets="@/css/dark.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.QuizController">
    <children>
       <BorderPane prefHeight="500.0" prefWidth="700.0">
          <top>
@@ -140,7 +142,16 @@
                <children>
                   <HBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <children>
-                        <MediaView fx:id="_view" fitHeight="370.0" fitWidth="700.0" HBox.hgrow="ALWAYS" />
+                        <StackPane HBox.hgrow="ALWAYS">
+                           <children>
+                              <MediaView fx:id="_view" fitHeight="370.0" fitWidth="700.0" />
+                              <Label fx:id="_answer" visible="false">
+                                 <font>
+                                    <Font size="24.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </StackPane>
                      </children>
                   </HBox>
                </children></AnchorPane>

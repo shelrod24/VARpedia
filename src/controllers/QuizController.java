@@ -30,6 +30,7 @@ public class QuizController extends Controller {
     @FXML private Button _submit;
     @FXML private Label _outcome;
     @FXML private ImageView _result;
+    @FXML private Label _answer;
 
     private ArrayList<String> _listOfCreations;
     private String _previousfxmlpath =  "/fxml/ChooseQuiz.fxml";
@@ -46,6 +47,7 @@ public class QuizController extends Controller {
         if (_submit.getText().equals("Next")){
 
             _outcome.setText("");
+            _answer.setVisible(false);
             nextQuestion(event);
 
         } else {
@@ -117,7 +119,8 @@ public class QuizController extends Controller {
 
         String[] answer = s[1].split("\\.");
 
-        System.out.println(answer[0]);
+        _answer.setVisible(true);
+        _answer.setText(answer[0]);
         _player.stop();
 
         if (_textField.getText().toLowerCase().equals(answer[0].toLowerCase())){

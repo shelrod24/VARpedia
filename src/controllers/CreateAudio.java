@@ -34,7 +34,10 @@ public class CreateAudio extends Controller {
     private String _searchterm;
 
 
-
+    /**
+     * This methods primary purpose is process out unnecessary spaces and error check the search term specified by the
+     * user before calling another method "fillWikiTextFiles()" and "printWikiArticleFromLinedFile()"
+     */
     public void searchWikipedia() throws IOException {
     	// if the button is disabled, return
     	if(_searchbutton.isDisable()) {
@@ -73,7 +76,10 @@ public class CreateAudio extends Controller {
     }
 
 
-
+    /**
+     * This method takes the search term specified by the user, retrieves the wikipedia text corresponding to the search
+     * term and puts it into text files.
+     */
     public void fillWikiTextFiles(String searchterm) throws IOException, InterruptedException {
 
         String echowiki = "echo $(wikit "+searchterm+") > ./temps/text.txt";
@@ -83,7 +89,9 @@ public class CreateAudio extends Controller {
     }
 
 
-
+    /**
+     * This method takes the Wikipedia text in the text files and prints it out on the GUI.
+     */
     public int printWikiArticleFromLinedFile() {
 
         BufferedReader reader = null;
@@ -127,6 +135,10 @@ public class CreateAudio extends Controller {
 
 
     @FXML
+    /**
+     * This method is called upon initialisation of the create audio scene and its purpose is to populate the list containing
+     * the different voices the user can select from.
+     */
     private void initialize() throws IOException, InterruptedException {
     	
         Thread thread = new Thread(new Task<Void>() {
@@ -157,7 +169,9 @@ public class CreateAudio extends Controller {
     }
 
 
-
+    /**
+     * This method takes a selected line of text from a list view and appends it to a text area so the user can edit it.
+     */
     public void moveTextOver() {
 
         String name = _listarea.getSelectionModel().getSelectedItem();
@@ -191,7 +205,9 @@ public class CreateAudio extends Controller {
     }
 
 
-
+    /**
+     * This method takes the selected voice and the text in the text area and plays it back to the user.
+     */
     public void previewAudio() throws IOException, InterruptedException {
 
         String lyrics = _lyrics.getText();
@@ -248,7 +264,12 @@ public class CreateAudio extends Controller {
     }
 
 
-
+    /**
+     * This method takes the name specified by a user and creates two audio files, one version with the search term taken out
+     * and one version without the search term taken out. The audio files are only created providing there is less than 40 words
+     * to put in the file, and if there is a valid name (if a existing name is given then is will ask to the user if he wants
+     * to override it)
+     */
     public void nameFile() throws IOException, InterruptedException {
 
         String name = _filefield.getText();
@@ -302,8 +323,7 @@ public class CreateAudio extends Controller {
         String original = _lyrics.getText();
         // making redacted lyrics
         String redacted = _lyrics.getText().toLowerCase().replaceAll(" "+_searchterm+" ", " blank ");
-        
-        
+
 
         Thread thread = new Thread(new Task<Void>() {
 
@@ -356,7 +376,6 @@ public class CreateAudio extends Controller {
         });
 
         thread.start();
-
     }
 
 
