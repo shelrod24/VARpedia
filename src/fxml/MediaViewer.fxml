@@ -30,7 +30,7 @@
                            </image>
                         </ImageView>
                      </graphic></Button>
-                  <Region prefWidth="280.0" />
+                  <Region prefHeight="26.0" prefWidth="250.0" />
                   <Label fx:id="_timelabel" textFill="WHITE" />
                </items>
             </ToolBar>

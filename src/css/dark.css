@@ -51,11 +51,22 @@
 
 /* Slider styling */
 .slider .track {
-	-fx-background-color: white;
+	-fx-background-color: lightgray;
 }
 
 .slider .thumb {
 	-fx-background-color: lightgray;
+	-fx-border-color: transparent;
+	-fx-border-radius: 20;
+}
+
+.slider .thumb:hover {
+	-fx-border-color: white;
+}
+
+.slider .thumb:pressed {
+	-fx-border-color: white;
+	-fx-background-color: gray;
 }
 
 
