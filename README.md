@@ -1,6 +1,6 @@
 # VARpedia  
 ## Introduction  
-VARpedia is a learning application aimed at 21-25 year old second language users.  
+VARpedia is a learning application aimed at 18-25 year old second language users.  
 ## Requirements  
 Make sure you are using a unix/linux based operating system with ffmpeg, wikit and festival installed.
 ## Running the program  
