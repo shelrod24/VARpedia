@@ -40,8 +40,8 @@
 }
 
 .combo-box .combo-box-popup .list-view, .combo-box .combo-box-popup .list-cell {
-    -fx-background-color: #333333 ;
-    -fx-text-fill: white ;
+	-fx-background-color: #333333 ;
+	-fx-text-fill: white ;
 }
 
 .combo-box .combo-box-popup .list-cell:hover {
@@ -49,7 +49,28 @@
 }
 
 
-/* Bar-Chart Styling */
+/* Slider styling */
+.slider .track {
+	-fx-background-color: lightgray;
+}
+
+.slider .thumb {
+	-fx-background-color: lightgray;
+	-fx-border-color: transparent;
+	-fx-border-radius: 20;
+}
+
+.slider .thumb:hover {
+	-fx-border-color: white;
+}
+
+.slider .thumb:pressed {
+	-fx-border-color: white;
+	-fx-background-color: gray;
+}
+
+
+/* Bar-Chart styling */
 .bar-chart .chart-content .chart-plot-background {
 	-fx-background-color: lightgray;
 }
@@ -108,9 +129,9 @@
 	-fx-cursor: hand;
 }
 
- .tool-bar .combo-box .combo-box-popup .list-view, .combo-box .combo-box-popup .list-cell {
-    -fx-background-color: #333333 ;
-    -fx-text-fill: white ;
+.tool-bar .combo-box .combo-box-popup .list-view, .combo-box .combo-box-popup .list-cell {
+	-fx-background-color: #333333 ;
+	-fx-text-fill: white ;
 }
 
 .tool-bar .combo-box .combo-box-popup .list-cell:hover {

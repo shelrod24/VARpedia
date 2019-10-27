@@ -34,7 +34,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Region prefHeight="200.0" prefWidth="280.0" />
+                  <Region prefHeight="200.0" prefWidth="250.0" />
                   <Label fx:id="_timelabel" textFill="WHITE" />
                </items>
             </ToolBar>
@@ -65,7 +65,7 @@
                   <Slider fx:id="_slider" style="-fx-background-color: #555555;" />
                   <HBox alignment="CENTER" prefHeight="64.0" prefWidth="1000.0" style="-fx-background-color: #555555;">
                      <children>
-                        <Button fx:id="_skipbackward" ellipsisString="" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#skipBackSeconds" prefWidth="130.0" style="-fx-background-color: #555555;" text="Skip Back" textAlignment="RIGHT" textFill="#ffffffcc">
+                        <Button fx:id="_skipbackward" ellipsisString="" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#skipBackSeconds" prefWidth="140.0" style="-fx-background-color: #555555;" text="Skip Backward" textAlignment="RIGHT" textFill="#ffffffcc">
                            <effect>
                               <Glow level="0.0" />
                            </effect>
@@ -114,7 +114,7 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button fx:id="_skipforward" ellipsisString="" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#skipForwardSeconds" prefWidth="130.0" style="-fx-background-color: #555555;" text="Skip Forward" textAlignment="RIGHT" textFill="#ffffffcc">
+                        <Button fx:id="_skipforward" ellipsisString="" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" mnemonicParsing="false" nodeOrientation="LEFT_TO_RIGHT" onAction="#skipForwardSeconds" prefWidth="140.0" style="-fx-background-color: #555555;" text="Skip Forward" textAlignment="RIGHT" textFill="#ffffffcc">
                            <effect>
                               <Glow level="0.0" />
                            </effect>

@@ -52,7 +52,7 @@
                   <VBox alignment="CENTER_LEFT" spacing="5.0" VBox.vgrow="ALWAYS">
                      <children>
                         <Label text="Enter the filename of the new creation." />
-                        <TextField fx:id="_filenameField" opacity="0.8" VBox.vgrow="ALWAYS">
+                        <TextField fx:id="_filenameField" onAction="#handleMainButton" opacity="0.8" VBox.vgrow="ALWAYS">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin>
