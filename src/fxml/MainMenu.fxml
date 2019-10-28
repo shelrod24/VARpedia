@@ -2,6 +2,8 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -17,20 +19,55 @@
                <children>
                   <HBox alignment="CENTER" spacing="10.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#switchToCreateAudio" opacity="0.8" prefWidth="180.0" text="Create Audio" />
-                        <Button mnemonicParsing="false" onAction="#switchToDeleteAudio" opacity="0.8" prefWidth="180.0" text="Play/Delete Audio" />
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#switchToCreateAudio" opacity="0.8" prefWidth="200.0" text="Create Audio">
+                           <graphic>
+                              <ImageView fitHeight="16.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icons/create_audio.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#switchToDeleteAudio" opacity="0.8" prefWidth="200.0" text="Play/Delete Audio">
+                           <graphic>
+                              <ImageView fitHeight="16.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icons/play_delete_audio.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" spacing="10.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#switchToCreateCreation" opacity="0.8" prefWidth="180.0" text="Create Creation" />
-                        <Button mnemonicParsing="false" onAction="#switchToList" opacity="0.8" prefWidth="180.0" text="Play/Delete Creations" />
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#switchToCreateCreation" opacity="0.8" prefWidth="200.0" text="Create Creation">
+                           <graphic>
+                              <ImageView fitHeight="16.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icons/create_creation.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#switchToList" opacity="0.8" prefWidth="200.0" text="Play/Delete Creations">
+                           <graphic>
+                              <ImageView fitHeight="16.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icons/play_delete_creation.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
                      </children>
                   </HBox>
                   <HBox alignment="CENTER" spacing="10.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#switchToStartQuiz" opacity="0.8" prefWidth="180.0" text="Quiz" />
-                        <Button mnemonicParsing="false" onAction="#switchToCredits" opacity="0.8" prefWidth="180.0" text="Credits" />
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#switchToStartQuiz" opacity="0.8" prefWidth="200.0" text="Quiz">
+                           <graphic>
+                              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icons/quiz.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></Button>
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#switchToCredits" opacity="0.8" prefWidth="200.0" text="Credits" />
                      </children>
                   </HBox>
                </children>
