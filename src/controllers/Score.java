@@ -20,11 +20,23 @@ public class Score extends Controller {
     @FXML private CategoryAxis _xAxis;
 	@FXML private NumberAxis _yAxis;
 
+    /**
+     * @param correct
+     * @param maxScore
+     * This method is called by the controller of the previous scene, simply displays the amount of questions the user
+     * got correct. It gets the information required from the previous scenes controller.
+     */
     public void setLabel(int correct, int maxScore){
         String outcome = "You got: "+ correct+ " out of "+ maxScore + " correct";
         _scorelabel.setText(outcome);
     }
-    
+
+    /**
+     * This method is called by the controller of the previous scene, creates the barchart and initialises it with the
+     * data from the previous scene
+     * @param correct the number correctly answered in the quiz
+     * @param maxScore the total number of questions in the quiz
+     */
     public void setChart(int correct, int maxScore) {
     	//stops animating the x axis to make it expand vertically
     	_xAxis.setAnimated(false);

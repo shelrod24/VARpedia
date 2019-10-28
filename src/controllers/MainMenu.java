@@ -30,7 +30,11 @@ public class MainMenu extends Application {
 
     }
 
-
+    /**
+     * @param event
+     * @throws IOException
+     * This method switches the scene from the main menu to the scene where all the existing creations are listed.
+     */
     public void switchToList(ActionEvent event) throws IOException {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ListScene.fxml"));
@@ -43,12 +47,14 @@ public class MainMenu extends Application {
 
         //Getting the controller from the loader
         ListScene listcontroller = loader.<ListScene>getController();
-
         listcontroller.innitialiseList();
-
     }
 
-    
+    /**
+     * @param event
+     * @throws IOException
+     * This method switches the scene from the main menu to the scene where the user can create audio chuncks.
+     */
     public void switchToCreateAudio(ActionEvent event) throws IOException {
 
         Parent createaudioparent = FXMLLoader.load(getClass().getResource("/fxml/CreateAudio.fxml"));
@@ -59,8 +65,12 @@ public class MainMenu extends Application {
         stage.setScene(createaudioscene);
 
     }
-    
-    
+
+    /**
+     * @param event
+     * @throws IOException
+     * This method switches the scene from the main menu to the scene where the user can create a creation.
+     */
     public void switchToCreateCreation(ActionEvent event) throws IOException {
 
     	Parent createcreationparent = FXMLLoader.load(getClass().getResource("/fxml/ChooseAudio.fxml"));
@@ -71,7 +81,12 @@ public class MainMenu extends Application {
         stage.setScene(createcreationscene);
     }
 
-
+    /**
+     * @param event
+     * @throws IOException
+     * This method switches the scene from the main menu to the scene where all the existing audio chuncks are listed
+     * and where the user will then have the option to play or delete an audio chunk.
+     */
     public void switchToDeleteAudio(ActionEvent event) throws IOException {
 
         Parent deleteaudioparent = FXMLLoader.load(getClass().getResource("/fxml/DeleteAudio.fxml"));
@@ -83,6 +98,11 @@ public class MainMenu extends Application {
 
     }
 
+    /**
+     * @param event
+     * @throws IOException
+     * This method switches the scene from the main menu to the scene where the quiz can be configured and then played.
+     */
     public void switchToStartQuiz(ActionEvent event) throws IOException {
 
         Parent quizParent = FXMLLoader.load(getClass().getResource("/fxml/ChooseQuiz.fxml"));
@@ -94,6 +114,11 @@ public class MainMenu extends Application {
 
     }
 
+    /**
+     * @param event
+     * @throws IOException
+     * This method switches the scene from the main menu to the scene where the credits are displayed.
+     */
     public void switchToCredits(ActionEvent event) throws IOException {
 
         Parent parent = FXMLLoader.load(getClass().getResource("/fxml/Credits.fxml"));

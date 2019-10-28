@@ -34,7 +34,9 @@ public class DeleteAudio extends Controller {
 	@FXML private ListView<String> _audiofiles;
 
 
-
+	/**
+	 * This method gets the audio files in the select directory and lists them in a list view
+	 */
 	public void SelectAudioSubDirectory() {
 
 		_audiofiles.getItems().clear();
@@ -56,16 +58,15 @@ public class DeleteAudio extends Controller {
 
 	}
 
-
-
+	/**
+	 * This method actually deletes the selected audio file and the redacted version, but will ask for conformation
+	 */
 	public void DeleteAudiofile() throws IOException, InterruptedException {
 
 		_audio = _audiofiles.getSelectionModel().getSelectedItem();
 
 		if (_audio == null) {
-
 			return;
-
 		}
 
 		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -79,9 +80,7 @@ public class DeleteAudio extends Controller {
 		alert.showAndWait();
 
 		if (alert.getResult() == ButtonType.NO) {
-
 			return;
-
 		} else {
 
 			// deleting original audio
@@ -89,7 +88,6 @@ public class DeleteAudio extends Controller {
 			// deleting redacted audio
 			String redactedAudio = _audio.substring(0, _audio.length()-4) + "_redacted.wav";
 			this.processRunner("/bin/bash", "rm -f " + "\"./audio/" + _subdirectory + "/redacted/" + redactedAudio + "\"");
-
 
 			List<String> audiofiles = DirectoryServices.listFilesInDir("./audio/"+_subdirectory);
 			_audiofiles.getItems().clear();
@@ -105,22 +103,19 @@ public class DeleteAudio extends Controller {
 			//check if subdirectory is empty
 			this.processRunner("sh", "./scripts/checkdir_isempty.sh" + " \"" + _subdirectory + "\"");
 
-
 			_audiosubdirs.getItems().clear();
 			List<String> _audiosubfolders = DirectoryServices.listFilesInDir("./audio");
 
 			for (String s : _audiosubfolders) {
-
 				_audiosubdirs.getItems().add(s);
-
 			}
-
 		}
-
 	}
 
-
-
+	/**
+	 * This method is called apon initialisation of the scene for which this is the controller. Its main purpose is to
+	 * delete the empty directories and populate the first list view with the available directories to select from.
+	 */
 	@FXML
 	public void initialize() throws InterruptedException, IOException {
 
@@ -133,11 +128,8 @@ public class DeleteAudio extends Controller {
 		List<String> _audiosubfolders = DirectoryServices.listFilesInDir("./audio");
 
 		for(String s: _audiosubfolders) {
-
 			_audiosubdirs.getItems().add(s);
-
 		}
-
 	}
 
 	public void PreviewExistingAudio() throws IOException, InterruptedException {
@@ -150,7 +142,6 @@ public class DeleteAudio extends Controller {
 			_previewbutton.setText("Stop");
 			Image image = new Image(getClass().getResourceAsStream("/icons/stop.png"));
 			_previewbutton.setGraphic(new ImageView(image));
-
 			playAudio();
 
 		} else if(_previewbutton.getText().equals("Stop") && _player!=null) {
@@ -158,9 +149,7 @@ public class DeleteAudio extends Controller {
 			_previewbutton.setText("Play");
 			Image image = new Image(getClass().getResourceAsStream("/icons/play.png"));
 			_previewbutton.setGraphic(new ImageView(image));
-			
 			_player.stop();
-			
 		}
 	}
 

@@ -43,30 +43,24 @@ public class QuizController extends Controller {
 
 
     /**
-     *
      * @param event
-     * Depending on the text of the button when it is pressed,
+     * Depending on the text of the button when it is pressed, it will direct the control flow to either check the
+     * submitted answer, or go to the next question.
      */
     public void junction(ActionEvent event) throws IOException, InterruptedException {
-
         if (_submit.getText().equals("Next")){
-
             _outcome.setText("");
             _answer.setVisible(false);
             nextQuestion(event);
-
         } else {
-
             checkAnswer();
-
         }
-
-
     }
 
-
-
-
+    /**
+     * This method gets the next creation to be played and sets up the media player, the view and the slider. it then plays the
+     * video
+     */
     public void playMedia() {
 
             _fileUrl = new File("./questions/" + _listOfCreations.get(0));
@@ -118,17 +112,19 @@ public class QuizController extends Controller {
 
     }
 
-
+    /**
+     * This method is called by the controller of the previous scene and recieves a list of creations to play as
+     * part of the quiz.
+     */
     public void setFileList(ArrayList<String> listOfCreations){
-
         _listOfCreations = listOfCreations;
         _maximumScore = _listOfCreations.size();
-
-
     }
 
-
-
+    /**
+     * This method checks the submitted answer of the user against the correct answer. It is called when the user pressed
+     * submit.
+     */
     public void checkAnswer() throws InterruptedException, IOException {
     	//nothing was entered, so do nothing
     	if(_textField.getText()==null || _textField.getText().toLowerCase().trim().equals("")) {
@@ -152,11 +148,14 @@ public class QuizController extends Controller {
             _outcome.setText("Incorrect");
             _result.setImage(new Image(getClass().getResourceAsStream("/icons/wrong.png")));
         }
-
         _submit.setText("Next");
-
     }
 
+    /**
+     * The method is called when the user clicks "Next" from the junction() method.
+     * This method removes the first index in the list of creations and shifts the other creations down. If there is no creation
+     * to play, then it switches to the score scene, else it calls playMedia();
+     */
     private void nextQuestion(ActionEvent event) throws IOException {
 
         _submit.setText("Submit");
@@ -166,110 +165,90 @@ public class QuizController extends Controller {
         _listOfCreations.remove(0);
 
         if(_listOfCreations.size()== 0) {
-
             //Got to end screen
             switchForwardScene(event);
-
         } else  {
             _play.setText("Pause");
             Image image = new Image(getClass().getResourceAsStream("/icons/pause.png"));
             _play.setGraphic(new ImageView(image));
             playMedia();
-
         }
-
-
     }
 
-
+    /**
+     * This method just pauses or plays the media depending on the media players current status.
+     */
     public void pausePlay(){
-
         if (_player.getStatus() == MediaPlayer.Status.PLAYING) {
-
             _player.pause();
             _play.setText("Play");
 			Image image = new Image(getClass().getResourceAsStream("/icons/play.png"));
 			_play.setGraphic(new ImageView(image));
-
-
         } else {
-
             _player.play();
             _play.setText("Pause");
 			Image image = new Image(getClass().getResourceAsStream("/icons/pause.png"));
 			_play.setGraphic(new ImageView(image));
-
-
         }
     }
 
-
+    /**
+     * This method just increases the playback speed of the media player.
+     */
     public void fastForward() {
-
         if ((_rate + 0.25) <= 2) {
-
             _rate = _rate + 0.25;
             _player.setRate(_rate);
-
         }
-
     }
 
-
+    /**
+     * This method just decreases the playback speed of the media player.
+     */
     public void slowDown() {
-
         if ((_rate - 0.25) > 0) {
             _rate = _rate - 0.25;
             _player.setRate(_rate);
         }
-
     }
 
-
+    /**
+     * This method increases the elapsed time of the media player by 5 seconds.
+     */
     public void skipForwardSeconds() {
         if(_player.getStatus() == MediaPlayer.Status.PAUSED){
             //Do nothing
         } else {
             _player.seek(_player.getCurrentTime().add(Duration.seconds(5)));
         }
-
-
     }
 
+    /**
+     * This method decreases the elapsed time of the media player by 5 seconds.
+     */
     public void skipBackSeconds() {
         if(_player.getStatus() == MediaPlayer.Status.PAUSED){
             //Do nothing
         } else {
             _player.seek(_player.getCurrentTime().add(Duration.seconds(-5)));
         }
-
     }
-
 
     @Override
     public String returnFXMLPath() {
-
         return _previousfxmlpath;
-
     }
-
 
     @Override
     public String returnForwardFXMLPath() {
-
         return "/fxml/Score.fxml";
-
     }
 
     @Override
     public void auxiliaryFunction(FXMLLoader loader){
-
         Score scoreController = loader.<Score>getController();
-
         scoreController.setLabel(_numberCorrect, _maximumScore);
         scoreController.setChart(_numberCorrect, _maximumScore);
-        
-
     }
     
     @Override
@@ -277,9 +256,5 @@ public class QuizController extends Controller {
     	// stops player when pressing back
     	_player.stop();
     }
-
-
-
-
 
 }

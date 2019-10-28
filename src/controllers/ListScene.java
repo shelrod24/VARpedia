@@ -21,44 +21,37 @@ public class ListScene extends Controller{
     private String _creationname;
 
 
-
+    /**
+     * This method is called apon initialisation to populate the list view  with all of the existing creations
+     */
     public void innitialiseList(){
-
         List<String> creationfiles = DirectoryServices.listFilesInDir("./creations");
-
         for(String s: creationfiles) {
-
             s = s.substring(0, s.length()-4);
             _list.getItems().add(s);
         }
 
     }
 
-
+    /**
+     * This method gets the selected creation and passes it to the next scene to play
+     */
     public void PlayCreation(ActionEvent event) throws IOException {
-
         _creationname = _list.getSelectionModel().getSelectedItem();
-
         if (_creationname == null){
-
         	return;
-        	
         } else {
-
             switchForwardScene(event);
-
         }
-
     }
 
+    /**
+     * This method gets the selected creation and deletes it
+     */
     public void DeleteCreation() throws IOException, InterruptedException {
-
         _creationname = _list.getSelectionModel().getSelectedItem();
-
         if (_creationname == null){
-
             return;
-
         }
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -72,27 +65,19 @@ public class ListScene extends Controller{
         alert.showAndWait();
 
         if (alert.getResult() == ButtonType.NO) {
-
             return;
-
         } else {
-        	
         	//delete both creation and question
         	processRunner("sh", "./scripts/delete_creation_and_question.sh \"" + _creationname + "\"");
-        	
             List<String> creationfiles = DirectoryServices.listFilesInDir("./creations");
 
             _list.getItems().clear();
-
             for(String s: creationfiles) {
-
                 s = s.substring(0, s.length()-4);
                 _list.getItems().add(s);
 
             }
-
         }
-
     }
 
 

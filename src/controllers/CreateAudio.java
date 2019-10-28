@@ -45,16 +45,12 @@ public class CreateAudio extends Controller {
     	}
         _searchterm = _searchfield.getText();
         _searchterm = _searchterm.replaceAll("(^\\s+)|(\\s+$)", "");
-
         if (_searchterm.equals("")){
-
-
             return;
         }
-
         final String searchterm =  _searchterm;
-        Thread thread = new Thread(new Task<Void>(){
 
+        Thread thread = new Thread(new Task<Void>(){
             @Override
             protected Void call() throws Exception {
                 fillWikiTextFiles(searchterm);
@@ -68,13 +64,11 @@ public class CreateAudio extends Controller {
                     _searchbutton.setDisable(false);
                 });
             }
-
         });
+
     	_searchbutton.setDisable(true);
         thread.start();
-
     }
-
 
     /**
      * This method takes the search term specified by the user, retrieves the wikipedia text corresponding to the search
@@ -87,7 +81,6 @@ public class CreateAudio extends Controller {
         processRunner("sh", "./scripts/AddWikiToLinedTextFile.sh");
 
     }
-
 
     /**
      * This method takes the Wikipedia text in the text files and prints it out on the GUI.
@@ -105,34 +98,23 @@ public class CreateAudio extends Controller {
             String line = reader.readLine();
 
             while (line != null) {
-
                 _listarea.getItems().add(line);
                 wikicontent.add(line);
                 line = reader.readLine();
             }
-
             reader.close();
 
         } catch (IOException e) {
 
             try {
-
                 reader.close();
-
             } catch (IOException e1) {
-
                 e.printStackTrace();
-
             }
-
         }
-
         n = wikicontent.size();
         return n;
-
     }
-
-
 
     @FXML
     /**
@@ -168,7 +150,6 @@ public class CreateAudio extends Controller {
         thread.start();
     }
 
-
     /**
      * This method takes a selected line of text from a list view and appends it to a text area so the user can edit it.
      */
@@ -177,13 +158,9 @@ public class CreateAudio extends Controller {
         String name = _listarea.getSelectionModel().getSelectedItem();
 
         if(name == null) {
-            
             createAlert(AlertType.WARNING, "No Selected Text", "There is no text to move over");
-
         } else {
-
             _lyrics.appendText(name + "\n");
-            
             //make it so that the filename is automatically generated from searchterm
             //remove all spaces from searchterm
             String filenameStart = _searchterm.replaceAll("\\s+","");
@@ -201,7 +178,6 @@ public class CreateAudio extends Controller {
         	}
         	_filefield.setText(filename);
         }
-
     }
 
 
@@ -214,13 +190,10 @@ public class CreateAudio extends Controller {
         String[] arr = lyrics.split(" ");
 
         if (arr.length > 40){
-
             createAlert(AlertType.WARNING, "Too Many Words", "There are more that 40 words of text");
-
         } else {
 
         	_previewbutton.setDisable(true);
-
         	Thread thread = new Thread(new Task<Void>() {
 
 				@Override
@@ -229,18 +202,13 @@ public class CreateAudio extends Controller {
 					ProcessBuilder builder = new ProcessBuilder("./scripts/festival_tts.sh",_chooseaccent.getSelectionModel().getSelectedItem(), _lyrics.getText());
 	            	Process process = builder.start();
 	            	int exit = process.waitFor();
+
                     if (exit != 0) {
-
                         Platform.runLater(()->{
-
                             createAlert(AlertType.ERROR, "Festival Error", "The text could not be handled by the current festival voice.\nTry another voice");
-
                         });
-
                         return null;
-
                     }
-
 	            	return null;
 				}
 
@@ -248,7 +216,6 @@ public class CreateAudio extends Controller {
 				protected void done() {
 
 					Platform.runLater(new Runnable() {
-
 						@Override
 						public void run() {
 							_previewbutton.setDisable(false);
@@ -262,7 +229,6 @@ public class CreateAudio extends Controller {
         }
 
     }
-
 
     /**
      * This method takes the name specified by a user and creates two audio files, one version with the search term taken out
@@ -324,7 +290,6 @@ public class CreateAudio extends Controller {
         // making redacted lyrics
         String redacted = _lyrics.getText().toLowerCase().replaceAll(" "+_searchterm+" ", " blank ");
 
-
         Thread thread = new Thread(new Task<Void>() {
 
             @Override
@@ -340,11 +305,9 @@ public class CreateAudio extends Controller {
                 Process redactedProcess = redactedBuilder.start();
                 int redactedExit = redactedProcess.waitFor();
 
-
                 if (originalExit != 0 || redactedExit != 0) {
 
                     Platform.runLater(() -> {
-
                         createAlert(AlertType.ERROR, "Festival Error", "The text could not be handled by the current festival voice.\nTry another voice");
                         _createbutton.setDisable(false);
 
@@ -378,29 +341,19 @@ public class CreateAudio extends Controller {
         thread.start();
     }
 
-
     @Override
     public String returnFXMLPath() {
-
         return _previousfxmlpath;
-
     }
 
     @Override
     public String returnForwardFXMLPath() {
-
         return null;
-
     }
 
     public void auxiliaryFunctionBackwards(FXMLLoader loader) throws IOException {
-
         processRunner("/bin/bash", "rm -f ./temps/*.txt");
-
     }
-
-
-
 
 }
 

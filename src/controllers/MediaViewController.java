@@ -21,15 +21,10 @@ import java.io.File;
 
 public class MediaViewController extends Controller{
 
-    @FXML private Pane _anchor;
     @FXML private HBox _hBox;
     @FXML private Slider _slider;
     @FXML private Button _play;
-    @FXML private Button _skipforward;
-    @FXML private Button _faster;
-    @FXML private Button _slower;
     @FXML private Label _timelabel;
-    @FXML private Button _skipbackward;
     private String _previousfxmlpath =  "/fxml/ListScene.fxml";
     private File _fileUrl;
     private Media _video;
@@ -38,22 +33,24 @@ public class MediaViewController extends Controller{
     private double _rate = 1.0;
 
     @FXML
+    /**
+     * This method configures the media player by outlining what should happen when the media ends and
+     * outlining what should happen when the current time property of the media player changes, this is
+     * called as part of the initialisation process and by playMedia().
+     */
     public void initializePlayer(){
 
         _player.currentTimeProperty().addListener(new ChangeListener<Duration>() {
 
             @Override
             public void changed(ObservableValue<? extends Duration> observable, Duration oldValue, Duration newValue) {
-
                 String time = "";
                 time+=String.format("%02d", ((int)newValue.toMinutes()));;
                 time+=":";
                 time+=String.format("%02d", ((int)newValue.toSeconds()) % 60);
                 _timelabel.setText(time);
             }
-
         });
-
 
         _player.setOnEndOfMedia(()-> {
             _player.seek(Duration.ZERO);
@@ -62,26 +59,22 @@ public class MediaViewController extends Controller{
             _play.setText("Play");
             Image image = new Image(getClass().getResourceAsStream("/icons/play.png"));
             _play.setGraphic(new ImageView(image));
-
-
         });
-
 
         _player.currentTimeProperty().addListener(new ChangeListener<Duration>() {
-
             @Override
             public void changed(ObservableValue<? extends Duration> observable, Duration oldValue, Duration newValue) {
-
                 double time = newValue.toMillis();
                 _slider.adjustValue(time);
-
             }
-
         });
-
     }
 
-
+    /**
+     * @param medianame
+     * This method is called by the controller of the previous scene and recieves the name of a creation to play,
+     * it then finds the MP4 file to play, sets up the player and the view, and also sets up the slider.
+     */
     public void playMedia(String medianame) {
 
         _fileUrl = new File("./creations/" + medianame + ".mp4");
@@ -93,9 +86,7 @@ public class MediaViewController extends Controller{
         _view.setFitHeight(416);
         _hBox.getChildren().addAll(_view);
 
-
         _player.setOnReady(new Runnable() {
-
             @Override
             public void run() {
 
@@ -107,50 +98,41 @@ public class MediaViewController extends Controller{
                         _player.seek(new Duration(_slider.getValue()));
                     }
                 });
-
             }
-
         });
-
     }
 
-
-
+    /**
+     * This method just pauses or plays the media depending on the media players current status.
+     */
     public void pausePlay(){
 
             if (_player.getStatus() == MediaPlayer.Status.PLAYING) {
-
                 _player.pause();
                 _play.setText("Play");
     			Image image = new Image(getClass().getResourceAsStream("/icons/play.png"));
     			_play.setGraphic(new ImageView(image));
-
-
             } else {
-
                 _player.play();
                 _play.setText("Pause");
     			Image image = new Image(getClass().getResourceAsStream("/icons/pause.png"));
     			_play.setGraphic(new ImageView(image));
-
-
             }
     }
 
-
-
-
+    /**
+     * This method just increases the playback speed of the media player.
+     */
     public void fastForward() {
-
         if ((_rate + 0.25) <= 2) {
-
             _rate = _rate + 0.25;
             _player.setRate(_rate);
-
         }
-
     }
 
+    /**
+     * This method just decreases the playback speed of the media player.
+     */
     public void slowDown() {
         if ((_rate - 0.25) > 0) {
             _rate = _rate - 0.25;
@@ -158,28 +140,27 @@ public class MediaViewController extends Controller{
         }
     }
 
+    /**
+     * This method increases the elapsed time of the media player by 5 seconds.
+     */
     public void skipForwardSeconds() {
         if(_player.getStatus() == MediaPlayer.Status.PAUSED){
             //Do nothing
         } else {
             _player.seek(_player.getCurrentTime().add(Duration.seconds(5)));
         }
-
-
     }
 
+    /**
+     * This method decreases the elapsed time of the media player by 5 seconds.
+     */
     public void skipBackSeconds() {
         if(_player.getStatus() == MediaPlayer.Status.PAUSED){
             //Do nothing
         } else {
             _player.seek(_player.getCurrentTime().add(Duration.seconds(-5)));
         }
-
     }
-
-
-
-
 
     @Override
     public String returnFXMLPath() {
@@ -193,11 +174,9 @@ public class MediaViewController extends Controller{
 
     @Override
     public void auxiliaryFunctionBackwards(FXMLLoader loader) {
-
         _player.stop();
         ListScene listcontroller = loader.<ListScene>getController();
         listcontroller.innitialiseList();
-
     }
 
 }
