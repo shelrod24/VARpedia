@@ -163,7 +163,6 @@ public class QuizController extends Controller {
         _result.setImage(null);
         _outcome.setText(null);
         _textField.setText(null);
-        System.out.println("Hello");
         _listOfCreations.remove(0);
 
         if(_listOfCreations.size()== 0) {
